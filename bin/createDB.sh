@@ -1,1 +1,1 @@
-sqlite3 -echo ../data/test.db < createDB.sql
+sqlite3 ../data/test.db < createDB.sql

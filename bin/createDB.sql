@@ -1,5 +1,5 @@
-CREATE TABLE main.User(
-  id INTEGER PRIMARY KEY, 
+CREATE TABLE User(
+  username VARCHAR(64) PRIMARY KEY, 
   firstname VARCHAR(64), 
   lastname VARCHAR(64), 
   email VARCHAR(64), 
@@ -8,56 +8,61 @@ CREATE TABLE main.User(
 );
 
 Create table UserTeam(
-  id integer primary key, 
-  name varchar(64)
+  name varchar(64) primary key,
+  description varchar(64)
 );
 
 Create table UserTeamPlayers(
-  UserTeamId integer,
-  ProPlayerId integer,
+  UserTeamName varchar(64),
+  ProPlayerName varchar(64),
+  ProPlayerTeam varchar(64),
   position varchar(2),
-  Foreign key (UserTeamId) references UserTeam(id),
-  Foreign key (ProPlayerId) references ProPlayer(id)
+  Foreign key (UserTeamName) references UserTeam(name),
+  Foreign key (ProPlayerName) references ProPlayer(name)
+  Foreign key (ProPlayerTeam) references ProPlayer(team)
+  Primary key (UserTeamName, ProPlayerName, ProPlayerTeam)
 );
 
 Create table UserTournament(
-  id integer primary key,
-  name varchar(64),
+  name varchar(64) primary key,
   lengthdays integer,
   integer startdate,
   enddate integer
 );
 
 Create table UserTournamentTeams(
-  UserTournamentId integer,
+  UserTournamentId integer primary key,
   UserTeamId integer,
   Foreign key (UserTournamentId) references UserTournament(id),
   Foreign key (UserTeamId) references UserTeam(id)
 );
 
 Create table ProTeam(
-  id integer primary key, 
-  name varchar(64),
+  name varchar(64) primary key,
   league varchar(40)
 );
 
 Create table ProPlayer(
-  id integer primary key,
-  ProTeamId integer,
+  team varchar(64),
   name varchar(64),
-  Number varchar(10),
-  Foreign key (ProTeamId) references ProTeam(id)
+  position varchar(2),
+  number integer,
+  Foreign key (team) references ProTeam(name),
+  Primary key (team, name)
 );
 
 Create table ProPlayerStats(
-  ProPlayerId integer,
+  ProPlayerTeam varchar(64),
+  ProPlayerName varchar(64),
   lastudpate integer,
   Stat1 integer,
   Stat2 integer,
   Stat3 integer,
   Stat4 integer,
   source varchar(25),
-  Foreign key (ProPlayerId) references ProPlayer(id)
+  Foreign key (ProPlayerTeam) references ProTeam(name),
+  Foreign key (ProPlayerName) references ProPlayer(name),
+  Primary key (ProPlayerTeam, ProPlayerName)
 );
 
 Create table UserRole(
@@ -74,5 +79,3 @@ Create table Role(
   name varchar(32),
   Description varchar(128)
 );
-
-
