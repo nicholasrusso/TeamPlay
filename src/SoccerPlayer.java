@@ -1,14 +1,15 @@
 
 public interface SoccerPlayer
 {
-    public String getFirstName() ;
-    
-    public String getLastName() ;
+       
+    public String getName() ;
     
     public String getTeam() ;
     
-    public String print() ;
+    public String toString() ;
     
     public int score() ;
+    
+    public int getScore() ;
     
 }

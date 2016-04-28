@@ -1,40 +1,42 @@
 public class Midfielder implements SoccerPlayer
 {
-    String firstName = "";
-    String lastName = "";
+    String name = "";
     String team = "";
+    int score = 0;
 
-    public Midfielder(String firstName, String lastName, String team){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Midfielder(String name, String team){
+        this.name = name;
         this.team = team;
+        this.score = score();
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
+    public String getName() {
+        return name;
+    }   
 
     public String getTeam() {
         return team;
     }
 
-    public String print() {
-        return ("Name: " + firstName + " " + lastName + "\nTeam: " + team + 
-            "\nPosition: " + this.getClass().getName() + "\nScore: " + score() + "\n");        
+    public String toString() {
+        return ("Name: " + name + "\nTeam: " + team + 
+            "\nPosition: " + this.getClass().getName() + "\nScore: " + score + "\n");        
+    }
+    
+    public int getScore() {
+        return score;
     }
 
     public int score() {
-        int goal = 0;
-        int assist = 0;
-        int shot = 0;
-        int shotOnGoal = 0;
-        int yellowCard = 0;
-        int redCard = 0;
-        return 0;        
+        int goal = (int)(Math.random() * 3);
+        int assist = (int)(Math.random() * 3);
+        int shot = (int)(Math.random() * 6);
+        int shotOnGoal = (int)(Math.random() * 4);
+        int yellowCard = (int)(Math.random() * 2);
+        int redCard = (int)(Math.random() * 1);
+        
+        int score = goal + 3*assist + (shot - shotOnGoal) - 2*yellowCard - 3*redCard;
+        return score;        
     }
 
 }

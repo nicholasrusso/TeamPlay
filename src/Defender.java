@@ -1,40 +1,42 @@
 public class Defender implements SoccerPlayer
 {
-    String firstName = "";
-    String lastName = "";
+    String name = "";
     String team = "";
+    int score = 0;
 
-    public Defender(String firstName, String lastName, String team){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Defender(String name, String team){
+        this.name = name;
         this.team = team;
+        this.score = score();
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
     public String getTeam() {
         return team;
     }
 
-    public String print() {
-        return ("Name: " + firstName + " " + lastName + "\nTeam: " + team + 
-            "\nPosition: " + this.getClass().getName() + "\nScore: " + score() + "\n");        
+    public String toString() {
+        return ("Name: " + name + "\nTeam: " + team + 
+            "\nPosition: " + this.getClass().getName() + "\nScore: " + score + "\n");        
+    }
+    
+    public int getScore() {
+        return score;
     }
 
     public int score() {
-        int goal = 0;
-        int assist = 0;
-        int yellowCard = 0;
-        int redCard = 0;
-        int foul = 0;
+        int goal = (int)(Math.random() * 2);
+        int assist = (int)(Math.random() * 2);
+        int yellowCard = (int)(Math.random() * 2);
+        int redCard = (int)(Math.random() * 1);
+        int foul = (int)(Math.random() * 5);
         
-        return 0;        
+        int score = 4*goal + 2*assist - 2*yellowCard - 5*redCard - foul; 
+        
+        return score;        
     }
 
 }
