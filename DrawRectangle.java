@@ -46,12 +46,7 @@ public class DrawRectangle {
         mainPanel.addComponent(new TextBox(new TerminalSize(30, 1), "").withBorder(Borders.singleLine("First Name:")));
         mainPanel.addComponent(new TextBox(new TerminalSize(30, 1), "").withBorder(Borders.singleLine("Last Name:")));
         mainPanel.addComponent(new TextBox(new TerminalSize(30, 1), "").withBorder(Borders.singleLine("Email")));
-        TextBox passwordField = new TextBox(new TerminalSize(30, 1), "");
-        passwordField.withBorder(Borders.singleLine("Password"));
-        passwordField.setMask('*');
-        mainPanel.addComponent(passwordField);
-
-        //mainPanel.addComponent(new TextBox(new TerminalSize(30, 1), "").setMask('*').withBorder(Borders.singleLine("Password")));
+        mainPanel.addComponent(new TextBox(new TerminalSize(30, 1), "").setMask('*').withBorder(Borders.singleLine("Password")));
 
 				mainPanel.addComponent(new EmptySpace(TerminalSize.ONE));
 				mainPanel.addComponent(new Button("Exit", new Runnable() {
