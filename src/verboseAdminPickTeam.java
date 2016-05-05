@@ -59,12 +59,43 @@ public class adminPickTeam {
          });
       }
 
+      /*
+      // Arsenal
+      JCheckBox afc = new JCheckBox("Arsenal");
+      afc.addItemListener(new ItemListener() {
+         public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+               System.out.println("Selected Arsenal");
+            }
+            else {
+               System.out.println("Deselected Arsenal");
+            }
+         }
+      });
+      
+      // Atletico Madrid
+      JCheckBox am = new JCheckBox("Atletico Madrid");
+      am.addItemListener(new ItemListener() {
+         public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+               System.out.println("Selected Atletico Madrid");
+            }
+            else {
+               System.out.println("Deselected Atletico Madrid");
+            }
+         }
+      });
+      */
+
       // Panel
       JPanel teamsPanel = new JPanel();
       teamsPanel.setLayout(null);
       frame.getContentPane().add(teamsPanel);
       teamsPanel.setPreferredSize(new Dimension(400, 300));
-
+      //teamsPanel.add(afc);
+      //afc.setBounds(20, 20, 200, 20);
+      //teamsPanel.add(am);
+      //am.setBounds(20, 40, 200, 20);
       for (int i = 0; i < teamBoxes.length; i++) {
          teamBoxes[i].setBounds(20, 20 * i, 200, 20);
          teamsPanel.add(teamBoxes[i]);
