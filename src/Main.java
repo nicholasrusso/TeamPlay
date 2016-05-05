@@ -12,7 +12,7 @@ import java.lang.IllegalAccessException;
 public class Main {
 
     public static void main(String[] args) {
-       ManuallyUploadTeams mut = new ManuallyUploadTeams();
+       UploadTeamsByCSV mut = new UploadTeamsByCSV();
        ArrayList<ProfessionalTeam> teams = mut.upload();
        System.out.println("Size " + teams.size());
        for (int i = 0; i < teams.size(); i++) {
