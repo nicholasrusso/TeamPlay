@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.sql.PreparedStatement;
 
 public class SQLiteExample {
   public static void main(String args []) {
@@ -23,6 +24,20 @@ public class SQLiteExample {
 				System.out.println("Name: " 
                           + rs.getString("firstname") + " "
                           + rs.getString("lastname"));
+			}
+    } catch (SQLException e) {
+      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+      System.exit(0);
+    }
+    
+    // "Prepared" Statement
+    try {
+    		PreparedStatement pstmt = db.prepareStatement("SELECT count(*) FROM user WHERE firstname = ?");
+    		pstmt.setString(1, "foo");
+			ResultSet rs = pstmt.executeQuery();
+						
+			if (rs.getInt(1) == 0){
+				System.out.println("Searching for 'foo' returned no values");				
 			}
     } catch (SQLException e) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
