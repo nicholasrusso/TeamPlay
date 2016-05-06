@@ -1,5 +1,14 @@
 package user;
 
+import security.PasswordUtilities;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import db.DBFactory;
+
 /**
  * @author charliegels
  * @version 1.0
@@ -16,6 +25,7 @@ public class User
     private String userName;
     private Email email;
     private boolean allValidated;
+    private String passwordHash;
     //TODO
 //    private String passwordHash;
 //    private ArrayList<ProfessionalTeam> userTeams;
@@ -30,6 +40,7 @@ public class User
         userName = "";
         email = new Email();
         allValidated = false;
+        passwordHash= "";
     }
 
     /**
@@ -125,13 +136,36 @@ public class User
     {
         return email;
     }
+    
+    /**
+     * @param set password hash based on salt and password.
+     * */
+    public void setPasswordHash(String password)
+    {
+        this.passwordHash = PasswordUtilities.getPasswordHash(password);
+    }
+    
+    /**
+     * Accessor for user's password hash.
+     * @return user's password hash as a string.
+     * */
+    public String getPasswordHash()
+    {
+        return passwordHash;
+    } 
+    
+    public boolean passwordValid()
+    {
+        return (passwordHash != null);
+    }
+
 
     /***
      * Accessor for the validaiton status of this user.
      * @return true if all fields are valid, else false.
      * */
     public boolean isValidated() {
-        return setEmail(email.toString()) && setFirstName(firstName) && setLastName(lastName) && setUsername(userName);
+        return setEmail(email.toString()) && setFirstName(firstName) && setLastName(lastName) && setUsername(userName) && passwordValid();
     }
 
 
@@ -146,6 +180,29 @@ public class User
                         .append("\nFirst Name : ").append(firstName)
                         .append("\nLast Name  : ").append(lastName)
                         .append("\nEmail      : ").append(email.toString()).toString();
+    }
+    
+    public void save() {
+    	String insertUserSQL = "insert into main.User (username, firstname, lastname, passhash, email, lastlogin) values (?,?,?,?,?,?)";
+		Connection db = DBFactory.getDBConnection();
+		
+		try {
+			PreparedStatement pstmt = db.prepareStatement(insertUserSQL);
+			pstmt.setString(1, this.userName);
+			pstmt.setString(2, this.firstName);
+			pstmt.setString(3, this.lastName);
+			pstmt.setString(4, this.passwordHash);
+			pstmt.setString(5, this.email.toString());
+			pstmt.setLong(6, System.currentTimeMillis() / 1000L);
+
+			pstmt.executeUpdate();
+			pstmt.close();
+		    db.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
     }
 }
 

@@ -2,11 +2,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
+import user.RegistrationPane;
 
 public class MainMenu {
     private JFrame frame;
-    private JPanel headerPanel, menuPanel, menuButtonPanel, profilePanel, settingsPanel, createTournamentPanel, tournamentPanel, rulesPanel;
-    private JButton rulesButton, tournamentButton, createTournamentButton, editProfileButton, settingsButton, backButton; 
+    private JPanel headerPanel, menuPanel, menuButtonPanel, profilePanel, settingsPanel, createTournamentPanel, tournamentPanel, rulesPanel, registrationPanel;
+    private JButton rulesButton, tournamentButton, createTournamentButton, editProfileButton, settingsButton, registerButton, backButton; 
 
     public void createMenu() {
         frame = new JFrame();
@@ -41,13 +42,19 @@ public class MainMenu {
         settingsButton.addActionListener(new settingsButtonListener());
         settingsButton.setPreferredSize(d); 
         
-
+        registerButton = new JButton("Register");
+        registerButton.addActionListener(new registerButtonListener());
+        registerButton.setPreferredSize(d); 
+       
                
+        menuButtonPanel.add(registerButton);
         menuButtonPanel.add(tournamentButton);
         menuButtonPanel.add(createTournamentButton);
         menuButtonPanel.add(rulesButton);
         menuButtonPanel.add(editProfileButton);
         menuButtonPanel.add(settingsButton);
+        
+
         menuButtonPanel.setPreferredSize(new Dimension(360, 600));        
         
         headerPanel.setPreferredSize(new Dimension(800, 200));
@@ -129,6 +136,23 @@ public class MainMenu {
             settingsPanel.add(backButton);
 
             frame.getContentPane().add(settingsPanel);
+            frame.getContentPane().validate();
+            frame.getContentPane().repaint();
+        }
+    }
+    
+    class registerButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent ae) 
+        {
+            frame.getContentPane().removeAll();            
+            registrationPanel = new RegistrationPane();
+
+            backButton = new JButton("Back");
+            backButton.addActionListener(new backButtonListener());
+            registrationPanel.add(backButton);
+
+            frame.getContentPane().add(registrationPanel);
             frame.getContentPane().validate();
             frame.getContentPane().repaint();
         }
