@@ -8,12 +8,10 @@ public class ProfessionalTeam extends Team {
 
    public ProfessionalTeam() {
       this.name = "";
-      //this.listOfPlayers = null;
    }
 
    public ProfessionalTeam(String name) {
       this.name = name;
-      //this.listOfPlayers = null;
    }
 
    public void addPlayer(SoccerPlayer sp) {

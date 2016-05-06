@@ -11,4 +11,20 @@ public class UserTeam extends Team {
 
    public void getStatistics() {
    }
+
+   public void addPlayer(SoccerPlayer sp) {
+      this.listOfPlayers.add(sp);
+   }
+   
+   public void removePlayer(SoccerPlayer sp) {
+      this.listOfPlayers.remove(sp);
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public int getSize() {
+      return listOfPlayers.size();
+   }
 }
