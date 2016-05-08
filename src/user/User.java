@@ -1,4 +1,4 @@
-package user;
+package src.user;
 
 /**
  * @author charliegels
