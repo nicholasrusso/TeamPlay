@@ -1,4 +1,6 @@
-package user;
+package src.user;
+
+import javax.swing.*;
 
 /**
  * Temporary class to act as a application class.
@@ -9,20 +11,10 @@ public class TempApp
 {
     public static void main(String args[])
     {
-        ProfileManager pf = new ProfileManager();
-        pf.createUser();
-
-        User u = pf.getUsers().get("2leet");
-        System.out.println(u.toString());
-
-        pf.editEmail(u);
-
-        pf.editFirstName(u);
-
-        pf.editLastName(u);
-
-        pf.editUsername(u);
-
-        System.out.println(u.toString());
+        JPanel p = new ProfilePanel(null);
+        JFrame f = new JFrame("Test");
+        f.add(p);
+        f.setVisible(true);
+        f.pack();
     }
 }

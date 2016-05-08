@@ -1,4 +1,4 @@
-package user;
+package src.user;
 
 /**
  * Created by charliegels on 4/11/16.
