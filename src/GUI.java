@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 import javax.swing.BorderFactory;
 
 import java.awt.event.ActionEvent;
@@ -25,6 +26,8 @@ import java.awt.BorderLayout;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.SwingUtilities;
+
+import user.RegistrationPane;
 
 public class GUI {
     private JFrame frame;
@@ -46,6 +49,11 @@ public class GUI {
     private JButton login, createAcct;
     private JProgressBar progressBar;
     //END   
+    
+    //FOR REGISTRATION
+    private JPanel registrationPanel = new RegistrationPane();
+    //END
+    
 
     public void run() {        
         frame = new JFrame("Team Play");
@@ -100,6 +108,7 @@ public class GUI {
 
         frame.setVisible(true);
         login.addActionListener(new progressListener());
+        createAcct.addActionListener(new createAcctButtonListener());
 
     }
 
@@ -214,6 +223,23 @@ public class GUI {
                 statusLabel.setText("Invalid username or password");
             }
 
+        }
+    }
+    
+    class createAcctButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent ae) 
+        {
+            frame.getContentPane().removeAll();            
+            registrationPanel = new RegistrationPane();
+
+            backButton = new JButton("Back");
+            backButton.addActionListener(new backButtonListener());
+            registrationPanel.add(backButton);
+
+            frame.getContentPane().add(registrationPanel);
+            frame.getContentPane().validate();
+            frame.getContentPane().repaint();
         }
     }
 
