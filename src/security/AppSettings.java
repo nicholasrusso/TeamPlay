@@ -24,7 +24,6 @@ public class AppSettings {
 			try {
 				in = new FileInputStream("resources/TeamPlay.properties");
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -32,7 +31,6 @@ public class AppSettings {
 				props.load(in);
 				in.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
