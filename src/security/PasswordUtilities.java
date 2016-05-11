@@ -27,8 +27,11 @@ public class PasswordUtilities {
 		byte[] saltypassbytes = null;
 		try {
 			saltbytes = salt.getBytes("UTF-8");
+			System.out.println(saltbytes);
 			passbytes = password.getBytes("UTF-8");
 			saltypassbytes = new byte[saltbytes.length + passbytes.length];
+			System.arraycopy(passbytes, 0, saltypassbytes, 0, passbytes.length);
+			System.arraycopy(saltbytes, 0, saltypassbytes, passbytes.length, saltbytes.length);
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -43,6 +46,7 @@ public class PasswordUtilities {
 			md.update(saltypassbytes);
 		}
 		digest = DatatypeConverter.printHexBinary(md.digest());
+		System.out.println(digest);
 		return digest;		
 	}
 
