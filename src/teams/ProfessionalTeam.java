@@ -1,6 +1,6 @@
-import java.util.Scanner;
-import java.lang.Integer;
-import java.util.ArrayList;
+package teams;
+
+import soccerPlayer.SoccerPlayer;
 
 public class ProfessionalTeam extends Team {
    // RedMine ID: 512297

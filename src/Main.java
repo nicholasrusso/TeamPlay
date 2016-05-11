@@ -1,13 +1,11 @@
 import java.util.ArrayList;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import java.lang.InstantiationException;
-import java.lang.IllegalAccessException;
+import soccerPlayer.Defender;
+import soccerPlayer.Forward;
+import soccerPlayer.GoalKeeper;
+import soccerPlayer.Midfielder;
+import soccerPlayer.SoccerPlayer;
+import teams.ProfessionalTeam;
 
 public class Main {
 

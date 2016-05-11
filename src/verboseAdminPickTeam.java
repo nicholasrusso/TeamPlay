@@ -5,7 +5,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.*;
 
-public class adminPickTeam {
+public class verboseAdminPickTeam {
    private JFrame frame;
    private JPanel menuPanel, menuButtonPanel, profilePanel, settingsPanel, createTournamentPanel, tournamentPanel, rulesPanel;
    private JButton rulesButton, tournamentButton, createTournamentButton, editProfileButton, settingsButton, backButton; 
@@ -111,6 +111,6 @@ public class adminPickTeam {
         | UnsupportedLookAndFeelException e1) {
             e1.printStackTrace();
         }
-        new adminPickTeam().pickTeamMenu();
+        new verboseAdminPickTeam().pickTeamMenu();
     }
 }

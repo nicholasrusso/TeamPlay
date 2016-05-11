@@ -1,4 +1,4 @@
-package src.user;
+package user;
 
 import javax.swing.*;
 

@@ -9,6 +9,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Transport;
+import javax.*;
 
 public class EmailUtilities {
 

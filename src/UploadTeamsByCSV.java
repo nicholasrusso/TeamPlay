@@ -1,7 +1,13 @@
-import java.util.Scanner;
-import java.lang.Integer;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.io.*;
+import java.util.Scanner;
+
+import soccerPlayer.Defender;
+import soccerPlayer.Forward;
+import soccerPlayer.GoalKeeper;
+import soccerPlayer.Midfielder;
+import teams.ProfessionalTeam;
 
 public class UploadTeamsByCSV {
    public ArrayList<ProfessionalTeam> upload() {
