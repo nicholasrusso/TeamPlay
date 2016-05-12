@@ -36,7 +36,7 @@ public class Registration {
 				
 		User newUser = new User();
 		newUser.setUsername(username);
-		newUser.setPasswordHash(password);
+		newUser.setPasswordHashFromPassword(password);
 		newUser.setFirstName(firstname);
 		newUser.setLastName(lastname);
 		newUser.setEmail(email);
