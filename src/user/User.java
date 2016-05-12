@@ -136,11 +136,19 @@ public class User
     {
         return email;
     }
+
+    /**
+     * @param set password hash as given string.
+     * */
+    public void setPasswordHash(String passwordHash)
+    {
+        this.passwordHash = passwordHash;
+    }
     
     /**
      * @param set password hash based on salt and password.
      * */
-    public void setPasswordHash(String password)
+    public void setPasswordHashFromPassword(String password)
     {
         this.passwordHash = PasswordUtilities.getPasswordHash(password);
     }
