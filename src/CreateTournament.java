@@ -16,8 +16,7 @@ public class CreateTournament {
    public int numberUsers = 2;
 
    //private ArrayList<ProfessionalTeam> allTeams;
-   private JFrame frame;
-   private JPanel teamsPanel;
+   public JPanel tournamentPanel;
 
    /*
    public Tournament returnTournament() {
@@ -26,16 +25,7 @@ public class CreateTournament {
    }
    */
 
-   void createTournamentMenu() {
-      // Initialize Frame
-      frame = new JFrame();
-      frame.setTitle("TeamPlay");
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setSize(800,600);
-      frame.setResizable(true);
-      Dimension dim = new Dimension(360,40);
-      frame.setVisible(true);
-
+   JPanel createTournamentMenu() {
       // Upload All Teams w/ Rosters (currently from CSV)
       //UploadTeamsByCSV ut = new UploadTeamsByCSV();
       //allTeams = ut.upload();
@@ -70,25 +60,24 @@ public class CreateTournament {
       }
 
       // Create Tournament Panel
-      teamsPanel = new JPanel();
-      teamsPanel.setLayout(null);
-      frame.getContentPane().add(teamsPanel);
-      teamsPanel.setPreferredSize(new Dimension(400, 300));
+      tournamentPanel = new JPanel();
+      tournamentPanel.setLayout(null);
+      tournamentPanel.setPreferredSize(new Dimension(400, 300));
 
       // Add Tournament Name via JTextField
       JLabel tournamentNameLabel = new JLabel("Tournament Name: ");
       tournamentNameLabel.setBounds(100, 20, 300, 40);
-      teamsPanel.add(tournamentNameLabel);
+      tournamentPanel.add(tournamentNameLabel);
 
       JTextField tournamentNameField = new JTextField();
       tournamentNameField.setBounds(100, 50, 300, 40);
-      teamsPanel.add(tournamentNameField);
+      tournamentPanel.add(tournamentNameField);
       tournamentName = tournamentNameField.getText();
 
       // Add Max # Users via JSlider
       JLabel maxUsersLabel = new JLabel("Maximum number of players: ");
       maxUsersLabel.setBounds( 100, 80, 300, 40);
-      teamsPanel.add(maxUsersLabel);
+      tournamentPanel.add(maxUsersLabel);
 
       JSlider maxNumUsers = new JSlider(0, 20, 2);
       maxNumUsers.setMajorTickSpacing(5);
@@ -102,21 +91,21 @@ public class CreateTournament {
             System.out.println("numberUsers: " + numberUsers);
          }
       });
-      teamsPanel.add(maxNumUsers);
+      tournamentPanel.add(maxNumUsers);
 
       // Add Team Selection via JCheckBoxes
-      JLabel selectTeamsLabel = new JLabel("Select Teams: ");
+      JLabel selectTeamsLabel = new JLabel("Select Teams For Player Pool: ");
       selectTeamsLabel.setBounds(100, 150, 300, 40);
-      teamsPanel.add(selectTeamsLabel);
+      tournamentPanel.add(selectTeamsLabel);
       for (int i = 0; i < teamBoxes.length; i++) {
          teamBoxes[i].setBounds(100, 180 + 20 * i, 200, 20);
-         teamsPanel.add(teamBoxes[i]);
+         tournamentPanel.add(teamBoxes[i]);
       }
 
-      frame.add(teamsPanel);
-      frame.setVisible(true);
+      return tournamentPanel;
    }
 
+   /*
    public static void main(String[] args) {
      try {
          UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -129,4 +118,5 @@ public class CreateTournament {
       System.out.println("tournamentName: " + ct.tournamentName);
       System.out.println("numberUsers: " + ct.numberUsers);
    }
+   */
 }

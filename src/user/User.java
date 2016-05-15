@@ -23,7 +23,7 @@ public class User
     private String firstName;
     private String lastName;
     private String userName;
-    private Email email;
+    //private Email email;
     private boolean allValidated;
     private String passwordHash;
     //TODO
@@ -38,7 +38,7 @@ public class User
         firstName = "";
         lastName = "";
         userName = "";
-        email = new Email();
+        //email = new Email();
         allValidated = false;
         passwordHash= "";
     }
@@ -123,19 +123,23 @@ public class User
      * @param address desired username.
      * @return true if valid email address, otherwise false.
      * */
+    /*
     public boolean setEmail(String address)
     {
         return email.setAddress(address);
     }
+    */
 
     /**
      * Accessor for user's email address name.
      * @return user's email address
      * */
+    /*
     public Email getEmail()
     {
         return email;
     }
+    */
     
     /**
      * @param set password hash based on salt and password.

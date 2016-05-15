@@ -39,7 +39,7 @@ public class Registration {
 		newUser.setPasswordHash(password);
 		newUser.setFirstName(firstname);
 		newUser.setLastName(lastname);
-		newUser.setEmail(email);
+		//newUser.setEmail(email);
 		
 		if(newUser.isValidated()) {
 			newUser.save();
