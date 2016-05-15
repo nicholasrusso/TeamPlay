@@ -28,6 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.SwingUtilities;
 
 import user.RegistrationPane;
+import user.UserSearchPanel;
 
 public class GUI {
     private JFrame frame;
@@ -35,6 +36,8 @@ public class GUI {
     //FOR MAIN MENU
     private JPanel headerPanel, menuPanel, menuButtonPanel, profilePanel, settingsPanel, createTournamentPanel, tournamentPanel, rulesPanel;
     private JButton rulesButton, tournamentButton, createTournamentButton, editProfileButton, settingsButton, backButton;
+    private JButton findFriendsButton;
+    private JPanel findFriendsPanel;
     private JLabel backgroundLabel, title;
     private JLayeredPane lp;
     private Image img;    
@@ -143,6 +146,13 @@ public class GUI {
         settingsButton.setBackground(Color.black); 
         settingsButton.setFont(settingsButton.getFont().deriveFont(Font.BOLD));
         //settingsButton.addActionListener(new tournamentButtonListener());
+        
+        findFriendsButton = new JButton("Find Friends");
+        findFriendsButton.setBounds(170,450,440, 30);
+        findFriendsButton.setBackground(Color.black); 
+        findFriendsButton.setFont(findFriendsButton.getFont().deriveFont(Font.BOLD));
+        findFriendsButton.addActionListener(new findFriendsButtonListener());
+
 
         backgroundLabel = new JLabel();
         ImageIcon icon = new ImageIcon("C:/Users/Owner/Desktop/bgImage.jpg");
@@ -159,7 +169,8 @@ public class GUI {
         lp.add(editProfileButton, new Integer(4));
         lp.add(rulesButton, new Integer(5));
         lp.add(settingsButton, new Integer(6));
-        lp.add(title, new Integer(7));
+        lp.add(findFriendsButton, new Integer(7));
+        lp.add(title, new Integer(8));
 
         frame.add(lp);        
 
@@ -171,6 +182,9 @@ public class GUI {
     {
         public void actionPerformed(ActionEvent ae) 
         {            
+            CreateTournament ct = new CreateTournament();
+            JPanel panel = ct.createTournamentMenu();
+            frame.getContentPane().add(panel);
             frame.getContentPane().removeAll();
             frame.getContentPane().add(joinTournamentPanel());
             frame.getContentPane().revalidate();
@@ -238,6 +252,23 @@ public class GUI {
             registrationPanel.add(backButton);
 
             frame.getContentPane().add(registrationPanel);
+            frame.getContentPane().validate();
+            frame.getContentPane().repaint();
+        }
+    }
+    
+    class findFriendsButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent ae) 
+        {
+            frame.getContentPane().removeAll();            
+            findFriendsPanel = new UserSearchPanel();
+
+            backButton = new JButton("Back");
+            backButton.addActionListener(new backButtonListener());
+            findFriendsPanel.add(backButton);
+
+            frame.getContentPane().add(findFriendsPanel);
             frame.getContentPane().validate();
             frame.getContentPane().repaint();
         }

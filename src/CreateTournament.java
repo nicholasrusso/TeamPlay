@@ -30,6 +30,17 @@ public class CreateTournament {
       //UploadTeamsByCSV ut = new UploadTeamsByCSV();
       //allTeams = ut.upload();
 
+      /* For testing only
+      // Initialize Frame
+      JFrame frame = new JFrame();
+      frame.setTitle("TeamPlay");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setSize(800,600);
+      frame.setResizable(true);
+      Dimension dim = new Dimension(360,40);
+      frame.setVisible(true);
+      */
+
       // JCheckBoxes (one for each team that has a teamName)
       String[] teamNames = {"Arsenal", "Atletico Madrid", "Bayern Munich", 
          "Chelsea", "FC Barcelona", "Leicester City", "Liverpool", 
@@ -102,10 +113,29 @@ public class CreateTournament {
          tournamentPanel.add(teamBoxes[i]);
       }
 
+      // Submit Button Listener
+      class submitButtonListener implements ActionListener {
+         public void actionPerformed(ActionEvent ae) {
+         }
+      }
+
+      // Add Submit Button
+      JButton submitButton = new JButton("Submit");
+      submitButton.addActionListener(new submitButtonListener());
+      submitButton.setBounds(100, 450, 200, 20);
+      tournamentPanel.add(submitButton);
+
+      /* For testing only
+      // Add stuff to frame
+      frame.add(tournamentPanel);
+      frame.setVisible(true);
+      frame.getContentPane().add(tournamentPanel);
+      */
+
       return tournamentPanel;
    }
 
-   /*
+   /* For testing only
    public static void main(String[] args) {
      try {
          UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
