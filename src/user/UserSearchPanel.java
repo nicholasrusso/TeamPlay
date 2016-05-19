@@ -18,6 +18,7 @@ import javax.swing.border.BevelBorder;
 import user.UserSearch;
 import java.util.ArrayList;
 import user.User;
+import java.awt.Font;
 
 public class UserSearchPanel extends JPanel {
 	private JTextField usernameTextField;
@@ -103,6 +104,17 @@ public class UserSearchPanel extends JPanel {
 		gbc_table.gridx = 4;
 		gbc_table.gridy = 2;
 		add(table, gbc_table);
+		
+		JLabel labelInfoOutput = new JLabel("");
+		labelInfoOutput.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+		labelInfoOutput.setForeground(new Color(0, 0, 128));
+		GridBagConstraints gbc_labelInfoOutput = new GridBagConstraints();
+		gbc_labelInfoOutput.anchor = GridBagConstraints.WEST;
+		gbc_labelInfoOutput.gridwidth = 5;
+		gbc_labelInfoOutput.insets = new Insets(0, 0, 0, 5);
+		gbc_labelInfoOutput.gridx = 4;
+		gbc_labelInfoOutput.gridy = 8;
+		add(labelInfoOutput, gbc_labelInfoOutput);
 		GridBagConstraints gbc_btnViewUser = new GridBagConstraints();
 		gbc_btnViewUser.insets = new Insets(0, 0, 0, 5);
 		gbc_btnViewUser.gridx = 10;
