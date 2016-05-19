@@ -19,7 +19,9 @@ public class UserSearch {
 		this.usernameQuery = username;
 	}
 	
-	// Find users that contain given username string.
+	/*
+	 *  Returns an arraylist of User's based on the user's username.
+	 */
 	public ArrayList<User> getUsers() {
 		String getUserSQL = "select username, firstname, lastname, passhash, "
 				          + "email, lastlogin from main.User where username like "
@@ -52,8 +54,7 @@ public class UserSearch {
 	    		qLastLogin = rs.getLong("lastlogin");
 	    		
 	    		if (notEmpty(qUsername) && notEmpty(qFirstName) &&
-	    		  notEmpty(qLastName) && notEmpty(qEmailAddress) && 
-	    		  notEmpty(qPassHash) && notEmpty(qLastLogin)) {
+	    		  notEmpty(qLastName) && notEmpty(qEmailAddress)) {
 	    			
 	    			tempUser = new User();
 	    			tempUser.setUsername(qUsername);

@@ -1,5 +1,10 @@
 package test;
 
+/*
+ * Test Type: Unit Test
+ * Author: Michael Haskell
+ */
+
 import static org.junit.Assert.*;
 import security.PasswordUtilities;
 
