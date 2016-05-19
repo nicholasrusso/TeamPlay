@@ -1,5 +1,10 @@
 package test;
 
+/*
+ * Test Type: Integration Test
+ * Author: Michael Haskell
+ */
+
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -9,6 +14,9 @@ import email.EmailUtilities;
 
 public class TestEmailUtilities {
 
+	/* 
+	 * Integration test of AppSettings.getInstance and EmailUtilities.sendEmail
+	 */
 	@Test
 	public void test() {
 		Properties props = AppSettings.getInstance();

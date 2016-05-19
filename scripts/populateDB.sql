@@ -1,4 +1,6 @@
-insert into main.User (firstname, lastname) values ('Michael', 'Haskell');
+insert into main.User (username, firstname, lastname, passhash, email, lastlogin) values 
+('mhaskell','Michael', 'Haskell', '', 'mhaskell@calpoly.edu', ''),
+('testuser1','Test', 'User1', '', 'testuser1@calpoly.edu', '');
 insert into ProTeam (name, league) values 
 ('Roma', 'Serie A'),
 ('Bayern Munich', 'Bundesliga'),
