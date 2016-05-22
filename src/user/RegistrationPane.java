@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 import user.Registration;
+import view.LoginMenuView;
 import view.MainMenuView;;
 
 public class RegistrationPane extends JPanel {
@@ -143,7 +144,7 @@ public class RegistrationPane extends JPanel {
 		btnRegister.addActionListener(new registerButtonListener());
 		
 		JButton backButton = new JButton("Back");
-		backButton.addActionListener(new backToMainMenuListener());
+		backButton.addActionListener(new backToLoginMenuListener());
 		GridBagConstraints gbc_backButton = new GridBagConstraints();
 		gbc_backButton.insets = new Insets(0, 0, 5, 5);
 		gbc_backButton.gridx = 1;
@@ -177,7 +178,7 @@ public class RegistrationPane extends JPanel {
         }
     }
     
-    class backToMainMenuListener implements ActionListener
+    class backToLoginMenuListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
@@ -185,7 +186,7 @@ public class RegistrationPane extends JPanel {
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
         	            
         	frame.getContentPane().removeAll();
-        	frame.getContentPane().add(new MainMenuView());
+        	frame.getContentPane().add(new LoginMenuView());
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();        
         }
