@@ -5,22 +5,32 @@ import java.awt.GridBagLayout;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.GridBagConstraints;
 import javax.swing.JTextArea;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.border.BevelBorder;
 import user.UserSearch;
 import java.util.ArrayList;
 import user.User;
 import javax.swing.JList;
+import view.GUI;
+import view.MainMenuView;
+
 
 public class UserSearchPanel extends JPanel {
 	private JTextField usernameTextField;
@@ -105,10 +115,16 @@ public class UserSearchPanel extends JPanel {
 		add(lblSearchResults, gbc_lblSearchResults);
 		
 		JButton btnViewUser = new JButton("View User");
-		btnViewUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnViewUser.addActionListener(new viewUserButtonListener());
+		
+		JButton btnBack = new JButton("Back");
+		GridBagConstraints gbc_btnBack = new GridBagConstraints();
+		gbc_btnBack.insets = new Insets(0, 0, 0, 5);
+		gbc_btnBack.gridx = 7;
+		gbc_btnBack.gridy = 8;
+		add(btnBack, gbc_btnBack);
+		
+		btnBack.addActionListener(new backToMainMenuListener());
 		
 
 		GridBagConstraints gbc_btnViewUser = new GridBagConstraints();
@@ -118,5 +134,34 @@ public class UserSearchPanel extends JPanel {
 		add(btnViewUser, gbc_btnViewUser);
 
 	}
+	
+	class viewUserButtonListener implements ActionListener
+    {
+		public void actionPerformed(ActionEvent e) {
+			Component component = (Component) e.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	
+        	JButton backButton = new JButton("Back");
+            backButton.addActionListener(new backToSearchButtonListener());
+            
+        	frame.getContentPane().removeAll();
+        	frame.getContentPane().add(new UserInfoPanel());
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+		}
+    }
+	
+	class backToMainMenuListener implements ActionListener
+    {
+		public void actionPerformed(ActionEvent e) {
+			Component component = (Component) e.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	            
+        	frame.getContentPane().removeAll();
+        	frame.getContentPane().add(new MainMenuView());
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+		}
+    }
 
 }
