@@ -21,7 +21,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
-import user.Registration;;
+import user.Registration;
+import view.MainMenuView;;
 
 public class RegistrationPane extends JPanel {
 	private JTextField usernameField;
@@ -35,16 +36,17 @@ public class RegistrationPane extends JPanel {
 	 */
 	public RegistrationPane() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblRegistration = new JLabel("Registration");
 		GridBagConstraints gbc_lblRegistration = new GridBagConstraints();
+		gbc_lblRegistration.gridwidth = 3;
 		gbc_lblRegistration.insets = new Insets(0, 0, 5, 0);
-		gbc_lblRegistration.gridx = 1;
+		gbc_lblRegistration.gridx = 0;
 		gbc_lblRegistration.gridy = 0;
 		add(lblRegistration, gbc_lblRegistration);
 		
@@ -58,6 +60,7 @@ public class RegistrationPane extends JPanel {
 		
 		usernameField = new JTextField();
 		GridBagConstraints gbc_userNameField = new GridBagConstraints();
+		gbc_userNameField.gridwidth = 2;
 		gbc_userNameField.insets = new Insets(0, 0, 5, 0);
 		gbc_userNameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_userNameField.gridx = 1;
@@ -75,6 +78,7 @@ public class RegistrationPane extends JPanel {
 		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
+		gbc_passwordField.gridwidth = 2;
 		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_passwordField.gridx = 1;
@@ -91,6 +95,7 @@ public class RegistrationPane extends JPanel {
 		
 		firstNameField = new JTextField();
 		GridBagConstraints gbc_firstName = new GridBagConstraints();
+		gbc_firstName.gridwidth = 2;
 		gbc_firstName.insets = new Insets(0, 0, 5, 0);
 		gbc_firstName.fill = GridBagConstraints.HORIZONTAL;
 		gbc_firstName.gridx = 1;
@@ -108,6 +113,7 @@ public class RegistrationPane extends JPanel {
 		
 		lastNameField = new JTextField();
 		GridBagConstraints gbc_lastNameField = new GridBagConstraints();
+		gbc_lastNameField.gridwidth = 2;
 		gbc_lastNameField.insets = new Insets(0, 0, 5, 0);
 		gbc_lastNameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lastNameField.gridx = 1;
@@ -125,6 +131,7 @@ public class RegistrationPane extends JPanel {
 		
 		emailField = new JTextField();
 		GridBagConstraints gbc_emailField = new GridBagConstraints();
+		gbc_emailField.gridwidth = 2;
 		gbc_emailField.insets = new Insets(0, 0, 5, 0);
 		gbc_emailField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_emailField.gridx = 1;
@@ -135,17 +142,19 @@ public class RegistrationPane extends JPanel {
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new registerButtonListener());
 		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new backToMainMenuListener());
+		GridBagConstraints gbc_backButton = new GridBagConstraints();
+		gbc_backButton.insets = new Insets(0, 0, 5, 5);
+		gbc_backButton.gridx = 1;
+		gbc_backButton.gridy = 7;
+		add(backButton, gbc_backButton);
+		
 		GridBagConstraints gbc_btnRegister = new GridBagConstraints();
 		gbc_btnRegister.insets = new Insets(0, 0, 5, 0);
-		gbc_btnRegister.gridx = 1;
+		gbc_btnRegister.gridx = 2;
 		gbc_btnRegister.gridy = 7;
 		add(btnRegister, gbc_btnRegister);
-		
-		JButton btnCancel = new JButton("Cancel");
-		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
-		gbc_btnCancel.gridx = 1;
-		gbc_btnCancel.gridy = 8;
-		add(btnCancel, gbc_btnCancel);
 
 	}
 	
@@ -167,4 +176,19 @@ public class RegistrationPane extends JPanel {
         	}
         }
     }
+    
+    class backToMainMenuListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+        	Component component = (Component) e.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	            
+        	frame.getContentPane().removeAll();
+        	frame.getContentPane().add(new MainMenuView());
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();        
+        }
+    }
+
 }

@@ -2,26 +2,38 @@ package user;
 
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.GridBagConstraints;
 import javax.swing.JTextArea;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.border.BevelBorder;
 import user.UserSearch;
 import java.util.ArrayList;
 import user.User;
+import javax.swing.JList;
+import view.GUI;
+import view.MainMenuView;
+
 
 public class UserSearchPanel extends JPanel {
 	private JTextField usernameTextField;
-	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -30,7 +42,7 @@ public class UserSearchPanel extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
@@ -54,20 +66,35 @@ public class UserSearchPanel extends JPanel {
 		add(usernameTextField, gbc_usernameTextField);
 		usernameTextField.setColumns(10);
 		
+		JList resultList = new JList();
+		GridBagConstraints gbc_resultList = new GridBagConstraints();
+		gbc_resultList.gridheight = 6;
+		gbc_resultList.gridwidth = 9;
+		gbc_resultList.insets = new Insets(0, 0, 5, 5);
+		gbc_resultList.fill = GridBagConstraints.BOTH;
+		gbc_resultList.gridx = 4;
+		gbc_resultList.gridy = 2;
+		add(resultList, gbc_resultList);
+		
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserSearch uSearch = new UserSearch(usernameTextField.getText());
-				ArrayList<User> u = uSearch.getUsers();
-				if (u.size() > 0) {
-					System.out.println(u.size() + " users found.");
-					for (User user : u) {
+				ArrayList<User> users = uSearch.getUsers();
+				ArrayList<String> resultsData = new ArrayList<String>();
+				
+				DefaultListModel resultModel = new DefaultListModel();
+
+				if (users.size() > 0) {
+					System.out.println(users.size() + " users found.");
+					for (User user : users) {
 						System.out.println(user.getUsername());
+						resultModel.addElement(user.getUsername());
 					}
 				} else {
 					System.out.println("No users found.");
 				}
-				
+				resultList.setModel(resultModel);
 			}
 		});
 		GridBagConstraints gbc_btnSearch = new GridBagConstraints();
@@ -88,21 +115,18 @@ public class UserSearchPanel extends JPanel {
 		add(lblSearchResults, gbc_lblSearchResults);
 		
 		JButton btnViewUser = new JButton("View User");
-		btnViewUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnViewUser.addActionListener(new viewUserButtonListener());
 		
-		table = new JTable();
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.gridwidth = 7;
-		gbc_table.gridheight = 6;
-		gbc_table.insets = new Insets(0, 0, 5, 5);
-		gbc_table.fill = GridBagConstraints.BOTH;
-		gbc_table.gridx = 4;
-		gbc_table.gridy = 2;
-		add(table, gbc_table);
+		JButton btnBack = new JButton("Back");
+		GridBagConstraints gbc_btnBack = new GridBagConstraints();
+		gbc_btnBack.insets = new Insets(0, 0, 0, 5);
+		gbc_btnBack.gridx = 7;
+		gbc_btnBack.gridy = 8;
+		add(btnBack, gbc_btnBack);
+		
+		btnBack.addActionListener(new backToMainMenuListener());
+		
+
 		GridBagConstraints gbc_btnViewUser = new GridBagConstraints();
 		gbc_btnViewUser.insets = new Insets(0, 0, 0, 5);
 		gbc_btnViewUser.gridx = 10;
@@ -110,5 +134,34 @@ public class UserSearchPanel extends JPanel {
 		add(btnViewUser, gbc_btnViewUser);
 
 	}
+	
+	class viewUserButtonListener implements ActionListener
+    {
+		public void actionPerformed(ActionEvent e) {
+			Component component = (Component) e.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	
+        	JButton backButton = new JButton("Back");
+            backButton.addActionListener(new backToSearchButtonListener());
+            
+        	frame.getContentPane().removeAll();
+        	frame.getContentPane().add(new UserInfoPanel());
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+		}
+    }
+	
+	class backToMainMenuListener implements ActionListener
+    {
+		public void actionPerformed(ActionEvent e) {
+			Component component = (Component) e.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	            
+        	frame.getContentPane().removeAll();
+        	frame.getContentPane().add(new MainMenuView());
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+		}
+    }
 
 }
