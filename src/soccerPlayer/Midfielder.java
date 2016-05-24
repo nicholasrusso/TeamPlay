@@ -1,3 +1,5 @@
+package soccerPlayer;
+
 public class Midfielder implements SoccerPlayer
 {
     String name = "";
