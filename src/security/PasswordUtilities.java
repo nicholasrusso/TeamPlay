@@ -1,7 +1,10 @@
 package security;
 
 import security.AppSettings;
+
+import java.util.Arrays;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -12,6 +15,7 @@ import java.security.NoSuchAlgorithmException;
 
 
 public class PasswordUtilities {
+	private static final Logger log = Logger.getLogger("PasswordUtilities");
 
 	private PasswordUtilities() {
 		// Static class
@@ -27,26 +31,27 @@ public class PasswordUtilities {
 		byte[] saltypassbytes = null;
 		try {
 			saltbytes = salt.getBytes("UTF-8");
-			System.out.println(saltbytes);
 			passbytes = password.getBytes("UTF-8");
 			saltypassbytes = new byte[saltbytes.length + passbytes.length];
 			System.arraycopy(passbytes, 0, saltypassbytes, 0, passbytes.length);
 			System.arraycopy(saltbytes, 0, saltypassbytes, passbytes.length, saltbytes.length);
 		} catch (UnsupportedEncodingException e1) {
+			log.severe(Arrays.toString(e1.getStackTrace()));
 			e1.printStackTrace();
 		}
 		
 		try {
 			md = MessageDigest.getInstance("SHA-512");
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			log.severe(Arrays.toString(e.getStackTrace()));
 		}
 		
 		if (saltypassbytes != null) {
 			md.update(saltypassbytes);
 		}
 		digest = DatatypeConverter.printHexBinary(md.digest());
-		System.out.println(digest);
+		log.fine(digest);
+		
 		return digest;		
 	}
 
