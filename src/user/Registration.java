@@ -1,12 +1,16 @@
 package user;
 
 import db.DBFactory;
-
 import java.sql.*;
+import java.util.Arrays;
+import java.util.logging.Logger;
 
 public class Registration {
+	private static final Logger log = Logger.getLogger("Registration");
 
-	public Registration() {
+
+	private Registration() {
+		// Static class
 	}
 	
 	public static boolean usernameExists(String username) {
@@ -25,8 +29,8 @@ public class Registration {
 			pstmt.close();
 			db.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.exit(0);
+			log.severe(Arrays.toString(e.getStackTrace()));
+			System.exit(1);
 		}
 		return nameExists;
 	}
