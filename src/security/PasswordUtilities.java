@@ -13,6 +13,9 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordUtilities {
 
+	private PasswordUtilities() {
+		// Static class
+	}
 	public static String getPasswordHash(String password) {
 		Properties props = AppSettings.getInstance();
 		String salt = props.getProperty("salt");
