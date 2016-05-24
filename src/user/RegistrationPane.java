@@ -161,25 +161,26 @@ public class RegistrationPane extends JPanel {
 	
     class registerButtonListener implements ActionListener
     {
+    	@Override
         public void actionPerformed(ActionEvent ae) 
         {
         	if(Registration.usernameExists(usernameField.getText())) {
-	        	Component component = (Component) ae.getSource();
-	        	JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(component);
-	        	JOptionPane.showMessageDialog(null, "Please select a different username!");
+
+        		JOptionPane.showMessageDialog(null, "Please select a different username!");
 	            System.out.println("Warning: Username already used");
         	} else {
-        		boolean result = Registration.registerUser(usernameField.getText(),
-							        				       passwordField.getPassword().toString(),
-							        				       firstNameField.getText(),
-							        				       lastNameField.getText(),
-							        				       emailField.getText());
+        		Registration.registerUser(usernameField.getText(),
+        				passwordField.getPassword().toString(),
+        				firstNameField.getText(),
+        				lastNameField.getText(),
+        				emailField.getText());
         	}
         }
     }
     
     class backToLoginMenuListener implements ActionListener
     {
+    	@Override
         public void actionPerformed(ActionEvent e) 
         {
         	Component component = (Component) e.getSource();
