@@ -1,5 +1,6 @@
 package user;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -33,11 +34,12 @@ public class ProfilePanel extends JPanel
     private EditorTextField email;
     private EditorPasswordField pass;
     private EditorPasswordField confirm;
+    private JLabel passMatch;
 
     public ProfilePanel(User user)
     {
         userToEdit = user;
-        setLayout(new GridLayout(8,1));
+        setLayout(new GridLayout(9,1));
         initEditButtons();
         setPreferredSize(new Dimension(640, 480));
         setVisible(true);
@@ -55,6 +57,7 @@ public class ProfilePanel extends JPanel
         cancel.setVisible(true);
 
         finish.addActionListener(new updateAndBackToMainMenuListener());
+        cancel.addActionListener(new cancelAndBackToMainMenuListener());
 
         this.add(finish);
         this.add(cancel);
@@ -75,9 +78,16 @@ public class ProfilePanel extends JPanel
 
         pass = new EditorPasswordField("Password");
         confirm = new EditorPasswordField("Confirm Password");
+        
+        passMatch = new JLabel("");
+        passMatch.setHorizontalAlignment(JLabel.CENTER);
+        passMatch.setForeground(Color.RED);
 
         this.add(pass);
         this.add(confirm);
+        //label for password mismatches
+        this.add(passMatch);
+        passMatch.setVisible(true);
     }
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Private Classes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     /**
@@ -169,20 +179,25 @@ public class ProfilePanel extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            int ans = JOptionPane.showConfirmDialog(null, "Are you sure you wish to edit your profile?",
-                    "Confirm Edit Profile", JOptionPane.YES_NO_OPTION);
-            if (ans == JOptionPane.YES_OPTION)
-            {
-                userToEdit.setFirstName(firstName.getTextInput());
-                userToEdit.setLastName(lastName.getTextInput());
-//                userToEdit.setUsername(userName.getTextInput());
-                userToEdit.setEmail(email.getTextInput());
-                //TODO password updates
-
-                if (userToEdit.isValidated())
-                {
-//                    setVisible(false);
-                    userToEdit.update();  
+        	String pw = pass.getPasswordInput();
+        	if (pw.equals(confirm.getPasswordInput()))
+        	{
+	            int ans = JOptionPane.showConfirmDialog(null, "Are you sure you wish to edit your profile?",
+	                    "Confirm Edit Profile", JOptionPane.YES_NO_OPTION);
+	            if (ans == JOptionPane.YES_OPTION)
+	            {   	
+	                userToEdit.setFirstName(firstName.getTextInput());
+	                userToEdit.setLastName(lastName.getTextInput());
+	                userToEdit.setEmail(email.getTextInput());
+	                userToEdit.setPasswordHashFromPassword(pw);
+	                
+	                //proceed with update as long as updates are valid. 
+	                if (userToEdit.isValidated())
+	                {
+	                    userToEdit.update();  
+	                }
+	                //TODO get invalid field.... and return to editor
+	                
                     //take to back Main menu
         			Component component = (Component) e.getSource();
                 	JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
@@ -191,8 +206,25 @@ public class ProfilePanel extends JPanel
                 	frame.getContentPane().add(new MainMenuView(userToEdit));
                     frame.getContentPane().revalidate();
                     frame.getContentPane().repaint();
-                }
+	            }
+        	}
+            else {
+            	passMatch.setText("Password and Confirm Password text fields do not match!");
             }
         }
+    }
+    
+    class cancelAndBackToMainMenuListener implements ActionListener
+    {
+    	@Override
+    	public void actionPerformed(ActionEvent e) {
+    		Component component = (Component) e.getSource();
+    		JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
+    		frame.getContentPane().removeAll();
+    		//TODO provide correct user reference
+    		frame.getContentPane().add(new MainMenuView(userToEdit));
+    		frame.getContentPane().revalidate();
+    		frame.getContentPane().repaint();    		
+    	}	
     }
 }
