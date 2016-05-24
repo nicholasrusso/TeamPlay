@@ -35,9 +35,8 @@ public class GUI {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-        | UnsupportedLookAndFeelException e1) {
-        	log.warning(Arrays.toString(e1.getStackTrace()));
+        } catch (Exception e1) {
+        	log.severe(Arrays.toString(e1.getStackTrace()));
         }
         new GUI().run();
     }
