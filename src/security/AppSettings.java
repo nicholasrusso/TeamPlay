@@ -3,6 +3,7 @@ package security;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ public class AppSettings {
 	
 	private static final Logger log = Logger.getLogger("AppSettings");
 	private static Properties props;
+	private static FileInputStream in;
 
 	private AppSettings() {
 		// Singleton class, use getInstance
@@ -22,22 +24,33 @@ public class AppSettings {
 	public static Properties getInstance() {
 		if (props == null) {
 			props = new Properties();
-			FileInputStream in = null;
+			in = null;
 			
 			try {
 				in = new FileInputStream("resources/TeamPlay.properties");
 			} catch (FileNotFoundException e) {
-				log.severe(e.getStackTrace().toString());
+				log.severe(Arrays.toString(e.getStackTrace()));
+				try {
+					in.close();
+				} catch (IOException e1) {
+					log.severe(Arrays.toString(e.getStackTrace()));
+					e1.printStackTrace();
+				}
 			}
 			
 			try {
 				props.load(in);
+			} catch (IOException e) {
+				log.severe(Arrays.toString(e.getStackTrace()));		
+			}
+			
+			try {
 				if (in != null) {
-					in.close();			
+					in.close();
 				}
 			} catch (IOException e) {
-				log.severe(e.getStackTrace().toString());
-			}
+				log.severe(Arrays.toString(e.getStackTrace()));		
+			}		
 		}
 		return props;
 		
