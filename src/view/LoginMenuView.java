@@ -25,7 +25,6 @@ import user.RegistrationPane;
 
 public class LoginMenuView extends JLayeredPane {
  
-    private JPanel loginPanel;
     private JLabel usernameLabel, passwordLabel, statusLabel; 
     private JTextField jtfUsername;
     private JPasswordField jpfPassword;
@@ -136,6 +135,7 @@ public class LoginMenuView extends JLayeredPane {
     
     class createAcctButtonListener implements ActionListener
     {
+    	@Override
         public void actionPerformed(ActionEvent e) 
         {
 			Component component = (Component) e.getSource();
