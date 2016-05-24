@@ -31,7 +31,9 @@ public class AppSettings {
 			} catch (FileNotFoundException e) {
 				log.severe(Arrays.toString(e.getStackTrace()));
 				try {
-					in.close();
+					if (in != null) {
+						in.close();
+					}
 				} catch (IOException e1) {
 					log.severe(Arrays.toString(e.getStackTrace()));
 					e1.printStackTrace();
