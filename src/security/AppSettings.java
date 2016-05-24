@@ -4,17 +4,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class AppSettings {
 	
+	private static final Logger log = Logger.getLogger("AppSettings");
 	private static Properties props;
 
-	public AppSettings() {
+	private AppSettings() {
+		// Singleton class, use getInstance
 	}
 	
 	/*
 	 * Singleton class so as not to keep reading java.properties
-	 * files.
+	 * file.
 	 */
 	public static Properties getInstance() {
 		if (props == null) {
@@ -24,14 +27,16 @@ public class AppSettings {
 			try {
 				in = new FileInputStream("resources/TeamPlay.properties");
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				log.severe(e.getStackTrace().toString());
 			}
 			
 			try {
 				props.load(in);
-				in.close();
+				if (in != null) {
+					in.close();			
+				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.severe(e.getStackTrace().toString());
 			}
 		}
 		return props;
