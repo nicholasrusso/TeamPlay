@@ -37,7 +37,6 @@ public class PasswordUtilities {
 			System.arraycopy(saltbytes, 0, saltypassbytes, passbytes.length, saltbytes.length);
 		} catch (UnsupportedEncodingException e1) {
 			log.severe(Arrays.toString(e1.getStackTrace()));
-			e1.printStackTrace();
 		}
 		
 		try {
