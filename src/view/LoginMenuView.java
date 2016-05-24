@@ -33,7 +33,6 @@ public class LoginMenuView extends JLayeredPane {
 
 
 	public LoginMenuView() {
-        loginPanel = new JPanel();
         usernameLabel = new JLabel("Username");
         passwordLabel = new JLabel("Password");
         statusLabel = new JLabel(" ");
