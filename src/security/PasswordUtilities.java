@@ -41,7 +41,12 @@ public class PasswordUtilities {
 		}
 		
 		try {
-			md = MessageDigest.getInstance("SHA-512");
+			if (md != null) {
+				md = MessageDigest.getInstance("SHA-512");
+			} else {
+				log.severe("MessageDigest object is null and should not be. Exiting.");
+				System.exit(1);
+			}
 		} catch (NoSuchAlgorithmException e) {
 			log.severe(Arrays.toString(e.getStackTrace()));
 		}
