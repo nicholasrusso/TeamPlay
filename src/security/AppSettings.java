@@ -36,7 +36,6 @@ public class AppSettings {
 					}
 				} catch (IOException e1) {
 					log.severe(Arrays.toString(e.getStackTrace()));
-					e1.printStackTrace();
 				}
 			}
 			
