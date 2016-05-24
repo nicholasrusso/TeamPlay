@@ -1,8 +1,8 @@
 package email;
 
 import security.AppSettings;
-
 import java.util.Properties;
+import java.util.logging.Logger;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -10,7 +10,13 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Transport;
 
+
 public class EmailUtilities {
+	private static final Logger log = Logger.getLogger("EmailUtilities");
+
+	private EmailUtilities () {
+		// Static class
+	}
 
 	public static boolean sendEmail(String toEmails, String subject, String content) {
 		Properties props = AppSettings.getInstance();
@@ -44,8 +50,8 @@ public class EmailUtilities {
 			transport.close();
 			
 		} catch (MessagingException e) {
-			System.out.println("Unable to send email to " + toEmails + ".");
-			System.out.print(e.getMessage());
+			log.severe("Unable to send email to " + toEmails + ".");
+			log.severe(e.getMessage());
 			return false;
 		}
 		return true;
