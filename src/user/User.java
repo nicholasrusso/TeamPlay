@@ -25,7 +25,7 @@ import db.DBFactory;
 public class User
 {
 	private static Properties props = AppSettings.getInstance();
-	private static final Logger log = Logger.getLogger("PasswordUtilities");
+	private static final Logger log = Logger.getLogger("User");
 
 	
     private String firstName;
