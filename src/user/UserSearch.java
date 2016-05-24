@@ -1,12 +1,11 @@
 package user;
 
-import java.util.ArrayList;
-import user.User;
-import db.DBFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import db.DBFactory;
 
 public class UserSearch {
 	private String usernameQuery;

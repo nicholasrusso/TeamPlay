@@ -1,14 +1,19 @@
 //import src.tournament;
 
-import java.util.ArrayList;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
-import javax.swing.*;
-import javax.swing.event.ChangeListener;
+import java.awt.event.ItemListener;
+
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class CreateTournament {
    public String tournamentName;

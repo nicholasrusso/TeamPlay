@@ -1,9 +1,22 @@
-package src.user;
+package user;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import view.MainMenuView;
 
 public class ProfilePanel extends JPanel
 {
@@ -41,41 +54,19 @@ public class ProfilePanel extends JPanel
         cancel.addActionListener(null);
         cancel.setVisible(true);
 
-        finish.addActionListener(
-                new ActionListener()
-                {
-                    @Override
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        int ans = JOptionPane.showConfirmDialog(null, "Are you sure you wish to edit your profile?",
-                                "Confirm Edit Profile", JOptionPane.YES_NO_OPTION);
-                        if (ans == JOptionPane.YES_OPTION)
-                        {
-                            userToEdit.setFirstName(firstName.getTextInput());
-                            userToEdit.setLastName(lastName.getTextInput());
-                            userToEdit.setUsername(userName.getTextInput());
-                            userToEdit.setEmail(email.getTextInput());
-
-                            if (userToEdit.isValidated())
-                            {
-                                setVisible(false);
-                            }
-                        }
-
-                    }
-                }
-        );
+        finish.addActionListener(new updateAndBackToMainMenuListener());
 
         this.add(finish);
         this.add(cancel);
     }
 
     private void initTextFields()
-    {
-        firstName = new EditorTextField("First Name", "Charlie");
-        lastName = new EditorTextField("Last Name", "Gels");
-        userName = new EditorTextField("User Name", "CGULS");
-        email = new EditorTextField("E-Mail", "cvgels3@gmail.com");
+    {	
+        firstName = new EditorTextField("First Name", userToEdit.getFirstName());
+        lastName = new EditorTextField("Last Name", userToEdit.getLastName());
+        userName = new EditorTextField("User Name", userToEdit.getUsername());
+        userName.setEditable(false);
+        email = new EditorTextField("E-Mail", userToEdit.getEmail().toString());
 
         this.add(firstName);
         this.add(lastName);
@@ -88,7 +79,7 @@ public class ProfilePanel extends JPanel
         this.add(pass);
         this.add(confirm);
     }
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Private Classes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     /**
      * Private class that serves to encapsulate a JLabel and Text Field.
      * */
@@ -96,6 +87,13 @@ public class ProfilePanel extends JPanel
     {
         JLabel label;
         JTextField input;
+        //editable by default -- want to set to false for the username because its DB primary key
+        boolean editable = true;
+        
+        /**
+         * Creates a small panel with a Label and TextField for changing user profile information. 
+         * TextField is editable by default, this can be changed via setEditable(bool)
+         * */
         public EditorTextField(String labelText, String inputText)
         {
             label = new JLabel(labelText);
@@ -120,6 +118,15 @@ public class ProfilePanel extends JPanel
         public String getTextInput()
         {
             return input.getText();
+        }
+        
+        
+        /**
+         * Mutator to change the TextFields state of editability. 
+         * */
+        public void setEditable(boolean canEdit) {
+        	editable = canEdit;
+        	input.setEditable(editable);
         }
     }
 
@@ -154,6 +161,38 @@ public class ProfilePanel extends JPanel
         public String getPasswordInput()
         {
             return String.valueOf(input.getPassword());
+        }
+    }
+    
+    class updateAndBackToMainMenuListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            int ans = JOptionPane.showConfirmDialog(null, "Are you sure you wish to edit your profile?",
+                    "Confirm Edit Profile", JOptionPane.YES_NO_OPTION);
+            if (ans == JOptionPane.YES_OPTION)
+            {
+                userToEdit.setFirstName(firstName.getTextInput());
+                userToEdit.setLastName(lastName.getTextInput());
+//                userToEdit.setUsername(userName.getTextInput());
+                userToEdit.setEmail(email.getTextInput());
+                //TODO password updates
+
+                if (userToEdit.isValidated())
+                {
+//                    setVisible(false);
+                    userToEdit.update();  
+                    //take to back Main menu
+        			Component component = (Component) e.getSource();
+                	JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
+                	frame.getContentPane().removeAll();
+                	//TODO provide correct user reference
+                	frame.getContentPane().add(new MainMenuView(userToEdit));
+                    frame.getContentPane().revalidate();
+                    frame.getContentPane().repaint();
+                }
+            }
         }
     }
 }
