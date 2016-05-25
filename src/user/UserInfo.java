@@ -11,6 +11,9 @@ import db.DBFactory;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.logging.Logger;
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 
 public class UserInfo {

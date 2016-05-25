@@ -20,6 +20,9 @@ import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
