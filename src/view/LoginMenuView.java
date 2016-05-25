@@ -22,6 +22,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import user.RegistrationPane;
+import user.User;
+import user.UserSearch;
 
 public class LoginMenuView extends JLayeredPane {
  
@@ -81,7 +83,7 @@ public class LoginMenuView extends JLayeredPane {
 	
     class progressListener implements ActionListener
     {
-        public synchronized void updateBar(ActionEvent ae) {
+        public synchronized void updateBar(ActionEvent ae, User u) {
         	Component component = (Component) ae.getSource();
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
@@ -106,7 +108,7 @@ public class LoginMenuView extends JLayeredPane {
                             try {
                                 Thread.sleep(500);
                                 frame.getContentPane().removeAll();           
-                                frame.getContentPane().add(new MainMenuView());
+                                frame.getContentPane().add(new MainMenuView(u));
                                 frame.getContentPane().validate();
                                 frame.getContentPane().repaint();
                             }
@@ -119,11 +121,14 @@ public class LoginMenuView extends JLayeredPane {
             t.start();       
 
         }
+        
         public void actionPerformed(ActionEvent ae) 
         {            
             if ("root".equals(jpfPassword.getText())
             && "root".equals(jtfUsername.getText())) {
-                updateBar(ae);
+                // upon successful login, reference to user that is logged into the system (needed by rest of components)
+            	User user = new UserSearch("root").getUsers().get(0);
+                updateBar(ae, user);
             }
             else {
                 statusLabel.setText("Invalid username or password");

@@ -1,34 +1,23 @@
 package user;
 
-import javax.swing.JPanel;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import java.awt.GridBagConstraints;
-import javax.swing.JTextArea;
-import java.awt.Insets;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.border.BevelBorder;
-import user.UserSearch;
-import java.util.ArrayList;
-import user.User;
-import javax.swing.JList;
-import view.GUI;
 import view.MainMenuView;
 
 
@@ -158,7 +147,8 @@ public class UserSearchPanel extends JPanel {
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
         	            
         	frame.getContentPane().removeAll();
-        	frame.getContentPane().add(new MainMenuView());
+        	//TODO provide correct user reference
+        	frame.getContentPane().add(new MainMenuView(null));
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();
 		}

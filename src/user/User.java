@@ -1,10 +1,7 @@
 package user;
 
-import security.PasswordUtilities;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Properties;
@@ -12,6 +9,7 @@ import java.util.logging.Logger;
 
 import security.AppSettings;
 import db.DBFactory;
+import security.PasswordUtilities;
 
 /**
  * @author charliegels
@@ -221,5 +219,32 @@ public class User
 			System.exit(1);
 		}
     }
+    
+    public void update() {
+    	String updateUserSQL = "update main.User set username = ?, firstname = ?, lastname = ?, passhash = ?, email = ?, lastlogin = ? where username = ?";
+    	Connection db = DBFactory.getDBConnection();
+    	
+    	try {
+    		PreparedStatement pstmt = db.prepareStatement(updateUserSQL);
+    		//set update values
+			pstmt.setString(1, this.userName);
+			pstmt.setString(2, this.firstName);
+			pstmt.setString(3, this.lastName);
+			pstmt.setString(4, this.passwordHash);
+			pstmt.setString(5, this.email.toString());
+			pstmt.setLong(6, System.currentTimeMillis() / 1000L);
+			//set where condition
+			pstmt.setString(7, this.userName);
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			db.close();
+    	}
+    	catch (SQLException e) {
+    		e.printStackTrace();
+    		System.exit(0);
+    	}
+    }
+    
 }
 
