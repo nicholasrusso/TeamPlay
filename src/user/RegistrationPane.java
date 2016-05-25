@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-<<<<<<< HEAD
+
 import javax.swing.JLabel;
-=======
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +20,6 @@ import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;

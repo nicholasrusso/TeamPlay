@@ -69,7 +69,7 @@ public class UserSearchPanel extends JPanel {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserSearch uSearch = new UserSearch(usernameTextField.getText());
-				ArrayList<User> users = uSearch.getUsers();
+				ArrayList<User> users = (ArrayList<User>) uSearch.getUsers();
 				ArrayList<String> resultsData = new ArrayList<String>();
 				
 				DefaultListModel resultModel = new DefaultListModel();

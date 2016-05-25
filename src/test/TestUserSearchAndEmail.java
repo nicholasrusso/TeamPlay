@@ -31,7 +31,7 @@ public class TestUserSearchAndEmail {
 		Properties props = AppSettings.getInstance();
 
 		UserSearch searcher = new UserSearch("mhaskell");
-		ArrayList<User> users = searcher.getUsers();
+		ArrayList<User> users = (ArrayList<User>) searcher.getUsers();
 
 		
 		boolean success = false;

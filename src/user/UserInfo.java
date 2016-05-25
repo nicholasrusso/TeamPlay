@@ -5,16 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-<<<<<<< HEAD
 import db.DBFactory;
-=======
+
 import java.sql.*;
 import java.util.Arrays;
 import java.util.logging.Logger;
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
 
 public class UserInfo {
 	private static final Logger log = Logger.getLogger("UserInfo");
