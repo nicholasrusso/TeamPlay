@@ -15,6 +15,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import user.ProfilePanel;
+import user.User;
 import user.UserSearchPanel;
 
 public class MainMenuView extends JLayeredPane {
@@ -25,10 +27,12 @@ public class MainMenuView extends JLayeredPane {
     private JPanel findFriendsPanel;
     private JLabel backgroundLabel, title;
     private JLayeredPane lp;
-    private Image img;    
+    private Image img;
+    private User user;
 
 
-	public MainMenuView() {
+	public MainMenuView(User user) {
+			this.user = user;
 	    	lp = new JLayeredPane();
 
 	    	tournamentButton = new JButton("Join Tournament");
@@ -47,7 +51,7 @@ public class MainMenuView extends JLayeredPane {
 	        editProfileButton.setBounds(170,370,440, 30);
 	        editProfileButton.setBackground(Color.black); 
 	        editProfileButton.setFont(editProfileButton.getFont().deriveFont(Font.BOLD));
-	        //editProfileButton.addActionListener(new tournamentButtonListener());
+	        editProfileButton.addActionListener(new editProfileButtonListener());
 
 	        rulesButton = new JButton("Rules");         
 	        rulesButton.setBounds(170,410,440, 30);
@@ -150,6 +154,7 @@ public class MainMenuView extends JLayeredPane {
 
         return tournamentPanel;
     }
+   
     
     class tournamentButtonListener implements ActionListener
     {
@@ -165,4 +170,18 @@ public class MainMenuView extends JLayeredPane {
         }
     }
 
+    class editProfileButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent ae) 
+        {       
+        	Component component = (Component) ae.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(new ProfilePanel(user));
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+        }
+    }
+    
 }

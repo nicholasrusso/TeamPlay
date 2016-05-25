@@ -1,6 +1,7 @@
-package src.user;
+package user;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Temporary class to act as a application class.

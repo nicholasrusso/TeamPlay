@@ -1,7 +1,7 @@
-package src.test;
+package test;
 
 import junit.framework.TestCase;
-import src.user.User;
+import user.User;
 
 /**
  * Created by charliegels on 4/11/16.

@@ -1,9 +1,24 @@
 package user;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import db.DBFactory;
+=======
+=======
+>>>>>>> master
 import db.DBFactory;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.logging.Logger;
+<<<<<<< HEAD
+>>>>>>> master
+=======
+>>>>>>> master
 
 public class Registration {
 	private static final Logger log = Logger.getLogger("Registration");
