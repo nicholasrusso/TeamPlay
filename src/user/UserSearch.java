@@ -1,5 +1,15 @@
 package user;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Logger;
+
+import user.User;
+import db.DBFactory;
+>>>>>>> master
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +18,10 @@ import java.util.ArrayList;
 import db.DBFactory;
 
 public class UserSearch {
+	private static final Logger log = Logger.getLogger("UserSearch");
+
 	private String usernameQuery;
+	
 
 	public UserSearch(String username) {
 		this.usernameQuery = username;
@@ -21,22 +34,21 @@ public class UserSearch {
 	/*
 	 *  Returns an arraylist of User's based on the user's username.
 	 */
-	public ArrayList<User> getUsers() {
+	public List<User> getUsers() {
 		String getUserSQL = "select username, firstname, lastname, passhash, "
 				          + "email, lastlogin from main.User where username like "
 				          + "'%' || ? || '%' order by username desc";
 		Connection db = DBFactory.getDBConnection();
 		
-		System.out.println("Find Friends Query String: " + this.usernameQuery);
+		log.fine("Find Friends Query String: " + this.usernameQuery);
 		
 		String qUsername;
 		String qFirstName;
 		String qLastName;
 		String qEmailAddress;
 		String qPassHash;
-		Long qLastLogin;
 		
-		ArrayList<User> users = new ArrayList<User>();
+		List<User> users = new ArrayList<>();
 		User tempUser;
     	
 		try {
@@ -50,7 +62,6 @@ public class UserSearch {
 	    		qLastName = rs.getString("lastname");
 	    		qEmailAddress = rs.getString("email");
 	    		qPassHash = rs.getString("passhash");
-	    		qLastLogin = rs.getLong("lastlogin");
 	    		
 	    		if (notEmpty(qUsername) && notEmpty(qFirstName) &&
 	    		  notEmpty(qLastName) && notEmpty(qEmailAddress)) {
@@ -70,15 +81,14 @@ public class UserSearch {
 	    		qLastName = null;
 	    		qEmailAddress = null;
 	    		qPassHash = null;
-	    		qLastLogin = null;
 		    }
 		    pstmt.close();
 		    db.close();
 
 		} catch (java.sql.SQLException e) {
-			e.printStackTrace();
-			System.out.println("UserQuery: Failed \n" + e.getMessage());
-			System.exit(0);
+			log.severe("UserQuery: Failed \n" + e.getMessage());
+			log.severe(Arrays.toString(e.getStackTrace()));
+			System.exit(1);
 		}
 		
 		return users;

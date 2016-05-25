@@ -3,7 +3,11 @@ package user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Properties;
+import java.util.logging.Logger;
 
+import security.AppSettings;
 import db.DBFactory;
 import security.PasswordUtilities;
 
@@ -18,6 +22,10 @@ import security.PasswordUtilities;
  */
 public class User
 {
+	private static Properties props = AppSettings.getInstance();
+	private static final Logger log = Logger.getLogger("User");
+
+	
     private String firstName;
     private String lastName;
     private String userName;
@@ -38,7 +46,7 @@ public class User
         userName = "";
         email = new Email();
         allValidated = false;
-        passwordHash= "";
+        passwordHash= props.getProperty("emptyString");
     }
 
     /**
@@ -162,7 +170,7 @@ public class User
     
     public boolean passwordValid()
     {
-        return (passwordHash != null);
+        return passwordHash != null;
     }
 
 
@@ -206,8 +214,9 @@ public class User
 		    db.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.exit(0);
+			log.severe("Unable to save user to database.");
+			log.severe(Arrays.toString(e.getStackTrace()));
+			System.exit(1);
 		}
     }
     

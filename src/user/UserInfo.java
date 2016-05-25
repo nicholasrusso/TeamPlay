@@ -5,11 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+<<<<<<< HEAD
 import db.DBFactory;
+=======
+import java.sql.*;
+import java.util.Arrays;
+import java.util.logging.Logger;
+>>>>>>> master
 
 public class UserInfo {
+	private static final Logger log = Logger.getLogger("UserInfo");
+
 
 	public UserInfo() {
+		// Static class
 	}
 	
 	public static boolean usernameExists(String username) {
@@ -28,8 +37,8 @@ public class UserInfo {
 			pstmt.close();
 			db.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.exit(0);
+			log.severe(Arrays.toString(e.getStackTrace()));
+			System.exit(1);
 		}
 		return nameExists;
 	}

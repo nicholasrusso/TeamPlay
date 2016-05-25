@@ -9,7 +9,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+<<<<<<< HEAD
 import javax.swing.JLabel;
+=======
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.util.logging.Logger;
+
+>>>>>>> master
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -19,6 +30,9 @@ import javax.swing.SwingUtilities;
 import view.LoginMenuView;;
 
 public class RegistrationPane extends JPanel {
+	
+	private static final Logger log = Logger.getLogger("RegistrationPane");
+
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	private JTextField firstNameField;
@@ -154,25 +168,26 @@ public class RegistrationPane extends JPanel {
 	
     class registerButtonListener implements ActionListener
     {
+    	@Override
         public void actionPerformed(ActionEvent ae) 
         {
         	if(Registration.usernameExists(usernameField.getText())) {
-	        	Component component = (Component) ae.getSource();
-	        	JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(component);
-	        	JOptionPane.showMessageDialog(null, "Please select a different username!");
-	            System.out.println("Warning: Username already used");
+
+        		JOptionPane.showMessageDialog(null, "Please select a different username!");
+        		log.warning("Warning: Username already used");
         	} else {
-        		boolean result = Registration.registerUser(usernameField.getText(),
-							        				       passwordField.getPassword().toString(),
-							        				       firstNameField.getText(),
-							        				       lastNameField.getText(),
-							        				       emailField.getText());
+        		Registration.registerUser(usernameField.getText(),
+        				Arrays.toString(passwordField.getPassword()),
+        				firstNameField.getText(),
+        				lastNameField.getText(),
+        				emailField.getText());
         	}
         }
     }
     
     class backToLoginMenuListener implements ActionListener
     {
+    	@Override
         public void actionPerformed(ActionEvent e) 
         {
         	Component component = (Component) e.getSource();

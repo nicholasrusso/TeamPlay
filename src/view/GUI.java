@@ -1,13 +1,16 @@
 package view;
 
+import java.util.Arrays;
+import java.util.logging.Logger;
+
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import user.RegistrationPane;
 
 public class GUI {
     private JFrame frame;
+	private static final Logger log = Logger.getLogger("GUI");
+
     
     public void run() {        
         frame = new JFrame("Team Play");
@@ -28,14 +31,12 @@ public class GUI {
         frame.revalidate();
         frame.repaint();
     }
-    
 
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-        | UnsupportedLookAndFeelException e1) {
-            e1.printStackTrace();
+        } catch (Exception e1) {
+        	log.severe(Arrays.toString(e1.getStackTrace()));
         }
         new GUI().run();
     }
