@@ -1,5 +1,3 @@
-package soccerPlayer;
-
 public class GoalKeeper implements SoccerPlayer
 {
     String name = ""; 

@@ -1,5 +1,3 @@
-package soccerPlayer;
-
 public class Defender implements SoccerPlayer
 {
     String name = "";

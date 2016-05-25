@@ -1,5 +1,3 @@
-package soccerPlayer;
-
 
 public interface SoccerPlayer
 {

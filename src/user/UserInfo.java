@@ -1,17 +1,10 @@
 package user;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import db.DBFactory;
 
-<<<<<<< HEAD
 import java.sql.*;
 import java.util.Arrays;
 import java.util.logging.Logger;
-=======
-import db.DBFactory;
->>>>>>> origin/540567_wip_gels
 
 public class UserInfo {
 	private static final Logger log = Logger.getLogger("UserInfo");

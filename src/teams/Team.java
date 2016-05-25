@@ -1,8 +1,6 @@
-package teams;
-
+import java.util.Scanner;
+import java.lang.Integer;
 import java.util.ArrayList;
-
-import soccerPlayer.SoccerPlayer;
 
 public abstract class Team {
    // RedMine ID: 512297

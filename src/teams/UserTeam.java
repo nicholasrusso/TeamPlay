@@ -1,4 +1,5 @@
-package teams;
+import java.util.Scanner;
+import java.lang.Integer;
 
 public class UserTeam extends Team {
    // RedMine ID: 512297

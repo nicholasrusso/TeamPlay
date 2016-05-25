@@ -1,4 +1,4 @@
-package user;
+package src.user;
 
 import java.util.HashMap;
 import java.util.Scanner;

@@ -1,18 +1,9 @@
 package user;
 
-<<<<<<< HEAD
 import db.DBFactory;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.logging.Logger;
-=======
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import db.DBFactory;
->>>>>>> origin/540567_wip_gels
 
 public class Registration {
 	private static final Logger log = Logger.getLogger("Registration");

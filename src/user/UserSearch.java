@@ -1,6 +1,5 @@
 package user;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,14 +7,9 @@ import java.util.logging.Logger;
 
 import user.User;
 import db.DBFactory;
-=======
->>>>>>> origin/540567_wip_gels
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import db.DBFactory;
 
 public class UserSearch {
 	private static final Logger log = Logger.getLogger("UserSearch");

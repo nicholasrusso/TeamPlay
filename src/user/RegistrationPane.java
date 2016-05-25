@@ -1,15 +1,19 @@
 package user;
 
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+
 import java.awt.Component;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
+import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-<<<<<<< HEAD
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,16 +22,11 @@ import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-=======
-import javax.swing.JLabel;
->>>>>>> origin/540567_wip_gels
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
-import view.LoginMenuView;;
+import user.Registration;
+import view.LoginMenuView;
+import view.MainMenuView;;
 
 public class RegistrationPane extends JPanel {
 	

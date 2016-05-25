@@ -1,5 +1,3 @@
-package soccerPlayer;
-
 public class Forward implements SoccerPlayer
 {
     String name = "";
