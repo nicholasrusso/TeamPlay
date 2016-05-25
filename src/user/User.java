@@ -1,7 +1,9 @@
 package user;
 
+import java.util.HashMap;
 import security.PasswordUtilities;
 
+import teams.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,6 +36,7 @@ public class User
     private Email email;
     private boolean allValidated;
     private String passwordHash;
+    private HashMap<String, Team> teams;
     //TODO
 //    private String passwordHash;
 //    private ArrayList<ProfessionalTeam> userTeams;
@@ -49,6 +52,8 @@ public class User
         email = new Email();
         allValidated = false;
         passwordHash= props.getProperty("emptyString");
+        teams = new HashMap<>();
+
     }
 
     /**
@@ -220,6 +225,16 @@ public class User
 			log.severe(Arrays.toString(e.getStackTrace()));
 			System.exit(1);
 		}
+	}
+    public Team getTeam(String tournamentName)
+    {
+    		return teams.get(tournamentName);
+    }
+    
+    public void setTeam(String tournament, Team team)
+    {
+    		teams.put(tournament, team);
     }
 }
+
 
