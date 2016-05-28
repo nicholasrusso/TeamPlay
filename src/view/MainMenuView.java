@@ -19,6 +19,8 @@ import user.ProfilePanel;
 import user.User;
 import user.UserSearchPanel;
 
+import tournament.CreateTournament;
+
 public class MainMenuView extends JLayeredPane {
     private JPanel headerPanel, menuPanel, menuButtonPanel, profilePanel, settingsPanel, createTournamentPanel, tournamentPanel, rulesPanel;
     private JButton rulesButton, tournamentButton, createTournamentButton, editProfileButton, settingsButton, backButton;
@@ -45,7 +47,7 @@ public class MainMenuView extends JLayeredPane {
 	        createTournamentButton.setBounds(170,330,440, 30);
 	        createTournamentButton.setBackground(Color.black);
 	        createTournamentButton.setFont(createTournamentButton.getFont().deriveFont(Font.BOLD));
-	        //createTournamentButton.addActionListener(new tournamentButtonListener());
+	        createTournamentButton.addActionListener(new createTournamentButtonListener());
 
 	        editProfileButton = new JButton("Edit Profile");  
 	        editProfileButton.setBounds(170,370,440, 30);
@@ -169,6 +171,56 @@ public class MainMenuView extends JLayeredPane {
             frame.getContentPane().repaint();
         }
     }
+    
+    /* WIP by Chauncey */
+    public JPanel createTournamentPanel() {
+    	CreateTournament ct = new CreateTournament();
+    	createTournamentPanel = ct.createTournamentMenu();
+
+        backButton = new JButton("Back");
+        backButton.addActionListener(new backButtonListener());
+        createTournamentPanel.add(backButton);
+
+        return createTournamentPanel;
+    }
+    
+    class createTournamentButtonListener implements ActionListener
+    {
+    	public void actionPerformed(ActionEvent ae)
+    	{
+    		Component component = (Component) ae.getSource();
+    		JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+    		
+    		frame.getContentPane().removeAll();
+    		CreateTournament ct = new CreateTournament();
+    		createTournamentPanel = ct.createTournamentMenu();
+    		    		
+    		frame.getContentPane().add(createTournamentPanel());
+    		frame.getContentPane().revalidate();
+    		frame.getContentPane().repaint();
+    	}
+    }
+    
+    // example to follow
+    /*
+    class findFriendsButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent ae) 
+        {
+        	Component component = (Component) ae.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+
+            frame.getContentPane().removeAll();            
+            findFriendsPanel = new UserSearchPanel();
+
+            frame.getContentPane().add(findFriendsPanel);
+            frame.getContentPane().validate();
+            frame.getContentPane().repaint();
+        }
+    }
+    */
+    
+    /* End WIP by Chauncey*/
 
     class editProfileButtonListener implements ActionListener
     {

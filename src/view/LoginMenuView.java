@@ -83,15 +83,15 @@ public class LoginMenuView extends JLayeredPane {
 	
     class progressListener implements ActionListener
     {
-        public synchronized void updateBar(ActionEvent ae, User u) {
+        public synchronized void updateBar(ActionEvent ae, final User u) {
         	Component component = (Component) ae.getSource();
-        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             Thread t = new Thread(){
                     public void run(){
                         int i = 0;
                         for(i = 0 ; i <= 100 ; i++){
-                            int percent = i;
+                            final int percent = i;
                             SwingUtilities.invokeLater(new Runnable() {
                                     public void run() {
                                         progressBar.setValue(percent);
