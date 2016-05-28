@@ -217,7 +217,7 @@ public class User
 		    db.close();
 
 		} catch (SQLException e) {
-			LOGGER.warning(e.toString());
+			LOGGER.info(e.toString());
 			LOGGER.warning("Unable to save user to database.");
 		}
     }
@@ -243,7 +243,8 @@ public class User
 			db.close();
     	}
     	catch (SQLException e) {
-    		LOGGER.warning(e.toString());
+    		LOGGER.info(e.toString());
+    		LOGGER.warning("Unable to update user in database.");
     	}
     }
     
