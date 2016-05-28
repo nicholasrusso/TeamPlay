@@ -55,7 +55,7 @@ public class UserSearchPanel extends JPanel {
 		add(usernameTextField, gbc_usernameTextField);
 		usernameTextField.setColumns(10);
 		
-		JList resultList = new JList();
+		final JList<String> resultList = new JList<>();
 		GridBagConstraints gbc_resultList = new GridBagConstraints();
 		gbc_resultList.gridheight = 6;
 		gbc_resultList.gridwidth = 9;
@@ -72,8 +72,7 @@ public class UserSearchPanel extends JPanel {
 				ArrayList<User> users = (ArrayList<User>) uSearch.getUsers();
 				ArrayList<String> resultsData = new ArrayList<String>();
 				
-				DefaultListModel resultModel = new DefaultListModel();
-
+				DefaultListModel<String> resultModel = new DefaultListModel<>();
 				if (users.size() > 0) {
 					System.out.println(users.size() + " users found.");
 					for (User user : users) {
