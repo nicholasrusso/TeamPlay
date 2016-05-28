@@ -14,16 +14,13 @@ import soccerPlayer.*;
 import teams.*;
 
 public class CreateTournament {
-   public String tournamentName;
-   public ArrayList<SoccerPlayer> playerPool;
-   public int numberUsers = 2;
-
-   //private ArrayList<ProfessionalTeam> allTeams;
-   public JPanel tournamentPanel;
+   private String tournamentName;
+   private ArrayList<SoccerPlayer> playerPool;
+   private int numberUsers = 2;
+   private JPanel tournamentPanel;
 
    public Tournament returnTournament() {
-      Tournament t = new Tournament(tournamentName, numberUsers, playerPool);
-      return t;
+      return new Tournament(tournamentName, numberUsers, playerPool);
    }
 
    public JPanel createTournamentMenu() {
