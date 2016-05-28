@@ -22,7 +22,7 @@ import security.PasswordUtilities;
 public class User
 {
 	private static Properties props = AppSettings.getInstance();
-	private static final Logger log = Logger.getLogger("User");
+	private static final Logger LOGGER = Logger.getLogger("User");
 
 	
     private String firstName;
@@ -217,8 +217,8 @@ public class User
 		    db.close();
 
 		} catch (SQLException e) {
-			log.warning(e.toString());
-			log.warning("Unable to save user to database.");
+			LOGGER.warning(e.toString());
+			LOGGER.warning("Unable to save user to database.");
 		}
     }
     
@@ -243,7 +243,7 @@ public class User
 			db.close();
     	}
     	catch (SQLException e) {
-    		log.warning(e.toString());
+    		LOGGER.warning(e.toString());
     	}
     }
     
