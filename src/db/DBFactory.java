@@ -2,12 +2,16 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.logging.Logger;
 
 public class DBFactory {
+	private static final Logger log = Logger.getLogger("DBFactory");
 
-	public DBFactory() {
-		
+
+	private DBFactory() {
+		// Static class
 	}
+	
 	public static Connection getDBConnection() {
 		Connection db = null;
 
@@ -15,10 +19,9 @@ public class DBFactory {
 	      Class.forName("org.sqlite.JDBC");
 	      db = DriverManager.getConnection("jdbc:sqlite:data/test.db");
 	    } catch ( Exception e ) {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
+	      log.severe(e.toString());
 	    }
-	    System.out.println("Opened database successfully");
+	    log.info("Opened database successfully");
 	    return db;
 	}
 

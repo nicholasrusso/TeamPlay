@@ -50,8 +50,8 @@ public class EmailUtilities {
 			transport.close();
 			
 		} catch (MessagingException e) {
+			log.severe(e.toString());
 			log.severe("Unable to send email to " + toEmails + ".");
-			log.severe(e.getMessage());
 			return false;
 		}
 		return true;
