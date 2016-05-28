@@ -30,17 +30,6 @@ public class UploadTeamsByCSV {
             String[] curLine = line.split(csvSplitBy);
             String identifier = curLine[0];
             String name = curLine[1];
-            
-            /*
-            for (int i = 0; i < curLine.length; i++) {
-               System.out.println("Curline[i]: " + curLine[i]);
-            }
-            for (int i = 0; i < name.length; i++) {
-               System.out.println("Name[i]: " + name[i]);
-            }
-            */
-
-            //System.out.println("Identifier: " + identifier);
 
             if (identifier.equals("team")) {
                if (curTeam != null) {
@@ -49,22 +38,22 @@ public class UploadTeamsByCSV {
                }
                curTeam = new ProfessionalTeam(name);
             }
-            else if (identifier.equals("G")) {
+            else if (identifier.equals("G") && curTeam != null) {
                // new goalkeeper player
                GoalKeeper gk = new GoalKeeper(name, curTeam.getName());
                curTeam.addPlayer(gk);
             }
-            else if (identifier.equals("D")) {
+            else if (identifier.equals("D") && curTeam != null) {
                // new defender player
                Defender d = new Defender(name, curTeam.getName());
                curTeam.addPlayer(d);
             }
-            else if (identifier.equals("M")) {
+            else if (identifier.equals("M") && curTeam != null) {
                // new midfielder player
                Midfielder m = new Midfielder(name, curTeam.getName());
                curTeam.addPlayer(m);
             }
-            else if (identifier.equals("F")) {
+            else if (identifier.equals("F") && curTeam != null) {
                // new forward player
                Forward f = new Forward(name, curTeam.getName());
                curTeam.addPlayer(f);
