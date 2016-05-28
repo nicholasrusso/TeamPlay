@@ -27,10 +27,13 @@ import user.UserSearch;
 
 public class LoginMenuView extends JLayeredPane {
  
-    private JLabel usernameLabel, passwordLabel, statusLabel; 
+    private JLabel usernameLabel;
+    private JLabel passwordLabel;
+    private JLabel statusLabel; 
     private JTextField jtfUsername;
     private JPasswordField jpfPassword;
-    private JButton login, createAcct;
+    private JButton login;
+    private JButton createAcct;
     private JProgressBar progressBar;
 
 
@@ -76,12 +79,12 @@ public class LoginMenuView extends JLayeredPane {
         add(p5, new Integer(2));
         add(progressBar, new Integer(3));
         
-        login.addActionListener(new progressListener());
-        createAcct.addActionListener(new createAcctButtonListener());
+        login.addActionListener(new ProgressListener());
+        createAcct.addActionListener(new CreateAcctButtonListener());
         
 	}
 	
-    class progressListener implements ActionListener
+    class ProgressListener implements ActionListener
     {
         public synchronized void updateBar(ActionEvent ae, User u) {
         	Component component = (Component) ae.getSource();
@@ -137,7 +140,7 @@ public class LoginMenuView extends JLayeredPane {
         }
     }
     
-    class createAcctButtonListener implements ActionListener
+    class CreateAcctButtonListener implements ActionListener
     {
     	@Override
         public void actionPerformed(ActionEvent e) 
