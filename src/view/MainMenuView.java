@@ -172,7 +172,6 @@ public class MainMenuView extends JLayeredPane {
         }
     }
     
-    /* WIP by Chauncey */
     public JPanel createTournamentPanel() {
     	CreateTournament ct = new CreateTournament();
     	createTournamentPanel = ct.createTournamentMenu();
@@ -200,27 +199,6 @@ public class MainMenuView extends JLayeredPane {
     		frame.getContentPane().repaint();
     	}
     }
-    
-    // example to follow
-    /*
-    class findFriendsButtonListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent ae) 
-        {
-        	Component component = (Component) ae.getSource();
-        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
-
-            frame.getContentPane().removeAll();            
-            findFriendsPanel = new UserSearchPanel();
-
-            frame.getContentPane().add(findFriendsPanel);
-            frame.getContentPane().validate();
-            frame.getContentPane().repaint();
-        }
-    }
-    */
-    
-    /* End WIP by Chauncey*/
 
     class editProfileButtonListener implements ActionListener
     {
