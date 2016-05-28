@@ -32,9 +32,7 @@ public class User
     private Email email;
     private boolean allValidated;
     private String passwordHash;
-    //TODO
-//    private String passwordHash;
-//    private ArrayList<ProfessionalTeam> userTeams;
+
     /***
      * Default constructor for user. User fields must be validated.
      * User instance should not be used unless allValidated is true.
@@ -179,7 +177,13 @@ public class User
      * @return true if all fields are valid, else false.
      * */
     public boolean isValidated() {
-        return setEmail(email.toString()) && setFirstName(firstName) && setLastName(lastName) && setUsername(userName) && passwordValid();
+    	allValidated = true;
+    	allValidated &= setEmail(email.toString());
+    	allValidated &= setFirstName(firstName);
+    	allValidated &= setLastName(lastName);
+    	allValidated &= setUsername(userName);
+    	allValidated &= passwordValid();
+    	return allValidated;
     }
 
 
@@ -215,8 +219,7 @@ public class User
 
 		} catch (SQLException e) {
 			log.severe("Unable to save user to database.");
-			log.severe(Arrays.toString(e.getStackTrace()));
-			System.exit(1);
+			log.severe(e.toString());
 		}
     }
     
@@ -241,8 +244,7 @@ public class User
 			db.close();
     	}
     	catch (SQLException e) {
-    		e.printStackTrace();
-    		System.exit(0);
+    		log.severe(e.toString());
     	}
     }
     
