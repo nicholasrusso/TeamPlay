@@ -1,100 +1,114 @@
-package tournament;
+package teams;
 
-import java.util.*;
-import soccerPlayer.*;
-import user.*;
-/**
- * Tournament Class.
- */
-public class Tournament {
-    private String name;
-    private int maxUsers;
-    private ArrayList<SoccerPlayer> players;
-    private ArrayList<User> users;
-    /**
-     * Constructor
-     * @param name - String, Tournament name
-     * @param maxUsers - int, max number of users allowed in tournament
-     * @param players - List, List of soccer players to be used for pool.
-     */
-    public Tournament(String name, int maxUsers, ArrayList<SoccerPlayer> players)
-    {
-        this.name = name;
-        this.maxUsers = maxUsers;
-        this.players = players;
-        this.users = new ArrayList<User>();
-    }
+import java.util.Scanner;
 
-    /**
-     * Accessor for players list
-     */
-    public ArrayList<SoccerPlayer> getPlayers()
-    {
-        return players;
-    }
-    /**
-     * Accessor for users list
-     */
-    public ArrayList<User> getUsers()
-    {
-        return users;
-    }
-    /**
-     * Accessor for tournament name
-     */
-    public String getName()
-    {
-        return name;
-    }
+import soccerPlayer.SoccerPlayer;
 
-    /**
-     * Accessor for max number of players
-     */
-    public int getMaxUsers()
-    {
-        return maxUsers;
-    }
+import java.lang.Integer;
+import java.util.ArrayList;
 
-    /**
-     * Adds a user to the tournament
-     * @param user, User the user to be added
-     * @return boolean, true if successful false other wise.
-     */
-    public boolean addUser(User user)
-    {
-        if (users.contains(user))
-        {
-            System.out.println(user.getUsername() + " has already been added to the tournament!");
-            return false;
-        }
-        else if (users.size() == maxUsers)
-        {
-            System.out.println("This tournament is full!");
-            return false;
-        }
-        else
-        {
-            return users.add(user);
-        }
-        
-    }
-    /**
-     * Removes a user from the tournament
-     * @param user, User the user to be removed
-     * @return boolean, true if successful false other wise.
-     */
-    public boolean removeUser(User user)
-    {
-        if (!users.contains(user))
-        {
-            System.out.println(user.getUsername() + " is not in the tournament!");
-            return false;
-        }
-        else
-        {
-            return users.remove(user);
-        }
-    }
+public class Team {
+    private String name = "";
+    private String formation = "";
+    public ArrayList<SoccerPlayer> listOfPlayers = new ArrayList<SoccerPlayer>();
 
+   // RedMine ID: 512297
+   public Team(String name)
+   {
+       this.name = name;
+       this.formation = "4-3-3";
+   }
+   
+   public void addPlayer(SoccerPlayer sp) {
+       listOfPlayers.add(sp);
+   }
+   
+   public void removePlayer(SoccerPlayer sp) {
+       listOfPlayers.remove(sp);
+   }
 
+   public String getName() {
+      return name;
+   }
+
+   public int getSize() {
+      return listOfPlayers.size();
+   }
+   
+   public ArrayList<SoccerPlayer> getTeam()
+   {
+       return listOfPlayers;
+   }
+   
+   public void setName(String name)
+   {
+       this.name = name;
+   }
+   
+   public void setFormation(String formation)
+   {
+       this.formation = formation;
+   }
+   
+   public String getFormation()
+   {
+       return formation;
+   }
+}
+package teams;
+
+import java.util.Scanner;
+
+import soccerPlayer.SoccerPlayer;
+
+import java.lang.Integer;
+import java.util.ArrayList;
+
+public class Team {
+    private String name = "";
+    private String formation = "";
+    public ArrayList<SoccerPlayer> listOfPlayers = new ArrayList<SoccerPlayer>();
+
+   // RedMine ID: 512297
+   public Team(String name)
+   {
+       this.name = name;
+       this.formation = "4-3-3";
+   }
+   
+   public void addPlayer(SoccerPlayer sp) {
+       listOfPlayers.add(sp);
+   }
+   
+   public void removePlayer(SoccerPlayer sp) {
+       listOfPlayers.remove(sp);
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public int getSize() {
+      return listOfPlayers.size();
+   }
+   
+   public ArrayList<SoccerPlayer> getTeam()
+   {
+       return listOfPlayers;
+   }
+   
+   public void setName(String name)
+   {
+       this.name = name;
+   }
+   
+   public void setFormation(String formation)
+   {
+       this.formation = formation;
+   }
+   
+   public String getFormation()
+   {
+       return formation;
+   }
 }

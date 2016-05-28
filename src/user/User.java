@@ -1,11 +1,13 @@
 package user;
 
+import java.util.HashMap;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import teams.Team;
 import security.AppSettings;
 import db.DBFactory;
 import security.PasswordUtilities;
@@ -30,6 +32,7 @@ public class User
     private String userName;
     private Email email;
     private boolean allValidated;
+    private HashMap<String, Team> teams;
     private String passwordHash;
 
     /***
@@ -43,6 +46,7 @@ public class User
         userName = "";
         email = new Email();
         allValidated = false;
+        teams = new HashMap<>();
         passwordHash= props.getProperty("emptyString");
     }
 
@@ -199,6 +203,7 @@ public class User
                         .append("\nEmail      : ").append(email.toString()).toString();
     }
     
+    
     public void save() {
     	String insertUserSQL = "insert into main.User (username, firstname, lastname, passhash, email, lastlogin) values (?,?,?,?,?,?)";
 		Connection db = DBFactory.getDBConnection();
@@ -246,6 +251,14 @@ public class User
     		LOGGER.info(e.toString());
     		LOGGER.warning("Unable to update user in database.");
     	}
+    }
+    public Team getTeam(String tournamentName)
+    {
+            return teams.get(tournamentName);
+    }
+    public void setTeam(String tournament, Team team)
+    {
+            teams.put(tournament, team);
     }
     
 }
