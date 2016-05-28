@@ -3,7 +3,6 @@ package user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -218,8 +217,8 @@ public class User
 		    db.close();
 
 		} catch (SQLException e) {
-			log.severe("Unable to save user to database.");
-			log.severe(e.toString());
+			log.warning(e.toString());
+			log.warning("Unable to save user to database.");
 		}
     }
     
@@ -244,7 +243,7 @@ public class User
 			db.close();
     	}
     	catch (SQLException e) {
-    		log.severe(e.toString());
+    		log.warning(e.toString());
     	}
     }
     
