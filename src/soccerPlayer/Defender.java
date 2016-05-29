@@ -1,5 +1,7 @@
 package soccerPlayer;
 
+import java.util.Random;
+
 public class Defender implements SoccerPlayer
 {
     String name = "";
@@ -19,10 +21,11 @@ public class Defender implements SoccerPlayer
     public String getTeam() {
         return team;
     }
-
+   
+    @Override
     public String toString() {
-        return ("Name: " + name + "\nTeam: " + team + 
-            "\nPosition: " + this.getClass().getName() + "\nScore: " + score + "\n");        
+        return "Name: " + name + "\nTeam: " + team + 
+            "\nPosition: " + this.getClass().getName() + "\nScore: " + score + "\n";        
     }
     
     public int getScore() {
@@ -30,15 +33,16 @@ public class Defender implements SoccerPlayer
     }
 
     public int score() {
-        int goal = (int)(Math.random() * 2);
-        int assist = (int)(Math.random() * 2);
-        int yellowCard = (int)(Math.random() * 2);
-        int redCard = (int)(Math.random() * 1);
-        int foul = (int)(Math.random() * 5);
+       Random random = new Random(); 
+       int goal = (int)(random.nextInt(2));
+        int assist = (int)(random.nextInt(2));
+        int yellowCard = (int)(random.nextInt(2));
+        int redCard = (int)(random.nextInt(1));
+        int foul = (int)(random.nextInt(5));
         
-        int score = 4*goal + 2*assist - 2*yellowCard - 5*redCard - foul; 
+        return  4*goal + 2*assist - 2*yellowCard - 5*redCard - foul; 
         
-        return score;        
+               
     }
 
 }
