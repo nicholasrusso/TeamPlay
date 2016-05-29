@@ -4,32 +4,32 @@ import java.util.Random;
 
 public class Defender implements SoccerPlayer
 {
-    String name = "";
-    String team = "";
-    int score = 0;
+    String dname = "";
+    String dteam = "";
+    int dscore = 0;
 
     public Defender(String name, String team){
-        this.name = name;
-        this.team = team;
-        this.score = score();
+        this.dname = name;
+        this.dteam = team;
+        this.dscore = score();
     }
 
     public String getName() {
-        return name;
+        return dname;
     }
 
     public String getTeam() {
-        return team;
+        return dteam;
     }
    
     @Override
     public String toString() {
-        return "Name: " + name + "\nTeam: " + team + 
-            "\nPosition: " + this.getClass().getName() + "\nScore: " + score + "\n";        
+        return "Name: " + dname + "\nTeam: " + dteam + 
+            "\nPosition: " + this.getClass().getName() + "\nScore: " + dscore + "\n";        
     }
     
     public int getScore() {
-        return score;
+        return dscore;
     }
 
     public int score() {
