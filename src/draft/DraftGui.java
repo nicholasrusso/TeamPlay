@@ -1,7 +1,6 @@
 package draft;
 
 import java.util.*;
-import java.util.Timer;
 
 import javax.swing.*;
 
@@ -9,7 +8,6 @@ import soccerPlayer.Defender;
 import soccerPlayer.Forward;
 import soccerPlayer.Midfielder;
 import soccerPlayer.SoccerPlayer;
-import teams.Team;
 import tournament.Tournament;
 import user.User;
 
@@ -86,31 +84,15 @@ public class DraftGui implements Observer
         btnPlayer3 = new JButton("");
         
         
-        btnPlayer1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-                model.nextUser(0);
-                
-            }
-        });
+        btnPlayer1.addActionListener(element -> model.nextUser(0));
         btnPlayer1.setBounds(6, 209, 117, 29);
         playerSelectionPanel.add(btnPlayer1);
         
-        btnPlayer2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                model.nextUser(1);
-            }
-        });
+        btnPlayer2.addActionListener(element -> model.nextUser(1));
         btnPlayer2.setBounds(122, 209, 117, 29);
         playerSelectionPanel.add(btnPlayer2);
         
-        btnPlayer3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-  
-            	model.nextUser(2);
-                
-            }
-        });
+        btnPlayer3.addActionListener(element -> model.nextUser(2));
         btnPlayer3.setBounds(241, 209, 117, 29);
         playerSelectionPanel.add(btnPlayer3);
         
@@ -276,26 +258,20 @@ public class DraftGui implements Observer
         startDraftButton.setForeground(Color.BLACK);
         startDraftButton.setBackground(Color.RED);
         startDraftButton.setFont(new Font(FONT, Font.PLAIN, 34));
-        startDraftButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        startDraftButton.addActionListener(element -> {
                 if (!model.isOver())
                 {
 	            	model.startDraft();
-	                
 	                if (!model.hasTeam())
 	                {
 	                    String name = JOptionPane.showInputDialog(frame,
-	                            "What is your team name?",  JOptionPane.OK_CANCEL_OPTION);
-	                    
+	                            "What is your team name?",  JOptionPane.OK_CANCEL_OPTION); 
 	                    model.addNewTeam(name);       
 	                }
 	                DraftGui.this.update(model, null);
-	                
-	                //start timer
+
 	                model.startTimer();
                 }
-                
-            }
         });
         startDraftButton.setBounds(31, 333, 366, 54);
         frame.getContentPane().add(startDraftButton);
@@ -305,31 +281,24 @@ public class DraftGui implements Observer
         frame.setSize(890, 769);
         frame.setVisible(true);
         
-        System.out.println("asdfasdfasdfasdf");
-    }
-    
-    public void init()
-    {
-        JPanel panel = new JPanel();
     }
 
     public static void main(String[] args) 
     {
-//        TimerFrame timerFrame = new TimerFrame();
-//        timerFrame.frame.setVisible(true);
-//        timerFrame.frame.setSize(400,100);
+
         ArrayList<SoccerPlayer> players = new ArrayList<SoccerPlayer>();
-        players.add(new Forward("Messi", "Barcelona"));
-        players.add(new Forward("Saurez", "Barcelona"));
-        players.add(new Forward("Neymar", "Barcelona"));
-        players.add(new Midfielder("Xavi", "Barcelona"));
-        players.add(new Midfielder("Iniesta", "Barcelona"));
-        players.add(new Midfielder("Rakitic", "Barcelona"));
-        players.add(new Midfielder("Busquets", "Barcelona"));
-        players.add(new Defender("Pique", "Barcelona"));
-        players.add(new Defender("Mascherano", "Barcelona"));
-        players.add(new Defender("Dani Alves", "Barcelona"));
-        players.add(new Defender("Jordi Alba", "Barcelona"));
+        String barca = "Barcelona";
+        players.add(new Forward("Messi", barca));
+        players.add(new Forward("Saurez", barca));
+        players.add(new Forward("Neymar", barca));
+        players.add(new Midfielder("Xavi", barca));
+        players.add(new Midfielder("Iniesta", barca));
+        players.add(new Midfielder("Rakitic", barca));
+        players.add(new Midfielder("Busquets", barca));
+        players.add(new Defender("Pique", barca));
+        players.add(new Defender("Mascherano", barca));
+        players.add(new Defender("Dani Alves", barca));
+        players.add(new Defender("Jordi Alba", barca));
         User user1 = new User();
         user1.setFirstName("Nick");
         user1.setLastName("Russo");
