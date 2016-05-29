@@ -10,7 +10,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestUser.class, TestEmail.class, TestEditorPasswordField.class, TestEditorTextField.class})
+@SuiteClasses({ TestUser.class, TestEmail.class, TestPasswordUtilities.class, TestUserSearch.class,
+		TestUserSearchAndEmail.class })
 public class GelsTestSuite {
 
 }

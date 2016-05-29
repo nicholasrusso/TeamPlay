@@ -38,7 +38,6 @@ public class EditorTextField extends JPanel
         add(input);
         setVisible(true);
     }
-    
 
     /**
      * Accessor for getting text in JTextField for validation by User class.
@@ -55,14 +54,6 @@ public class EditorTextField extends JPanel
     public void setEditable(boolean canEdit) {
     	editable = canEdit;
     	input.setEditable(editable);
-    }
-    
-    /**
-     * Accessor for getting label text in JTextField for validation by User class.
-     * */
-    public String getLabelText()
-    {
-        return label.getText();
     }
 }
 
