@@ -1,4 +1,4 @@
-package soccerPlayer;
+package soccerplayer;
 
 public class Midfielder implements SoccerPlayer
 {

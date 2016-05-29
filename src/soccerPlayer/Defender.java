@@ -1,4 +1,4 @@
-package soccerPlayer;
+package soccerplayer;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package soccerPlayer;
+package soccerplayer;
 
 
 public interface SoccerPlayer
