@@ -1,44 +1,48 @@
 package soccerplayer;
 
+import java.util.Random;
+
 public class Midfielder implements SoccerPlayer
 {
-    String name = "";
-    String team = "";
-    int score = 0;
+    String mname = "";
+    String mteam = "";
+    int mscore = 0;
 
     public Midfielder(String name, String team){
-        this.name = name;
-        this.team = team;
-        this.score = score();
+        this.mname = name;
+        this.mteam = team;
+        this.mscore = score();
     }
 
     public String getName() {
-        return name;
+        return mname;
     }   
 
     public String getTeam() {
-        return team;
+        return mteam;
     }
 
+    @Override
     public String toString() {
-        return ("Name: " + name + "\nTeam: " + team + 
-            "\nPosition: " + this.getClass().getName() + "\nScore: " + score + "\n");        
+        return "Name: " + mname + "\nTeam: " + mteam + 
+            "\nPosition: " + this.getClass().getName() + "\nScore: " + mscore + "\n";        
     }
     
     public int getScore() {
-        return score;
+        return mscore;
     }
 
     public int score() {
-        int goal = (int)(Math.random() * 3);
-        int assist = (int)(Math.random() * 3);
-        int shot = (int)(Math.random() * 6);
-        int shotOnGoal = (int)(Math.random() * 4);
-        int yellowCard = (int)(Math.random() * 2);
+       Random random = new Random();
+        int goal = random.nextInt(3);
+        int assist = random().nextInt(3);
+        int shot = random.nextInt(6);
+        int shotOnGoal = random.nextInt(4);
+        int yellowCard = random.nextInt(2);
         int redCard = (int)(Math.random() * 1);
         
-        int score = goal + 3*assist + (shot - shotOnGoal) - 2*yellowCard - 3*redCard;
-        return score;        
+        return goal + 3*assist + (shot - shotOnGoal) - 2*yellowCard - 3*redCard;
+               
     }
 
 }

@@ -1,48 +1,52 @@
 package soccerplayer;
 
+import java.util.Random;
+
 public class Forward implements SoccerPlayer
 {
-    String name = "";
-    String team = "";
-    int score = 0;
+    String fname = "";
+    String fteam = "";
+    int fscore = 0;
 
     public Forward(String name, String team){
-        this.name = name;
-        this.team = team;
-        this.score = score();
+        this.fname = name;
+        this.fteam = team;
+        this.fscore = score();
     }
 
     public String getName() {
-        return name;
+        return fname;
     }
 
 
+    @Override
     public String getTeam() {
-        return team;
+        return fteam;
     }
 
     public String toString() {
-        return ("Name: " + name + "\nTeam: " + team + 
-            "\nPosition: " + this.getClass().getName() + "\nScore: " + score + "\n");        
+        return "Name: " + fname + "\nTeam: " + fteam + 
+            "\nPosition: " + this.getClass().getName() + "\nScore: " + fscore + "\n";        
     }
     
     public int getScore() {
-        return score;
+        return fscore;
     }
 
     public int score() {
-        int goal = (int)(Math.random() * 3);
-        int assist = (int)(Math.random() * 3);
-        int shot = (int)(Math.random() * 7);
-        int shotOnGoal = (int)(Math.random() * 5);
-        int yellowCard = (int)(Math.random() * 2);
-        int redCard = (int)(Math.random() * 1);
-        int foulDrawn = (int)(Math.random() * 3);
+       Random random = new Random();
+        int goal = random.nextInt(3);
+        int assist = random.nextInt(3);
+        int shot = random.nextInt(7);
+        int shotOnGoal = random.nextInt(5);
+        int yellowCard = random.nextInt(2);
+        int redCard = random.nextInt(1);
+        int foulDrawn = random.nextInt(3);
         
-        int score = 0;
-        score = 2*goal + assist + (shot - shotOnGoal) - 2*(yellowCard) - 4*(redCard) + 2*foulDrawn;
         
-        return score;
+        return 2*goal + assist + (shot - shotOnGoal) - 2*(yellowCard) - 4*(redCard) + 2*foulDrawn;
+        
+        
     }
 
 }
