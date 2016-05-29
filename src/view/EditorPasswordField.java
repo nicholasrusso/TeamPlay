@@ -31,12 +31,28 @@ public class EditorPasswordField extends JPanel
         add(input);
         setVisible(true);
     }
+    
+    /**
+     * Mutator for setting text in JPasswordField for validation by User class. - Testing only
+     * */
+    public void setInputText(String pw)
+    {
+    	input.setText(pw);
+    }
 
     /**
-     * Accessor for getting text in JTextField for validation by User class.
+     * Accessor for getting text in JPasswordField for validation by User class.
      * */
     public String getPasswordInput()
     {
         return String.valueOf(input.getPassword());
+    }
+    
+    /**
+     * Accessor for getting text in JPasswordField for validation by User class.
+     * */
+    public String getLabelText()
+    {
+        return label.getText();
     }
 }
