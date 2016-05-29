@@ -2,8 +2,7 @@ package draft;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Random;
-import java.util.Scanner;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,17 +11,9 @@ import tournament.*;
 import soccerPlayer.*;
 import teams.Team;
 
-import java.io.*;
-import java.awt.*;
-import javax.swing.*;
-
-
-import java.awt.event.*;
-
 public class DraftModel extends Observable{
     private Tournament tournament;
     private ArrayList<User> users;
-    private ArrayList<SoccerPlayer> players;
     private User currentUser;
     private int userPosition;
     private SoccerPlayer[] currentPlayerSelection;
@@ -32,7 +23,6 @@ public class DraftModel extends Observable{
     private boolean selection;
     private Timer clock;
     private static String time;
-    private boolean save;
     private boolean draftOver;
     public DraftModel(Tournament tournament) 
     {
@@ -40,12 +30,10 @@ public class DraftModel extends Observable{
         this.draftRound = 0;
         this.tournament = tournament;
         this.users = tournament.getUsers();
-        this.players = tournament.getPlayers();
         this.currentUser = users.get(userPosition);
         randomPlayers = new SoccerPlayer[3];
         turnSeconds = 10;
         selection = false;
-        save = false;
         draftOver = false;
     }
 
@@ -59,7 +47,7 @@ public class DraftModel extends Observable{
     {
             if (draftRound < 18)
             {
-            	getCurrentUserTeam().addPlayer(currentPlayerSelection[2]);
+            	getCurrentUserTeam().addPlayer(currentPlayerSelection[pos]);
                 if (userPosition < users.size() - 1)
                 {
                     currentUser = users.get(++userPosition);
@@ -75,7 +63,6 @@ public class DraftModel extends Observable{
             }
             else
             {
-            	save = false;
             	selection = false;
             	draftOver = true;
             }
@@ -110,8 +97,7 @@ public class DraftModel extends Observable{
             int second = 60;
             @Override
             public void run() {
-                DraftModel.time = second-- + " seconds.";
-                System.out.println(time);
+                time = second-- + " seconds.";
                 DraftModel.this.setChanged();
                 DraftModel.this.notifyObservers();
             }   
@@ -125,7 +111,6 @@ public class DraftModel extends Observable{
     }
     
     public String getTime(){
-    	System.out.println("updating");
     	return time;
     }
     public SoccerPlayer[] getCurrentPlayerSelection()
