@@ -25,9 +25,15 @@ public class DraftModel extends Observable{
     private ArrayList<SoccerPlayer> players;
     private User currentUser;
     private int userPosition;
+    private SoccerPlayer[] currentPlayerSelection;
     private SoccerPlayer[] randomPlayers;
     private static int turnSeconds;
     private int draftRound;
+    private boolean selection;
+    private Timer clock;
+    private static String time;
+    private boolean save;
+    private boolean draftOver;
     public DraftModel(Tournament tournament) 
     {
         this.userPosition = 0;
@@ -38,6 +44,9 @@ public class DraftModel extends Observable{
         this.currentUser = users.get(userPosition);
         randomPlayers = new SoccerPlayer[3];
         turnSeconds = 10;
+        selection = false;
+        save = false;
+        draftOver = false;
     }
 
 
@@ -46,10 +55,11 @@ public class DraftModel extends Observable{
         return currentUser;
     }
 
-    public void nextUser()
+    public void nextUser(int pos)
     {
             if (draftRound < 18)
             {
+            	getCurrentUserTeam().addPlayer(currentPlayerSelection[2]);
                 if (userPosition < users.size() - 1)
                 {
                     currentUser = users.get(++userPosition);
@@ -59,10 +69,31 @@ public class DraftModel extends Observable{
                     userPosition = 0;
                     currentUser = users.get(userPosition);
                 }
+                
                 draftRound++;
                 
             }
-        
+            else
+            {
+            	save = false;
+            	selection = false;
+            	draftOver = true;
+            }
+            selection = false;
+            currentPlayerSelection = null;
+            clock.cancel();
+
+            this.setChanged();
+            this.notifyObservers();        
+    }
+    
+    public boolean getSelection()
+    {
+    	return selection;
+    }
+    public boolean isOver()
+    {
+    	return draftOver;
     }
 
     public void addPlayer(int location)
@@ -71,20 +102,20 @@ public class DraftModel extends Observable{
         tournament.removePlayer(randomPlayers[location]);
     }
     
-    public void turnTimer()
+    public void startTimer()
     {
-        new Timer().schedule(new TimerTask()
-        {
+    	clock = new Timer();
+        clock.schedule(new TimerTask(){
 
             int second = 60;
             @Override
-            public void run() 
-            {
-                turnSeconds--;
-                setChanged();
-                notifyObservers();
+            public void run() {
+                DraftModel.time = second-- + " seconds.";
+                System.out.println(time);
+                DraftModel.this.setChanged();
+                DraftModel.this.notifyObservers();
             }   
-        }, 0, 1000);
+        },0, 1000);
         
     }
     
@@ -92,84 +123,95 @@ public class DraftModel extends Observable{
     {
         return turnSeconds;
     }
-
-
-
-    public SoccerPlayer[] getThreeRandomSoccerPlayers()
+    
+    public String getTime(){
+    	System.out.println("updating");
+    	return time;
+    }
+    public SoccerPlayer[] getCurrentPlayerSelection()
     {
-        randomPlayers[0] = tournament.randomPlayer();
-        randomPlayers[1] = tournament.randomPlayer();
-        randomPlayers[2] = tournament.randomPlayer();
-        return randomPlayers;
+        return currentPlayerSelection;
     }
 
     public Team getCurrentUserTeam()
     {
         return currentUser.getTeam(tournament.getName());
     }
-
-
-    public void run(Reader reader) 
+    public String getCurrentUserTeamName()
     {
-        System.out.println("Are you ready?(Yes/No)");   
-        Scanner scanner = new Scanner(reader);
-        boolean intime = true;
-        //Team currentTeam = null;
-        //Loops 18 times, giving each user 18 opportunties to draft.
-        for (int opportunities = 0; opportunities < 18; opportunities++)
-        {
-            //Loops through all the user in the tournament.
-            //for (User user : users) 
-            //{
-                System.out.println("Current User: Tim");
-                System.out.println("Are you ready?(Yes/No)");     
-
-                //String line = scanner.nextLine();
-//                JFrame f = new JFrame();
-//                final JDialog dialog = new JDialog(f, "Test", true);
-//                Timer timer = new Timer(2000, new ActionListener() {
-//                    public void actionPerformed(ActionEvent e) {
-//                        dialog.setVisible(false);
-//                        dialog.dispose();
-//                    }
-//                });
-//                timer.setRepeats(false);
-//                timer.start();
-
-                //dialog.setVisible(true); // if modal, application will pause here
-
-                System.out.println("Dialog closed");
-                //needs threading for timer.
-                //needs random player presentation
-                //needs user selection
-                //needs auto pick
-                // final long start = System.nanoTime();
-                // while (!line.equalsIgnoreCase("Yes"))
-                // {
-                //     final long currentTime = (start - System.nanoTime())/1000000000;
-                //     if (current % 1 == 0) 
-                //     {
-                //        System.out.println(5 - currentTime);
-                //     }
-                //     if (current <= 0)
-                //     {
-                //         intime = false;
-                //         break;
-                //     }
-                    
-                // }
-
-                //currentTeam = user.getTournamentTeam(tournament.getName());
-                
-            //}
-        }
+    	if (hasTeam())
+    		return getCurrentUserTeam().getName();
+    	return "";
+    }
+    public String getCurrentUserTeamFormation()
+    {
+    	if (hasTeam())
+    		return getCurrentUserTeam().getFormation();
+    	return "4-3-3";
+    }
+    public String getCurrentUserTeamSize()
+    {
+    	if (hasTeam())
+    		return getCurrentUserTeam().getSize() + "";
+    	return "0";
+    }
+    
+    public void startDraft()
+    {
+    	selection = true; 
+    	currentPlayerSelection = tournament.randomPlayers();
+    	setChanged();
+    	notifyObservers();
+    	
+    }
+    
+    public void canelClock()
+    {
+    	clock.cancel();
+    }
+    
+    public boolean hasTeam()
+    {
+    	return getCurrentUserTeam() != null;
+    }
+    
+    public void addNewTeam(String name)
+    {
+    	currentUser.setTeam(tournament.getName(), new Team(name));
+    	setChanged();
+    	notifyObservers();
+    }
+    
+    public String getCurrentUserName()
+    {
+    	return currentUser.getFirstName() + " " + currentUser.getLastName();
+    }
+    
+    public String getTeamToString()
+    {
+    	String result = "";
+    	Team team = getCurrentUserTeam();
+    	if(team != null)
+    	{
+    		for (SoccerPlayer player : team.listOfPlayers)
+    		{
+    			result +=  player.getName() + "\n";
+    		}
+    	}
+    	return result;
+    }
+    
+    public void setTeamName(String name)
+    {
+    	getCurrentUserTeam().setName(name);
+    }
+    
+    public void setTeamFormation(String formation)
+    {
+    	getCurrentUserTeam().setFormation(formation);
     }
 
-    public static void main(String[] args) 
-    {
-        Draft draft = new Draft(new Tournament("Test", 5, null));
-        draft.run(new InputStreamReader(System.in));
-    }
+    
 
 
 
