@@ -34,11 +34,11 @@ public class Defender implements SoccerPlayer
 
     public int score() {
        Random random = new Random(); 
-       int goal = (int)(random.nextInt(2));
-        int assist = (int)(random.nextInt(2));
-        int yellowCard = (int)(random.nextInt(2));
-        int redCard = (int)(random.nextInt(1));
-        int foul = (int)(random.nextInt(5));
+       int goal = random.nextInt(2);
+        int assist = random.nextInt(2);
+        int yellowCard = random.nextInt(2);
+        int redCard = random.nextInt(1);
+        int foul = random.nextInt(5);
         
         return  4*goal + 2*assist - 2*yellowCard - 5*redCard - foul; 
         
