@@ -6,6 +6,10 @@ import org.junit.Test;
 
 import view.EditorPasswordField;
 
+/**
+ * Test Type: Unit Test
+ * Author: Charlie Gels
+ */
 public class TestEditorPasswordField {
 	
 	@Test
