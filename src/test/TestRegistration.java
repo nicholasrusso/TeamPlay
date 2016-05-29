@@ -7,7 +7,7 @@ import org.junit.Test;
 import user.Registration;
 
 /**
- * Test Type: Unit Test
+ * Test Type: Integration Test
  * Author: Charlie Gels
  */
 public class TestRegistration {
