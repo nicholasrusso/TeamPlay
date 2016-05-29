@@ -13,91 +13,83 @@ import teams.Team;
 import tournament.Tournament;
 import user.User;
 
-import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.sql.Savepoint;
 import java.awt.event.ActionEvent;
 
 public class DraftGui implements Observer
 {
-    public static JFrame frame;
+    private static JFrame frame;
     private JTextField txtTimeRemaining;
     private JTextField txtPlayerSelection;
     private JTextField txtCurrentTeam;
     private JTextField txtTeamStatistics;
-    private JTextField txtTimeRemaining_1;
+    private JTextField timerTxt;
     private JTextField player1Name;
     private JTextField player2Name;
     private JTextField player3Name;
-    private JTable currentUserTeamTable;
+    private JTextArea currentUserTeamTable;
     private JButton quitDraftButton;
     private JButton startDraftButton;
-    private Tournament tournament;
-    private SoccerPlayer selectedPlayer;
+    private JButton btnPlayer1;
+    private JButton btnPlayer2;
+    private JButton btnPlayer3;
+    private JButton saveButton;
     private SoccerPlayer[] players;
     private JTextArea txtrTeamName;
     private JTextArea txtrNumberOfPlayers;
     private JTextArea txtrFormation;
-    private Timer clock;
-    private User currentUser;
+    private JTextArea userNameTA;
+    private JTextArea userNameInfoTA;
+    private JTextArea numOfPlayers;
+    private JTextArea txtrFormationGrap;
+    private JTextArea teamNameTA;
+    private JPanel playerSelectionPanel;
+    private JPanel timerPanel;
+    private JPanel currentUserTeamPanel;
+    private JPanel teamStatsPanel;
+    private JComboBox<String> formationComboBox;
+    private static final String FONT = "Lucida Grande";  
+    private DraftModel model;
+    
 
     /**
      * @wbp.parser.entryPoint
      */
     public DraftGui(Tournament tournament)
     {
-        DraftModel model = new DraftModel(tournament);
+        model = new DraftModel(tournament);
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         
-        currentUser = model.getCurrentUser();
+        model.addObserver(this);
         
         
-        JTextArea userNameTA = new JTextArea();
-        userNameTA.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
-        userNameTA.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+        userNameTA = new JTextArea();
+        userNameTA.setFont(new Font(FONT, Font.PLAIN, 24));
         userNameTA.setWrapStyleWord(true);
         userNameTA.setEditable(false);
         userNameTA.setLineWrap(true);
         userNameTA.setBounds(440, 6, 265, 32);
         frame.getContentPane().add(userNameTA);
         
-        JPanel playerSelectionPanel = new JPanel();
+        playerSelectionPanel = new JPanel();
         playerSelectionPanel.setBounds(31, 87, 364, 244);
         frame.getContentPane().add(playerSelectionPanel);
         playerSelectionPanel.setLayout(null);
         
-        //players = model.getThreeRandomSoccerPlayers();
         
-        JButton btnPlayer1 = new JButton("");
-        JButton btnPlayer2 = new JButton("");
-        JButton btnPlayer3 = new JButton("");
+        btnPlayer1 = new JButton("");
+        btnPlayer2 = new JButton("");
+        btnPlayer3 = new JButton("");
         
         
         btnPlayer1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                btnPlayer1.setEnabled(false);
-                btnPlayer2.setEnabled(false);
-                btnPlayer3.setEnabled(false);
-                Team currentUserTeam = currentUser.getTeam(tournament.getName());
-                currentUserTeam.addPlayer(players[0]);
-                currentUser.setTeam(tournament.getName(), currentUserTeam);
-                //todo pop up
-                model.nextUser();
-                currentUser = model.getCurrentUser();
-                User cur = model.getCurrentUser();
-                userNameTA.setText(cur.getFirstName() + " " + cur.getLastName());
-                txtTimeRemaining_1.setText("STARTING DRAFT");
-                btnPlayer1.setText("");
-                btnPlayer2.setText("");
-                btnPlayer3.setText("");
-                player1Name.setText("");
-                player2Name.setText("");
-                player3Name.setText("");
-                clock.cancel();
+
+                model.nextUser(0);
                 
             }
         });
@@ -106,25 +98,7 @@ public class DraftGui implements Observer
         
         btnPlayer2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                btnPlayer1.setEnabled(false);
-                btnPlayer2.setEnabled(false);
-                btnPlayer3.setEnabled(false);
-                Team currentUserTeam = currentUser.getTeam(tournament.getName());
-                currentUserTeam.addPlayer(players[1]);
-                currentUser.setTeam(tournament.getName(), currentUserTeam);
-                //txtTimeRemaining_1.setText("You selected: " + players[2].getName());
-                model.nextUser();
-                currentUser = model.getCurrentUser();
-                User cur = model.getCurrentUser();
-                userNameTA.setText(cur.getFirstName() + " " + cur.getLastName());
-                txtTimeRemaining_1.setText("STARTING DRAFT");
-                btnPlayer1.setText("");
-                btnPlayer2.setText("");
-                btnPlayer3.setText("");
-                player1Name.setText("");
-                player2Name.setText("");
-                player3Name.setText("");
-                clock.cancel();
+                model.nextUser(1);
             }
         });
         btnPlayer2.setBounds(122, 209, 117, 29);
@@ -132,33 +106,8 @@ public class DraftGui implements Observer
         
         btnPlayer3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                btnPlayer1.setEnabled(false);
-                btnPlayer2.setEnabled(false);
-                btnPlayer3.setEnabled(false);
-                Team currentUserTeam = currentUser.getTeam(tournament.getName());
-                
-                System.out.println("Length: " + players.length);
-                System.out.println("Length: " + players[2].getName());
-                System.out.println("Is null" + players[2]);
-                System.out.println("Is null" + (players[2] == null));
-                System.out.println("Team Is null" + (currentUserTeam == null));
-                
-                currentUserTeam.addPlayer(players[2]);
-                currentUser.setTeam(tournament.getName(), currentUserTeam);
-                //txtTimeRemaining_1.setText("You selected: " + players[2].getName());
-                
-                model.nextUser();
-                currentUser = model.getCurrentUser();
-                User cur = model.getCurrentUser();
-                userNameTA.setText(cur.getFirstName() + " " + cur.getLastName());
-                txtTimeRemaining_1.setText("STARTING DRAFT");
-                btnPlayer1.setText("");
-                btnPlayer2.setText("");
-                btnPlayer3.setText("");
-                player1Name.setText("");
-                player2Name.setText("");
-                player3Name.setText("");
-                clock.cancel();
+  
+            	model.nextUser(2);
                 
             }
         });
@@ -191,27 +140,27 @@ public class DraftGui implements Observer
         player2Name.setEditable(false);
         player3Name.setEditable(false);
         
-        JTextArea userNameInfoTA = new JTextArea();
-        userNameInfoTA.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+        userNameInfoTA = new JTextArea();
+        userNameInfoTA.setFont(new Font(FONT, Font.PLAIN, 24));
         userNameInfoTA.setBounds(264, 6, 164, 32);
         frame.getContentPane().add(userNameInfoTA);
         userNameInfoTA.setEditable(false);
         userNameInfoTA.setBackground(Color.WHITE);
         userNameInfoTA.setText("Current User:");
         
-        JPanel timerPanel = new JPanel();
+        timerPanel = new JPanel();
         timerPanel.setBounds(440, 87, 364, 244);
         frame.getContentPane().add(timerPanel);
         timerPanel.setLayout(null);
         
-        txtTimeRemaining_1 = new JTextField();
-        txtTimeRemaining_1.setEditable(false);
-        txtTimeRemaining_1.setFont(new Font("Lucida Grande", Font.BOLD, 35));
-        txtTimeRemaining_1.setText("STARTING DRAFT!");
-        txtTimeRemaining_1.setHorizontalAlignment(SwingConstants.CENTER);
-        txtTimeRemaining_1.setColumns(10);
-        txtTimeRemaining_1.setBounds(6, 6, 352, 228);
-        timerPanel.add(txtTimeRemaining_1);
+        timerTxt = new JTextField();
+        timerTxt.setEditable(false);
+        timerTxt.setFont(new Font(FONT, Font.BOLD, 35));
+        timerTxt.setText("STARTING DRAFT!");
+        timerTxt.setHorizontalAlignment(SwingConstants.CENTER);
+        timerTxt.setColumns(10);
+        timerTxt.setBounds(6, 6, 352, 228);
+        timerPanel.add(timerTxt);
         
         txtTimeRemaining = new JTextField();
         txtTimeRemaining.setEditable(false);
@@ -229,12 +178,12 @@ public class DraftGui implements Observer
         txtPlayerSelection.setHorizontalAlignment(SwingConstants.CENTER);
         txtPlayerSelection.setColumns(10);
         
-        JPanel currentUserTeamPanel = new JPanel();
+        currentUserTeamPanel = new JPanel();
         currentUserTeamPanel.setBounds(31, 419, 364, 226);
         frame.getContentPane().add(currentUserTeamPanel);
         currentUserTeamPanel.setLayout(null);
         
-        currentUserTeamTable = new JTable();
+        currentUserTeamTable = new JTextArea();
         currentUserTeamTable.setBounds(6, 6, 352, 214);
         currentUserTeamPanel.add(currentUserTeamTable);
         
@@ -246,14 +195,14 @@ public class DraftGui implements Observer
         txtCurrentTeam.setBounds(31, 390, 364, 26);
         frame.getContentPane().add(txtCurrentTeam);
         
-        JPanel teamStatsPanel = new JPanel();
+        teamStatsPanel = new JPanel();
         teamStatsPanel.setBounds(440, 372, 364, 273);
         frame.getContentPane().add(teamStatsPanel);
         teamStatsPanel.setLayout(null);
         
         txtrTeamName = new JTextArea();
         txtrTeamName.setEditable(false);
-        txtrTeamName.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+        txtrTeamName.setFont(new Font(FONT, Font.PLAIN, 16));
         txtrTeamName.setText("Team Name:");
         txtrTeamName.setBounds(6, 6, 102, 27);
         teamStatsPanel.add(txtrTeamName);
@@ -261,38 +210,38 @@ public class DraftGui implements Observer
         txtrNumberOfPlayers = new JTextArea();
         txtrNumberOfPlayers.setEditable(false);
         txtrNumberOfPlayers.setText("# of Players:");
-        txtrNumberOfPlayers.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+        txtrNumberOfPlayers.setFont(new Font(FONT, Font.PLAIN, 16));
         txtrNumberOfPlayers.setBounds(206, 240, 102, 27);
         teamStatsPanel.add(txtrNumberOfPlayers);
         
         txtrFormation = new JTextArea();
         txtrFormation.setEditable(false);
         txtrFormation.setText("Formation:");
-        txtrFormation.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+        txtrFormation.setFont(new Font(FONT, Font.PLAIN, 16));
         txtrFormation.setBounds(6, 240, 95, 27);
         teamStatsPanel.add(txtrFormation);
         
-        JComboBox formationComboBox = new JComboBox();
+        formationComboBox = new JComboBox<String>();
         formationComboBox.setBounds(102, 239, 102, 27);
         teamStatsPanel.add(formationComboBox);
         formationComboBox.addItem("4-3-3");
         formationComboBox.addItem("4-5-1");
         formationComboBox.addItem("4-4-2");
         
-        JTextArea numOfPlayers = new JTextArea();
+        numOfPlayers = new JTextArea();
         numOfPlayers.setEditable(false);
         numOfPlayers.setBounds(320, 240, 38, 27);
         teamStatsPanel.add(numOfPlayers);
         
-        JTextArea txtrFormationGrap = new JTextArea();
+        txtrFormationGrap = new JTextArea();
         txtrFormationGrap.setEditable(false);
         txtrFormationGrap.setText("Formation Graph");
         txtrFormationGrap.setBounds(6, 38, 352, 193);
         teamStatsPanel.add(txtrFormationGrap);
         
-        JTextArea teamNameTA = new JTextArea();
+        teamNameTA = new JTextArea();
         teamNameTA.setText("Team Name:");
-        teamNameTA.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+        teamNameTA.setFont(new Font(FONT, Font.PLAIN, 16));
         teamNameTA.setBounds(120, 6, 238, 27);
         teamStatsPanel.add(teamNameTA);
         
@@ -305,20 +254,19 @@ public class DraftGui implements Observer
         frame.getContentPane().add(txtTeamStatistics);
         
         quitDraftButton = new JButton("Quit Draft");
-        quitDraftButton.setFont(new Font("Lucida Grande", Font.PLAIN, 34));
+        quitDraftButton.setFont(new Font(FONT, Font.PLAIN, 34));
         quitDraftButton.setBounds(31, 657, 364, 49);
         frame.getContentPane().add(quitDraftButton);
         
-        JButton saveButton = new JButton("Save");
+        saveButton = new JButton("Save");
         saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Team team = currentUser.getTeam(tournament.getName());
-                team.setName(teamNameTA.getText());
-                team.setFormation(formationComboBox.getSelectedItem().toString());
+                model.setTeamName(teamNameTA.getText());
+                model.setTeamFormation(formationComboBox.getSelectedItem().toString());
             }
         });
         saveButton.setForeground(Color.BLACK);
-        saveButton.setFont(new Font("Lucida Grande", Font.PLAIN, 34));
+        saveButton.setFont(new Font(FONT, Font.PLAIN, 34));
         saveButton.setBackground(Color.RED);
         saveButton.setBounds(438, 657, 366, 54);
         saveButton.setEnabled(false);
@@ -327,50 +275,25 @@ public class DraftGui implements Observer
         startDraftButton = new JButton("Start");
         startDraftButton.setForeground(Color.BLACK);
         startDraftButton.setBackground(Color.RED);
-        startDraftButton.setFont(new Font("Lucida Grande", Font.PLAIN, 34));
+        startDraftButton.setFont(new Font(FONT, Font.PLAIN, 34));
         startDraftButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
-                btnPlayer1.setEnabled(true);
-                btnPlayer2.setEnabled(true);
-                btnPlayer3.setEnabled(true);
-                players = model.getThreeRandomSoccerPlayers();
-                btnPlayer1.setText(players[0].getName());
-                btnPlayer2.setText(players[1].getName());
-                btnPlayer3.setText(players[2].getName());
-                player1Name.setText(players[0].getName());
-                player2Name.setText(players[1].getName());
-                player3Name.setText(players[2].getName());
-                if (currentUser.getTeam(tournament.getName()) == null)
+                if (!model.isOver())
                 {
-                    String name = JOptionPane.showInputDialog(frame,
-                            "What is your team name?",  JOptionPane.OK_CANCEL_OPTION);
-                    Team team = new Team(name);
-                currentUser.setTeam(tournament.getName(), team);
-                numOfPlayers.setText(team.getSize() + "");
-                formationComboBox.setSelectedItem(team.getFormation());
-                saveButton.setEnabled(true);
-                teamNameTA.setText(name);
-                formationComboBox.setSelectedItem(team.getFormation());
-                numOfPlayers.setText("0");
-                    
+	            	model.startDraft();
+	                
+	                if (!model.hasTeam())
+	                {
+	                    String name = JOptionPane.showInputDialog(frame,
+	                            "What is your team name?",  JOptionPane.OK_CANCEL_OPTION);
+	                    
+	                    model.addNewTeam(name);       
+	                }
+	                DraftGui.this.update(model, null);
+	                
+	                //start timer
+	                model.startTimer();
                 }
-                else
-                {
-                    teamNameTA.setText(currentUser.getTeam(tournament.getName()).getName());
-                formationComboBox.setSelectedItem(currentUser.getTeam(tournament.getName()).getFormation());
-                numOfPlayers.setText(currentUser.getTeam(tournament.getName()).getSize() + "");
-                }
-                
-                clock = new Timer();
-                clock.schedule(new TimerTask(){
-
-                    int second = 60;
-                    @Override
-                    public void run() {
-                        txtTimeRemaining_1.setText(second-- + " seconds.");
-                    }   
-                },0, 1000);
                 
             }
         });
@@ -395,7 +318,7 @@ public class DraftGui implements Observer
 //        TimerFrame timerFrame = new TimerFrame();
 //        timerFrame.frame.setVisible(true);
 //        timerFrame.frame.setSize(400,100);
-            ArrayList<SoccerPlayer> players = new ArrayList<SoccerPlayer>();
+        ArrayList<SoccerPlayer> players = new ArrayList<SoccerPlayer>();
         players.add(new Forward("Messi", "Barcelona"));
         players.add(new Forward("Saurez", "Barcelona"));
         players.add(new Forward("Neymar", "Barcelona"));
@@ -423,14 +346,45 @@ public class DraftGui implements Observer
         tournament.addUser(user1);
         tournament.addUser(user2);
         tournament.addUser(user3);
-        
-            DraftGui gui = new DraftGui(tournament);
+        DraftGui gui = new DraftGui(tournament);
         
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        // TODO Auto-generated method stub
+    	btnPlayer1.setEnabled(model.getSelection());
+        btnPlayer2.setEnabled(model.getSelection());
+        btnPlayer3.setEnabled(model.getSelection());
+        if (model.getSelection())
+        {
+	        players = model.getCurrentPlayerSelection();
+	        btnPlayer1.setText(players[0].getName());
+	        btnPlayer2.setText(players[1].getName());
+	        btnPlayer3.setText(players[2].getName());
+	        player1Name.setText(players[0].getName());
+	        player2Name.setText(players[1].getName());
+	        player3Name.setText(players[2].getName());
+        }
+        else
+        {
+        	btnPlayer1.setText("");
+	        btnPlayer2.setText("");
+	        btnPlayer3.setText("");
+	        player1Name.setText("");
+	        player2Name.setText("");
+	        player3Name.setText("");
+        }
         
+        numOfPlayers.setText(model.getCurrentUserTeamSize());
+        saveButton.setEnabled(true);
+        teamNameTA.setText(model.getCurrentUserTeamName());
+        formationComboBox.setSelectedItem(model.getCurrentUserTeamFormation());   
+        if (!model.isOver())
+        	timerTxt.setText(model.getTime());
+        else
+        	timerTxt.setText("DraftOver");
+        userNameTA.setText(model.getCurrentUserName());
+        startDraftButton.setEnabled(!model.getSelection());
+        currentUserTeamTable.setText(model.getTeamToString());
     }
 }
