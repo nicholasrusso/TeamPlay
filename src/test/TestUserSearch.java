@@ -1,11 +1,13 @@
 package test;
 
-import static org.junit.Assert.*;
-import user.User;
-import user.UserSearch;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 
 import org.junit.Test;
+
+import user.User;
+import user.UserSearch;
 
 /*
  * Test Type: Unit Test
