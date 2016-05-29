@@ -3,7 +3,6 @@ package user;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,10 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import view.EditorPasswordField;
+import view.EditorTextField;
 import view.MainMenuView;
 
 public class ProfilePanel extends JPanel
@@ -90,89 +89,6 @@ public class ProfilePanel extends JPanel
         passMatch.setVisible(true);
     }
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Private Classes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-    /**
-     * Private class that serves to encapsulate a JLabel and Text Field.
-     * */
-    private class EditorTextField extends JPanel
-    {
-        JLabel label;
-        JTextField input;
-        //editable by default -- want to set to false for the username because its DB primary key
-        boolean editable = true;
-        
-        /**
-         * Creates a small panel with a Label and TextField for changing user profile information. 
-         * TextField is editable by default, this can be changed via setEditable(bool)
-         * */
-        public EditorTextField(String labelText, String inputText)
-        {
-            label = new JLabel(labelText);
-            input = new JTextField(inputText);
-            setLayout(new FlowLayout());
-            Dimension dim = new Dimension(200, 55);
-            label.setMinimumSize(dim);
-            label.setPreferredSize(dim);
-            label.setMaximumSize(dim);
-            dim = new Dimension(300, 55);
-            input.setMinimumSize(dim);
-            input.setPreferredSize(dim);
-            input.setMaximumSize(dim);
-            add(label);
-            add(input);
-            setVisible(true);
-        }
-
-        /**
-         * Accessor for getting text in JTextField for validation by User class.
-         * */
-        public String getTextInput()
-        {
-            return input.getText();
-        }
-        
-        
-        /**
-         * Mutator to change the TextFields state of editability. 
-         * */
-        public void setEditable(boolean canEdit) {
-        	editable = canEdit;
-        	input.setEditable(editable);
-        }
-    }
-
-    /**
-     * Private class that encapsulates Label and JPassword Field in a flow layout.
-     * */
-    private class EditorPasswordField extends JPanel
-    {
-        JLabel label;
-        JPasswordField input;
-        public EditorPasswordField(String labelText)
-        {
-            label = new JLabel(labelText);
-            input = new JPasswordField();
-            setLayout(new FlowLayout());
-            Dimension dim = new Dimension(200, 55);
-            label.setMinimumSize(dim);
-            label.setPreferredSize(dim);
-            label.setMaximumSize(dim);
-            dim = new Dimension(300, 55);
-            input.setMinimumSize(dim);
-            input.setPreferredSize(dim);
-            input.setMaximumSize(dim);
-            add(label);
-            add(input);
-            setVisible(true);
-        }
-
-        /**
-         * Accessor for getting text in JTextField for validation by User class.
-         * */
-        public String getPasswordInput()
-        {
-            return String.valueOf(input.getPassword());
-        }
-    }
     
     class updateAndBackToMainMenuListener implements ActionListener
     {

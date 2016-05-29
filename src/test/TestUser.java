@@ -1,15 +1,20 @@
 package test;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 import user.User;
 
 /**
- * Created by charliegels on 4/11/16.
+ * Test Type: Unit Test
+ * Author: Charlie Gels
  */
-public class UserTest extends TestCase
+public class TestUser
 {
     User user = new User();
-
+    
+    @Test
     public void testSetUsername() throws Exception
     {
         assertTrue(user.setUsername("ArsenalBLAHBLAH123"));
@@ -19,6 +24,7 @@ public class UserTest extends TestCase
         assertFalse(user.setUsername("IdontKnow Class Diagrams"));
     }
 
+    @Test
     public void testSetFirstName() throws Exception
     {
 
@@ -31,7 +37,8 @@ public class UserTest extends TestCase
         assertFalse(user.setFirstName("AC!&c"));
         assertFalse(user.getFirstName().equals("AC!&c"));
     }
-
+    
+    @Test
     public void testSetLastName() throws Exception
     {
         user.setLastName("Charlie");
@@ -44,13 +51,5 @@ public class UserTest extends TestCase
         assertFalse(user.getLastName().equals("AC!&c"));
     }
 
-    public void testSetEmail() throws Exception
-    {
-        assertTrue(user.setEmail("cgels@calpoly.edu"));
-        assertTrue(user.setEmail("gels.charles@gmail.com"));
-        assertTrue(user.setEmail("nancy.neyman@arsenalsucks.com"));
-        assertFalse(user.setEmail("charlie@gmail.gov"));
-        assertTrue(user.setEmail("c1v2g3@tacos.net"));
-    }
 
 }
