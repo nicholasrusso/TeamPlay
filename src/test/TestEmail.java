@@ -6,7 +6,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import user.User;
-
+/**
+ * Test Type: Unit Test
+ * Author: Charlie Gels
+ */
 public class TestEmail {
 
 	

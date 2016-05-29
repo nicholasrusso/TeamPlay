@@ -6,6 +6,10 @@ import org.junit.Test;
 
 import view.EditorTextField;
 
+/**
+ * Test Type: Unit Test
+ * Author: Charlie Gels
+ */
 public class TestEditorTextField {
 	
 	@Test

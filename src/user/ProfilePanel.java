@@ -88,6 +88,32 @@ public class ProfilePanel extends JPanel
         this.add(passMatch);
         passMatch.setVisible(true);
     }
+    
+    public String getFirstName()
+    {
+    	return firstName.getTextInput();
+    }
+    
+    public String getLastName()
+    {
+    	return lastName.getTextInput();
+    }
+    
+    public String getUserName()
+    {
+    	return userName.getTextInput();
+    }
+    
+    public String getEmailAddress()
+    {
+    	return email.getTextInput();
+    }
+    
+    public String getPassword()
+    {
+    	return pass.getPasswordInput();
+    }
+    
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Private Classes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     
     class updateAndBackToMainMenuListener implements ActionListener
@@ -143,4 +169,6 @@ public class ProfilePanel extends JPanel
     		frame.getContentPane().repaint();    		
     	}	
     }
+    
+    
 }
