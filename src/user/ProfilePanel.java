@@ -20,8 +20,6 @@ import view.MainMenuView;
 
 public class ProfilePanel extends JPanel
 {
-    // give access to all users in game
-    // private ProfileManager pm;
     // User being edited in this panel
     private User userToEdit;
 
@@ -55,8 +53,8 @@ public class ProfilePanel extends JPanel
         cancel.addActionListener(null);
         cancel.setVisible(true);
 
-        finish.addActionListener(new updateAndBackToMainMenuListener());
-        cancel.addActionListener(new cancelAndBackToMainMenuListener());
+        finish.addActionListener(new UpdateAndBackToMainMenuListener());
+        cancel.addActionListener(new CancelAndBackToMainMenuListener());
 
         this.add(finish);
         this.add(cancel);
@@ -116,7 +114,7 @@ public class ProfilePanel extends JPanel
     
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Private Classes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     
-    class updateAndBackToMainMenuListener implements ActionListener
+    class UpdateAndBackToMainMenuListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
@@ -138,13 +136,11 @@ public class ProfilePanel extends JPanel
 	                {
 	                    userToEdit.update();  
 	                }
-	                //TODO get invalid field.... and return to editor
 	                
                     //take to back Main menu
         			Component component = (Component) e.getSource();
                 	JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
                 	frame.getContentPane().removeAll();
-                	//TODO provide correct user reference
                 	frame.getContentPane().add(new MainMenuView(userToEdit));
                     frame.getContentPane().revalidate();
                     frame.getContentPane().repaint();
@@ -156,14 +152,13 @@ public class ProfilePanel extends JPanel
         }
     }
     
-    class cancelAndBackToMainMenuListener implements ActionListener
+    class CancelAndBackToMainMenuListener implements ActionListener
     {
     	@Override
     	public void actionPerformed(ActionEvent e) {
     		Component component = (Component) e.getSource();
     		JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
     		frame.getContentPane().removeAll();
-    		//TODO provide correct user reference
     		frame.getContentPane().add(new MainMenuView(userToEdit));
     		frame.getContentPane().revalidate();
     		frame.getContentPane().repaint();    		
