@@ -25,6 +25,10 @@ import user.UserSearch;
 import view.MainMenuView;
 
 public class CreateTournament {
+   private String gk = "G";
+   private String def = "D";
+   private String mid = "M";
+   private String fwd = "F";
    private String tournamentName = "";
    private ArrayList<SoccerPlayer> playerPool = new ArrayList<SoccerPlayer>();
    private int numberUsers = 2;
@@ -41,16 +45,16 @@ public class CreateTournament {
          pstmt.setString(1, teamName);
          ResultSet rs = pstmt.executeQuery(); 
          while (rs.next()) {
-            if (rs.getString("position").equals("G")) {
+            if (rs.getString("position").equals(gk)) {
                playerPool.add(new GoalKeeper(rs.getString("name"), rs.getString("team")));
             }
-            else if (rs.getString("position").equals("D")) {
+            else if (rs.getString("position").equals(def)) {
                playerPool.add(new Defender(rs.getString("name"), rs.getString("team")));
             }
-            else if (rs.getString("position").equals("M")) {
+            else if (rs.getString("position").equals(mid)) {
                playerPool.add(new Midfielder(rs.getString("name"), rs.getString("team")));
             }
-            else if (rs.getString("position").equals("F")) {
+            else if (rs.getString("position").equals(fwd)) {
                playerPool.add(new Forward(rs.getString("name"), rs.getString("team")));
             }
             else {
