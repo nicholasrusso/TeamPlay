@@ -1,5 +1,6 @@
 package user;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +26,6 @@ public class User
 {
 	private static Properties props = AppSettings.getInstance();
 	private static final Logger LOGGER = Logger.getLogger("User");
-
 	
     private String firstName;
     private String lastName;
@@ -222,8 +222,7 @@ public class User
 		    db.close();
 
 		} catch (SQLException e) {
-			LOGGER.info(e.toString());
-			LOGGER.warning("Unable to save user to database.");
+			LOGGER.severe(Arrays.toString(e.getStackTrace()));
 		}
     }
     
@@ -248,8 +247,7 @@ public class User
 			db.close();
     	}
     	catch (SQLException e) {
-    		LOGGER.info(e.toString());
-    		LOGGER.warning("Unable to update user in database.");
+    		LOGGER.severe(Arrays.toString(e.getStackTrace()));
     	}
     }
     public Team getTeam(String tournamentName)
