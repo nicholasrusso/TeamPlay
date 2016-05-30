@@ -17,26 +17,26 @@ public class Tournament {
      * @param maxUsers - int, max number of users allowed in tournament
      * @param players - List, List of soccer players to be used for pool.
      */
-    public Tournament(String name, int maxUsers, ArrayList<SoccerPlayer> players)
+    public Tournament(String name, int maxUsers, List<SoccerPlayer> players)
     {
         this.name = name;
         this.maxUsers = maxUsers;
-        this.players = players;
-        this.users = new ArrayList<User>();
+        this.players = (ArrayList<SoccerPlayer>) players;
+        this.users = new ArrayList<>();
         Collections.shuffle(players);
     }
 
     /**
      * Accessor for players list
      */
-    public ArrayList<SoccerPlayer> getPlayers()
+    public List<SoccerPlayer> getPlayers()
     {
         return players;
     }
     /**
      * Accessor for users list
      */
-    public ArrayList<User> getUsers()
+    public List<User> getUsers()
     {
         return users;
     }
@@ -63,14 +63,8 @@ public class Tournament {
      */
     public boolean addUser(User user)
     {
-        if (users.contains(user))
+        if (users.contains(user) || (users.size() == maxUsers))
         {
-            System.out.println(user.getUsername() + " has already been added to the tournament!");
-            return false;
-        }
-        else if (users.size() == maxUsers)
-        {
-            System.out.println("This tournament is full!");
             return false;
         }
         else
@@ -88,7 +82,6 @@ public class Tournament {
     {
         if (!users.contains(user))
         {
-            System.out.println(user.getUsername() + " is not in the tournament!");
             return false;
         }
         else
