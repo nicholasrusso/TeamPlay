@@ -178,7 +178,7 @@ public class DraftModel extends Observable{
     	Team team = getCurrentUserTeam();
     	if(team != null)
     	{
-    		for (SoccerPlayer player : team.listOfPlayers)
+    		for (SoccerPlayer player : team.getTeam())
     		{
     			result +=  player.getName() + "\n";
     		}
