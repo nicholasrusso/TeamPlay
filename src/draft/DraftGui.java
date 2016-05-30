@@ -202,7 +202,7 @@ public class DraftGui implements Observer
         txtrFormation.setBounds(6, 182, 95, 27);
         teamStatsPanel.add(txtrFormation);
         
-        formationComboBox = new JComboBox<String>();
+        formationComboBox = new JComboBox<>();
         formationComboBox.setBounds(101, 181, 102, 27);
         teamStatsPanel.add(formationComboBox);
         formationComboBox.addItem("4-3-3");
@@ -241,12 +241,10 @@ public class DraftGui implements Observer
         
         saveButton = new JButton("Save");
         saveButton.setBounds(382, 526, 366, 54);
-        saveButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        saveButton.addActionListener(element -> {
                 model.setTeamName(teamNameTA.getText());
                 model.setTeamFormation(formationComboBox.getSelectedItem().toString());
-            }
-        });
+            });
         saveButton.setForeground(Color.BLACK);
         saveButton.setFont(new Font(FONT, Font.PLAIN, 34));
         saveButton.setBackground(Color.RED);
@@ -282,42 +280,7 @@ public class DraftGui implements Observer
         
     }
 
-    public static void main(String[] args) 
-    {
-
-        ArrayList<SoccerPlayer> players = new ArrayList<>();
-        String barca = "Barcelona";
-        players.add(new Forward("Messi", barca));
-        players.add(new Forward("Saurez", barca));
-        players.add(new Forward("Neymar", barca));
-        players.add(new Midfielder("Xavi", barca));
-        players.add(new Midfielder("Iniesta", barca));
-        players.add(new Midfielder("Rakitic", barca));
-        players.add(new Midfielder("Busquets", barca));
-        players.add(new Defender("Pique", barca));
-        players.add(new Defender("Mascherano", barca));
-        players.add(new Defender("Dani Alves", barca));
-        players.add(new Defender("Jordi Alba", barca));
-        User user1 = new User();
-        user1.setFirstName("Nick");
-        user1.setLastName("Russo");
-        user1.setUsername("nrusso");
-        User user2 = new User();
-        user2.setFirstName("rick");
-        user2.setLastName("nusso");
-        user2.setUsername("russo");
-        User user3 = new User();
-        user3.setFirstName("asdf");
-        user3.setLastName("asdf");
-        user3.setUsername("fdas");
-        Tournament tournament = new Tournament("Test Tournament", 10, players);
-        tournament.addUser(user1);
-        tournament.addUser(user2);
-        tournament.addUser(user3);
-        DraftGui gui = new DraftGui(tournament);
-       
-        
-    }
+   
 
     @Override
     public void update(Observable o, Object arg) {
