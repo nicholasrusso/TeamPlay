@@ -15,7 +15,7 @@ public class TestEmail {
 	
 
     @Test
-    public void testSetEmailCom() throws Exception
+    public void testSetEmailCom()
     {
     	User user = new User();
     	
@@ -25,7 +25,7 @@ public class TestEmail {
     }
     
     @Test
-    public void testSetEmailEdu() throws Exception
+    public void testSetEmailEdu()
     {
     	User user = new User();
     	
@@ -34,7 +34,7 @@ public class TestEmail {
     }
     
     @Test
-    public void testSetEmailGov() throws Exception
+    public void testSetEmailGov()
     {
     	User user = new User();
 
@@ -42,7 +42,7 @@ public class TestEmail {
     }
     
     @Test
-    public void testSetEmailNet() throws Exception
+    public void testSetEmailNet()
     {
     	User user = new User();
 
