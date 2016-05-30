@@ -18,18 +18,18 @@ import com.googlecode.lanterna.terminal.Terminal;
  */
 public class OutputChar {
 
-	public static void main(String[] args) throws IOException {
-		Terminal terminal = new DefaultTerminalFactory().createTerminal();
-		Screen screen = new TerminalScreen(terminal);
+    public static void main(String[] args) throws IOException {
+        Terminal terminal = new DefaultTerminalFactory().createTerminal();
+        Screen screen = new TerminalScreen(terminal);
 
-		screen.startScreen();
-		screen.clear();
+        screen.startScreen();
+        screen.clear();
 
-		screen.setCharacter(10, 10, new TextCharacter('*'));
-		screen.refresh();
+        screen.setCharacter(10, 10, new TextCharacter('*'));
+        screen.refresh();
 
-		screen.readInput();
-		screen.stopScreen();
-	}
+        screen.readInput();
+        screen.stopScreen();
+    }
 
 }

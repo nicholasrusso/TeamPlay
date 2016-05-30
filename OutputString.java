@@ -11,21 +11,21 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 public class OutputString {
 
-	public static void main(String[] args) throws IOException {
-		Terminal terminal = new DefaultTerminalFactory().createTerminal();
-		Screen screen = new TerminalScreen(terminal);
+    public static void main(String[] args) throws IOException {
+        Terminal terminal = new DefaultTerminalFactory().createTerminal();
+        Screen screen = new TerminalScreen(terminal);
 
-		String s = "Hello World!";
-		TextGraphics tGraphics = screen.newTextGraphics();
+        String s = "Hello World!";
+        TextGraphics tGraphics = screen.newTextGraphics();
 
-		screen.startScreen();
-		screen.clear();
+        screen.startScreen();
+        screen.clear();
 
-		tGraphics.putString(10, 10, s);
-		screen.refresh();
+        tGraphics.putString(10, 10, s);
+        screen.refresh();
 
-		screen.readInput();
-		screen.stopScreen();
-	}
+        screen.readInput();
+        screen.stopScreen();
+    }
 
 }

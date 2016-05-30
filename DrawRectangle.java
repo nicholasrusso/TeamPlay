@@ -20,25 +20,25 @@ import java.io.IOException;
  */
 public class DrawRectangle {
 
-	public static void main(String[] args) throws IOException {
-		Terminal terminal = new DefaultTerminalFactory().createTerminal();
-		Screen screen = new TerminalScreen(terminal);
+    public static void main(String[] args) throws IOException {
+        Terminal terminal = new DefaultTerminalFactory().createTerminal();
+        Screen screen = new TerminalScreen(terminal);
 
-		TextGraphics tGraphics = screen.newTextGraphics();
-		screen.startScreen();
+        TextGraphics tGraphics = screen.newTextGraphics();
+        screen.startScreen();
     final WindowBasedTextGUI textGUI = new MultiWindowTextGUI(screen);
 
     try {
       final BasicWindow window = new BasicWindow("User Registration");
-			Panel mainPanel = new Panel();
-			screen.clear();
+            Panel mainPanel = new Panel();
+            screen.clear();
 
       /*
-			String regText = "User Registration";
-			tGraphics.putString(10, 3, regText);
-			tGraphics.drawRectangle(
-				new TerminalPosition(2,2), new TerminalSize(32,3), '*');
-			screen.refresh(); 
+            String regText = "User Registration";
+            tGraphics.putString(10, 3, regText);
+            tGraphics.drawRectangle(
+                new TerminalPosition(2,2), new TerminalSize(32,3), '*');
+            screen.refresh(); 
       */
         mainPanel.setLayoutManager(new LinearLayout(Direction.VERTICAL));
 
@@ -48,21 +48,21 @@ public class DrawRectangle {
         mainPanel.addComponent(new TextBox(new TerminalSize(30, 1), "").withBorder(Borders.singleLine("Email")));
         mainPanel.addComponent(new TextBox(new TerminalSize(30, 1), "").setMask('*').withBorder(Borders.singleLine("Password")));
 
-				mainPanel.addComponent(new EmptySpace(TerminalSize.ONE));
-				mainPanel.addComponent(new Button("Exit", new Runnable() {
-						@Override
-						public void run() {
-								window.close();
-						}
-				}));
+                mainPanel.addComponent(new EmptySpace(TerminalSize.ONE));
+                mainPanel.addComponent(new Button("Exit", new Runnable() {
+                        @Override
+                        public void run() {
+                                window.close();
+                        }
+                }));
 
-			window.setComponent(mainPanel);
-			textGUI.addWindowAndWait(window);
+            window.setComponent(mainPanel);
+            textGUI.addWindowAndWait(window);
 
     } finally {
       screen.stopScreen();
     }
 
-	}
+    }
 
 }
