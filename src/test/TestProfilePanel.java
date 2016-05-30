@@ -13,7 +13,6 @@ import user.User;
  * Author: Charlie Gels
  */
 public class TestProfilePanel {
-	public static User u = null;
 	
 	@Test
 	public void getFirstName()
@@ -58,17 +57,12 @@ public class TestProfilePanel {
 	
 	private static User testSetup()
 	{
-		if (u == null)
-		{
-			u = new User();
-		}
+		User u = new User();
 		
 		u.setFirstName("root");
 		u.setLastName("root");
 		u.setUsername("root");
 		u.setEmail("root@calpoly.edu");
-		
-		String password = "root";
 		u.setPasswordHashFromPassword("root");
 		return u;
 	}
