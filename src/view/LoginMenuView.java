@@ -91,9 +91,9 @@ public class LoginMenuView extends JLayeredPane {
             Thread t = new Thread(){
                   @Override
                     public void run(){
-                        
-                        for(i = 0 ; i <= 100 ; i++){
-                            final int percent = i;
+                       int i = 0; 
+                        for(j = 0 ; j <= 100 ; j++){
+                            final int percent = j;
                             SwingUtilities.invokeLater(Runnable rn = new Runnable() {
                                   @Override  
                                   public void run() {
