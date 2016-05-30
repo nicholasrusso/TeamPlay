@@ -44,5 +44,10 @@ public class GoalKeeper implements SoccerPlayer
         return 2*save + 3*cleanSheet - goalAgainst;
         
     }
+    
+    public String getPosition() {
+		return "GK";
+	}
+    
 
 }

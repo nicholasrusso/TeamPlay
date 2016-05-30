@@ -280,9 +280,7 @@ public class User
     public void incrementPlayerUsage(SoccerPlayer drafted)
     {
     	Integer newCount = soccerPlayerUsage.get(drafted) + 1;
-    	System.out.printf("old val: %d\n", newCount - 1);
     	soccerPlayerUsage.put(drafted, newCount);
-    	System.out.printf("new val: %d\n", soccerPlayerUsage.get(drafted));
     }
     
     public Integer getPlayerUsage(SoccerPlayer query)

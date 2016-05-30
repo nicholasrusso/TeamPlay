@@ -44,5 +44,10 @@ public class Midfielder implements SoccerPlayer
         return goal + 3*assist + (shot - shotOnGoal) - 2*yellowCard - 3*redCard;
                
     }
+    
+    public String getPosition() {
+		return "M";
+	}
+    
 
 }

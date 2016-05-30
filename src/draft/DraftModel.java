@@ -54,7 +54,7 @@ public class DraftModel extends Observable{
     {
             if (draftRound < (18 * tournament.getUsers().size()))
             {
-            	getCurrentUserTeam().addPlayer(currentPlayerSelection[pos]);
+            	addPlayer(pos);
                 if (userPosition < users.size() - 1)
                 {
                     currentUser = users.get(++userPosition);
@@ -97,9 +97,9 @@ public class DraftModel extends Observable{
 
     public void addPlayer(int location)
     {
-    	currentUser.incrementPlayerUsage(randomPlayers[location]);
-        currentUser.getTeam(tournament.getName()).addPlayer(randomPlayers[location]);
-        tournament.removePlayer(randomPlayers[location]);
+    	currentUser.incrementPlayerUsage(currentPlayerSelection[location]);
+    	getCurrentUserTeam().addPlayer(currentPlayerSelection[location]);
+        tournament.removePlayer(currentPlayerSelection[location]);
     }
     
     public void startTimer()
@@ -185,16 +185,59 @@ public class DraftModel extends Observable{
     	return currentUser.getFirstName() + " " + currentUser.getLastName();
     }
     
-    public String getTeamToString()
+    public String getTeamToString(String type)
     {
     	String result = "";
+    	ArrayList<SoccerPlayer> forwards = new ArrayList<>();
+    	ArrayList<SoccerPlayer> mids = new ArrayList<>();
+    	ArrayList<SoccerPlayer> defenders = new ArrayList<>();
+    	ArrayList<SoccerPlayer> keeps = new ArrayList<>();
+    	ArrayList<SoccerPlayer> returnList;
     	Team team = getCurrentUserTeam();
     	if(team != null)
     	{
     		for (SoccerPlayer player : team.getTeam())
     		{
-    			result +=  player.getName() + "\n";
+    			
+    			if (player instanceof Forward)
+    			{
+    				forwards.add(player);
+    			}
+    			else if (player instanceof Midfielder)
+    			{
+    				mids.add(player);
+    			}
+    			else if  (player instanceof Defender)
+    			{
+    				defenders.add(player);
+    			}
+    			else
+    			{
+    				keeps.add(player);
+    			}
     		}
+    	}
+    	
+    	if (type.equals("forws"))
+    	{
+    		returnList = forwards;
+    	}
+    	else if (type.equals("mids"))
+    	{
+    		returnList = mids;
+    	}
+    	else if (type.equals("defs"))
+    	{
+    		returnList = defenders;
+    	}
+    	else
+    	{
+    		returnList = keeps;
+    	}
+    	
+    	for (SoccerPlayer player: returnList)
+    	{
+    		result += player.getName() + " " + player.getPosition() + "\n";
     	}
     	return result;
     }
