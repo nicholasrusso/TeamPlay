@@ -37,7 +37,7 @@ public class LoginMenuView extends JLayeredPane {
     private JProgressBar progressBar;
 
 
-	public LoginMenuView() {
+    public LoginMenuView() {
         usernameLabel = new JLabel("Username");
         passwordLabel = new JLabel("Password");
         statusLabel = new JLabel(" ");
@@ -82,13 +82,13 @@ public class LoginMenuView extends JLayeredPane {
         login.addActionListener(new ProgressListener());
         createAcct.addActionListener(new CreateAcctButtonListener());
         
-	}
-	
+    }
+    
     class ProgressListener implements ActionListener
     {
         public synchronized void updateBar(ActionEvent ae, final User u) {
-        	Component component = (Component) ae.getSource();
-        	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+            Component component = (Component) ae.getSource();
+            final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             Thread t = new Thread()         
             {
@@ -127,7 +127,7 @@ public class LoginMenuView extends JLayeredPane {
             if ("root".equals(jpfPassword.getText())
             && "root".equals(jtfUsername.getText())) {
                 // upon successful login, reference to user that is logged into the system (needed by rest of components)
-            	User user = new UserSearch("root").getUsers().get(0);
+                User user = new UserSearch("root").getUsers().get(0);
                 updateBar(ae, user);
             }
             else {
@@ -139,11 +139,11 @@ public class LoginMenuView extends JLayeredPane {
     
     class CreateAcctButtonListener implements ActionListener
     {
-    	@Override
+        @Override
         public void actionPerformed(ActionEvent e) 
         {
-			Component component = (Component) e.getSource();
-        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+            Component component = (Component) e.getSource();
+            JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             frame.getContentPane().removeAll();            
             JPanel registrationPanel = new RegistrationPane();

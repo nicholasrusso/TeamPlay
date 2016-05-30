@@ -11,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ TestUser.class, TestEmail.class, TestEditorPasswordField.class,
-	TestEditorTextField.class, TestRegistration.class, TestProfilePanel.class})
+    TestEditorTextField.class, TestRegistration.class, TestProfilePanel.class})
 public class GelsTestSuite {
 
 }

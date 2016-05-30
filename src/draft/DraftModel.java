@@ -40,7 +40,7 @@ public class DraftModel extends Observable{
         
         for (User u : users)
         {
-        	u.generateDummyPlayerUsages(tournament.getPlayers());
+            u.generateDummyPlayerUsages(tournament.getPlayers());
         }
     }
 
@@ -54,7 +54,7 @@ public class DraftModel extends Observable{
     {
             if (draftRound < (18 * tournament.getUsers().size()))
             {
-            	getCurrentUserTeam().addPlayer(currentPlayerSelection[pos]);
+                getCurrentUserTeam().addPlayer(currentPlayerSelection[pos]);
                 if (userPosition < users.size() - 1)
                 {
                     currentUser = users.get(++userPosition);
@@ -70,8 +70,8 @@ public class DraftModel extends Observable{
             }
             else
             {
-            	selection = false;
-            	draftOver = true;
+                selection = false;
+                draftOver = true;
             }
             selection = false;
             currentPlayerSelection = null;
@@ -83,34 +83,34 @@ public class DraftModel extends Observable{
     
     public int getLoopIterations()
     {
-    	return draftRound;
+        return draftRound;
     }
     
     public boolean getSelection()
     {
-    	return selection;
+        return selection;
     }
     public boolean isOver()
     {
-    	return draftOver;
+        return draftOver;
     }
 
     public void addPlayer(int location)
     {
-    	currentUser.incrementPlayerUsage(randomPlayers[location]);
+        currentUser.incrementPlayerUsage(randomPlayers[location]);
         currentUser.getTeam(tournament.getName()).addPlayer(randomPlayers[location]);
         tournament.removePlayer(randomPlayers[location]);
     }
     
     public void startTimer()
     {
-    	clock = new Timer();
+        clock = new Timer();
         clock.schedule(new TimerTask(){
 
             int second = 60;
             @Override
             public void run() {
-            	DraftModel.this.time = second-- + " seconds.";
+                DraftModel.this.time = second-- + " seconds.";
                 DraftModel.this.setChanged();
                 DraftModel.this.notifyObservers();
             }   
@@ -124,7 +124,7 @@ public class DraftModel extends Observable{
     }
     
     public String getTime(){
-    	return time;
+        return time;
     }
     public SoccerPlayer[] getCurrentPlayerSelection()
     {
@@ -137,76 +137,76 @@ public class DraftModel extends Observable{
     }
     public String getCurrentUserTeamName()
     {
-    	if (hasTeam())
-    		return getCurrentUserTeam().getName();
-    	return "";
+        if (hasTeam())
+            return getCurrentUserTeam().getName();
+        return "";
     }
     public String getCurrentUserTeamFormation()
     {
-    	if (hasTeam())
-    		return getCurrentUserTeam().getFormation();
-    	return "4-3-3";
+        if (hasTeam())
+            return getCurrentUserTeam().getFormation();
+        return "4-3-3";
     }
     public String getCurrentUserTeamSize()
     {
-    	if (hasTeam())
-    		return getCurrentUserTeam().getSize() + "";
-    	return "0";
+        if (hasTeam())
+            return getCurrentUserTeam().getSize() + "";
+        return "0";
     }
     
     public void startDraft()
     {
-    	selection = true; 
-    	currentPlayerSelection = tournament.randomPlayers();
-    	setChanged();
-    	notifyObservers();
-    	
+        selection = true; 
+        currentPlayerSelection = tournament.randomPlayers();
+        setChanged();
+        notifyObservers();
+        
     }
     
     public void canelClock()
     {
-    	clock.cancel();
+        clock.cancel();
     }
     
     public boolean hasTeam()
     {
-    	return getCurrentUserTeam() != null;
+        return getCurrentUserTeam() != null;
     }
     
     public void addNewTeam(String name)
     {
-    	currentUser.setTeam(tournament.getName(), new Team(name));
-    	setChanged();
-    	notifyObservers();
+        currentUser.setTeam(tournament.getName(), new Team(name));
+        setChanged();
+        notifyObservers();
     }
     
     public String getCurrentUserName()
     {
-    	return currentUser.getFirstName() + " " + currentUser.getLastName();
+        return currentUser.getFirstName() + " " + currentUser.getLastName();
     }
     
     public String getTeamToString()
     {
-    	String result = "";
-    	Team team = getCurrentUserTeam();
-    	if(team != null)
-    	{
-    		for (SoccerPlayer player : team.getTeam())
-    		{
-    			result +=  player.getName() + "\n";
-    		}
-    	}
-    	return result;
+        String result = "";
+        Team team = getCurrentUserTeam();
+        if(team != null)
+        {
+            for (SoccerPlayer player : team.getTeam())
+            {
+                result +=  player.getName() + "\n";
+            }
+        }
+        return result;
     }
     
     public void setTeamName(String name)
     {
-    	getCurrentUserTeam().setName(name);
+        getCurrentUserTeam().setName(name);
     }
     
     public void setTeamFormation(String formation)
     {
-    	getCurrentUserTeam().setFormation(formation);
+        getCurrentUserTeam().setFormation(formation);
     }
 
     

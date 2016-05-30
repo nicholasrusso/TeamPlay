@@ -145,18 +145,18 @@ public class CreateTournament {
       class SubmitButtonListener implements ActionListener {
          @Override
          public void actionPerformed(ActionEvent ae) {
-        	 tournamentName = tournamentNameField.getText();
-        	 Tournament tournament = new Tournament(tournamentName, numberUsers, playerPool);
-        	 UserSearch search = new UserSearch("");
-        	 ArrayList<User> list = (ArrayList<User>) search.getUsers();
-        	 for (User user : list)
-        	 {
-        		 tournament.addUser(user);
-        	 }
-        	 DraftGui gui = new DraftGui(tournament);
-        	 Component component = (Component) ae.getSource();
-         	 JFrame frame = (JFrame) SwingUtilities.getRoot(component);
-        	 frame.getContentPane().removeAll();
+             tournamentName = tournamentNameField.getText();
+             Tournament tournament = new Tournament(tournamentName, numberUsers, playerPool);
+             UserSearch search = new UserSearch("");
+             ArrayList<User> list = (ArrayList<User>) search.getUsers();
+             for (User user : list)
+             {
+                 tournament.addUser(user);
+             }
+             DraftGui gui = new DraftGui(tournament);
+             Component component = (Component) ae.getSource();
+             JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+             frame.getContentPane().removeAll();
              frame.getContentPane().add(gui.getPanel());
              frame.getContentPane().revalidate();
              frame.getContentPane().repaint();
@@ -173,11 +173,11 @@ public class CreateTournament {
       class BackButtonListener implements ActionListener {
           @Override
           public void actionPerformed(ActionEvent ae) {
-  			Component component = (Component) ae.getSource();
-        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
-        	            
-        	frame.getContentPane().removeAll();
-        	frame.getContentPane().add(new MainMenuView(null));
+            Component component = (Component) ae.getSource();
+            JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+                        
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(new MainMenuView(null));
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();
           }

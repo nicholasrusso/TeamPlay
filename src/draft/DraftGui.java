@@ -262,16 +262,16 @@ public class DraftGui implements Observer
         startDraftButton.addActionListener(element -> {
                 if (!model.isOver())
                 {
-	            	model.startDraft();
-	                if (!model.hasTeam())
-	                {
-	                    String name = JOptionPane.showInputDialog(frame,
-	                            "What is your team name?",  JOptionPane.OK_CANCEL_OPTION); 
-	                    model.addNewTeam(name);       
-	                }
-	                DraftGui.this.update(model, null);
+                    model.startDraft();
+                    if (!model.hasTeam())
+                    {
+                        String name = JOptionPane.showInputDialog(frame,
+                                "What is your team name?",  JOptionPane.OK_CANCEL_OPTION); 
+                        model.addNewTeam(name);       
+                    }
+                    DraftGui.this.update(model, null);
 
-	                model.startTimer();
+                    model.startTimer();
                 }
         });
         frame.add(startDraftButton);
@@ -287,27 +287,27 @@ public class DraftGui implements Observer
 
     @Override
     public void update(Observable o, Object arg) {
-    	btnPlayer1.setEnabled(model.getSelection());
+        btnPlayer1.setEnabled(model.getSelection());
         btnPlayer2.setEnabled(model.getSelection());
         btnPlayer3.setEnabled(model.getSelection());
         if (model.getSelection())
         {
-	        players = model.getCurrentPlayerSelection();
-	        btnPlayer1.setText(players[0].getName());
-	        btnPlayer2.setText(players[1].getName());
-	        btnPlayer3.setText(players[2].getName());
-	        player1Name.setText(players[0].getName());
-	        player2Name.setText(players[1].getName());
-	        player3Name.setText(players[2].getName());
+            players = model.getCurrentPlayerSelection();
+            btnPlayer1.setText(players[0].getName());
+            btnPlayer2.setText(players[1].getName());
+            btnPlayer3.setText(players[2].getName());
+            player1Name.setText(players[0].getName());
+            player2Name.setText(players[1].getName());
+            player3Name.setText(players[2].getName());
         }
         else
         {
-        	btnPlayer1.setText("");
-	        btnPlayer2.setText("");
-	        btnPlayer3.setText("");
-	        player1Name.setText("");
-	        player2Name.setText("");
-	        player3Name.setText("");
+            btnPlayer1.setText("");
+            btnPlayer2.setText("");
+            btnPlayer3.setText("");
+            player1Name.setText("");
+            player2Name.setText("");
+            player3Name.setText("");
         }
         
         numOfPlayers.setText(model.getCurrentUserTeamSize());
@@ -315,9 +315,9 @@ public class DraftGui implements Observer
         teamNameTA.setText(model.getCurrentUserTeamName());
         formationComboBox.setSelectedItem(model.getCurrentUserTeamFormation());   
         if (!model.isOver())
-        	timerTxt.setText(model.getTime());
+            timerTxt.setText(model.getTime());
         else
-        	timerTxt.setText("DraftOver");
+            timerTxt.setText("DraftOver");
         userNameTA.setText(model.getCurrentUserName());
         startDraftButton.setEnabled(!model.getSelection());
         currentUserTeamTable.setText(model.getTeamToString());
@@ -325,6 +325,6 @@ public class DraftGui implements Observer
     
     public JPanel getPanel()
     {
-    	return frame;
+        return frame;
     }
 }
