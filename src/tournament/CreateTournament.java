@@ -5,17 +5,25 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.event.ItemEvent;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import db.DBFactory;
+
 import javax.swing.event.ChangeEvent;
 
 import soccerPlayer.*;
 import teams.*;
+import view.MainMenuView;
 
 public class CreateTournament {
-   private String tournamentName;
-   private ArrayList<SoccerPlayer> playerPool;
+   private String tournamentName = "";
+   private ArrayList<SoccerPlayer> playerPool = new ArrayList<SoccerPlayer>();
    private int numberUsers = 2;
    private JPanel tournamentPanel;
 
@@ -24,10 +32,6 @@ public class CreateTournament {
    }
 
    public JPanel createTournamentMenu() {
-      // Upload All Teams w/ Rosters (currently from CSV)
-      UploadTeamsByCSV ut = new UploadTeamsByCSV();
-      final ArrayList<ProfessionalTeam> allTeams = ut.upload();
-
       // JCheckBoxes (one for each team that has a teamName)
       String[] teamNames = {"Arsenal", "Atletico Madrid", "Bayern Munich", 
          "Chelsea", "FC Barcelona", "Leicester City", "Liverpool", 
@@ -46,23 +50,45 @@ public class CreateTournament {
                if (e.getStateChange() == ItemEvent.SELECTED) {
                   //System.out.println("Selected " + teamName);
                   // Add all players from selected team
-                  for (int i = 0; i < allTeams.size(); i++) {
-                	  if (allTeams.get(i).getName().equals(teamName)) {
-                		  ProfessionalTeam pt = allTeams.get(i);
-                		  for (int j = 0; j < pt.getSize(); i++) {
-                			  playerPool.add(pt.listOfPlayers.get(j));
-                		  }
-                	  }
-                  }
+            	   String retrievePlayers = "select * from main.ProPlayer where team = ?";
+
+            	   Connection db = DBFactory.getDBConnection();
+            	   
+            	   try {
+            		   PreparedStatement pstmt = db.prepareStatement(retrievePlayers);
+            		   pstmt.setString(1, teamName);
+            		   ResultSet rs = pstmt.executeQuery(); 
+            		   while (rs.next()) {
+            			   if (rs.getString("position").equals("G")) {
+            				   playerPool.add(new GoalKeeper(rs.getString("name"), rs.getString("team")));
+            			   }
+            			   else if (rs.getString("position").equals("D")) {
+            				   playerPool.add(new Defender(rs.getString("name"), rs.getString("team")));
+            			   }
+            			   else if (rs.getString("position").equals("M")) {
+            				   playerPool.add(new Midfielder(rs.getString("name"), rs.getString("team")));
+            			   }
+            			   else if (rs.getString("position").equals("F")) {
+            				   playerPool.add(new Forward(rs.getString("name"), rs.getString("team")));
+            			   }
+            			   else {
+            				   System.out.println("Incorrect database entry");
+            			   }
+            		   }
+            		   /*
+            		   if (playerPool != null) {
+            			   // This will need to be turned into a logger later
+            			   System.out.print(playerPool);
+            		   }
+            		   */
+            	   }
+            	   catch (SQLException se) {
+            		   // This will need to be turned into a logger later
+            		   System.out.println("Unable to retrieve players from team " + teamName);
+            	   }
                }
                else {
-                  //System.out.println("Deselected " + teamName);
                   // Remove all players from deselected team
-            	   for (int i = 0; i < playerPool.size(); i++) {
-            		   if (playerPool.get(i).getTeam().equals(teamName)) {
-            			   playerPool.remove(i);
-            		   }
-            	   }
                }
             }
          });
@@ -78,7 +104,7 @@ public class CreateTournament {
       tournamentNameLabel.setBounds(100, 20, 300, 40);
       tournamentPanel.add(tournamentNameLabel);
 
-      JTextField tournamentNameField = new JTextField();
+      final JTextField tournamentNameField = new JTextField();
       tournamentNameField.setBounds(100, 50, 300, 40);
       tournamentPanel.add(tournamentNameField);
       tournamentName = tournamentNameField.getText();
@@ -114,14 +140,39 @@ public class CreateTournament {
       // Submit Button Listener
       class submitButtonListener implements ActionListener {
          public void actionPerformed(ActionEvent ae) {
+        	 tournamentName = tournamentNameField.getText();
+        	 System.out.println("Submitted");
+        	 System.out.println("name: " + tournamentName);
+        	 System.out.println("numberUsers: " + numberUsers);
+        	 //System.out.println("playerPool: " + playerPool);
          }
       }
 
       // Add Submit Button
       JButton submitButton = new JButton("Submit");
       submitButton.addActionListener(new submitButtonListener());
-      submitButton.setBounds(100, 450, 200, 20);
+      submitButton.setBounds(100, 450, 150, 20);
       tournamentPanel.add(submitButton);
+      
+      // Back Button Listener
+      class backButtonListener implements ActionListener {
+          public void actionPerformed(ActionEvent ae) {
+  			Component component = (Component) ae.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	            
+        	frame.getContentPane().removeAll();
+        	//TODO provide correct user reference
+        	frame.getContentPane().add(new MainMenuView(null));
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+          }
+       }
+      
+      // Add Back Button
+      JButton backButton = new JButton("Back");
+      backButton.addActionListener(new backButtonListener());
+      backButton.setBounds(500, 450, 150, 20);
+      tournamentPanel.add(backButton);
 
       return tournamentPanel;
    }
