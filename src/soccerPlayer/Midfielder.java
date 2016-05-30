@@ -39,7 +39,7 @@ public class Midfielder implements SoccerPlayer
         int shot = random.nextInt(6);
         int shotOnGoal = random.nextInt(4);
         int yellowCard = random.nextInt(2);
-        int redCard = (int)(Math.random() * 1);
+        int redCard = random.nextInt(1);
         
         return goal + 3*assist + (shot - shotOnGoal) - 2*yellowCard - 3*redCard;
                
