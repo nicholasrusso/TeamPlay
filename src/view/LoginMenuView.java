@@ -99,7 +99,7 @@ public class LoginMenuView extends JLayeredPane {
         @Override
         public void actionPerformed(ActionEvent ae) 
         {            
-            if ("root".equals(jpfPassword.getPassword())
+            if ("root".equals(jpfPassword.getText())
             && "root".equals(jtfUsername.getText())) {
                 // upon successful login, reference to user that is logged into the system (needed by rest of components)
             	User user = new UserSearch("root").getUsers().get(0);
@@ -123,9 +123,7 @@ public class LoginMenuView extends JLayeredPane {
         public void run(){                        
             for(int i = 0 ; i <= 100 ; i++){
                 final int percent = i;
-                SwingUtilities.invokeLater( () -> {
-                            progressBar.setValue(percent);
-                });
+                SwingUtilities.invokeLater( () -> progressBar.setValue(percent) );
                 try {
                    Thread.sleep(25);
                 } 
