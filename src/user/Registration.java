@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.DBFactory;
-
-import db.DBFactory;
-import java.sql.*;
 import java.util.Arrays;
 import java.util.logging.Logger;
 

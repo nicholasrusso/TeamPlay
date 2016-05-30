@@ -13,10 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
@@ -50,122 +46,122 @@ public class RegistrationPane extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JLabel lblRegistration = new JLabel("Registration");
-		GridBagConstraints gbc_lblRegistration = new GridBagConstraints();
-		gbc_lblRegistration.gridwidth = 3;
-		gbc_lblRegistration.insets = new Insets(0, 0, 5, 0);
-		gbc_lblRegistration.gridx = 0;
-		gbc_lblRegistration.gridy = 0;
-		add(lblRegistration, gbc_lblRegistration);
+		GridBagConstraints gbcLblRegistration = new GridBagConstraints();
+		gbcLblRegistration.gridwidth = 3;
+		gbcLblRegistration.insets = new Insets(0, 0, 5, 0);
+		gbcLblRegistration.gridx = 0;
+		gbcLblRegistration.gridy = 0;
+		add(lblRegistration, gbcLblRegistration);
 		
 		JLabel lblUsername = new JLabel("UserName");
-		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
-		gbc_lblUsername.anchor = GridBagConstraints.EAST;
-		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUsername.gridx = 0;
-		gbc_lblUsername.gridy = 2;
-		add(lblUsername, gbc_lblUsername);
+		GridBagConstraints gbcLblUsername = new GridBagConstraints();
+		gbcLblUsername.anchor = GridBagConstraints.EAST;
+		gbcLblUsername.insets = new Insets(0, 0, 5, 5);
+		gbcLblUsername.gridx = 0;
+		gbcLblUsername.gridy = 2;
+		add(lblUsername, gbcLblUsername);
 		
 		usernameField = new JTextField();
-		GridBagConstraints gbc_userNameField = new GridBagConstraints();
-		gbc_userNameField.gridwidth = 2;
-		gbc_userNameField.insets = new Insets(0, 0, 5, 0);
-		gbc_userNameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_userNameField.gridx = 1;
-		gbc_userNameField.gridy = 2;
-		add(usernameField, gbc_userNameField);
+		GridBagConstraints gbcUserNameField = new GridBagConstraints();
+		gbcUserNameField.gridwidth = 2;
+		gbcUserNameField.insets = new Insets(0, 0, 5, 0);
+		gbcUserNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbcUserNameField.gridx = 1;
+		gbcUserNameField.gridy = 2;
+		add(usernameField, gbcUserNameField);
 		usernameField.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
-		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
-		gbc_lblPassword.anchor = GridBagConstraints.EAST;
-		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPassword.gridx = 0;
-		gbc_lblPassword.gridy = 3;
-		add(lblPassword, gbc_lblPassword);
+		GridBagConstraints gbcLblPassword = new GridBagConstraints();
+		gbcLblPassword.anchor = GridBagConstraints.EAST;
+		gbcLblPassword.insets = new Insets(0, 0, 5, 5);
+		gbcLblPassword.gridx = 0;
+		gbcLblPassword.gridy = 3;
+		add(lblPassword, gbcLblPassword);
 		
 		passwordField = new JPasswordField();
-		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.gridwidth = 2;
-		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_passwordField.gridx = 1;
-		gbc_passwordField.gridy = 3;
-		add(passwordField, gbc_passwordField);
+		GridBagConstraints gbcPasswordField = new GridBagConstraints();
+		gbcPasswordField.gridwidth = 2;
+		gbcPasswordField.insets = new Insets(0, 0, 5, 0);
+		gbcPasswordField.fill = GridBagConstraints.HORIZONTAL;
+		gbcPasswordField.gridx = 1;
+		gbcPasswordField.gridy = 3;
+		add(passwordField, gbcPasswordField);
 		
 		JLabel lblFirstName = new JLabel("First Name");
-		GridBagConstraints gbc_lblFirstName = new GridBagConstraints();
-		gbc_lblFirstName.anchor = GridBagConstraints.EAST;
-		gbc_lblFirstName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFirstName.gridx = 0;
-		gbc_lblFirstName.gridy = 4;
-		add(lblFirstName, gbc_lblFirstName);
+		GridBagConstraints gbcLblFirstName = new GridBagConstraints();
+		gbcLblFirstName.anchor = GridBagConstraints.EAST;
+		gbcLblFirstName.insets = new Insets(0, 0, 5, 5);
+		gbcLblFirstName.gridx = 0;
+		gbcLblFirstName.gridy = 4;
+		add(lblFirstName, gbcLblFirstName);
 		
 		firstNameField = new JTextField();
-		GridBagConstraints gbc_firstName = new GridBagConstraints();
-		gbc_firstName.gridwidth = 2;
-		gbc_firstName.insets = new Insets(0, 0, 5, 0);
-		gbc_firstName.fill = GridBagConstraints.HORIZONTAL;
-		gbc_firstName.gridx = 1;
-		gbc_firstName.gridy = 4;
-		add(firstNameField, gbc_firstName);
+		GridBagConstraints gbcFirstName = new GridBagConstraints();
+		gbcFirstName.gridwidth = 2;
+		gbcFirstName.insets = new Insets(0, 0, 5, 0);
+		gbcFirstName.fill = GridBagConstraints.HORIZONTAL;
+		gbcFirstName.gridx = 1;
+		gbcFirstName.gridy = 4;
+		add(firstNameField, gbcFirstName);
 		firstNameField.setColumns(10);
 		
 		JLabel lblLastName = new JLabel("Last Name");
-		GridBagConstraints gbc_lblLastName = new GridBagConstraints();
-		gbc_lblLastName.anchor = GridBagConstraints.EAST;
-		gbc_lblLastName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblLastName.gridx = 0;
-		gbc_lblLastName.gridy = 5;
-		add(lblLastName, gbc_lblLastName);
+		GridBagConstraints gbcLblLastName = new GridBagConstraints();
+		gbcLblLastName.anchor = GridBagConstraints.EAST;
+		gbcLblLastName.insets = new Insets(0, 0, 5, 5);
+		gbcLblLastName.gridx = 0;
+		gbcLblLastName.gridy = 5;
+		add(lblLastName, gbcLblLastName);
 		
 		lastNameField = new JTextField();
-		GridBagConstraints gbc_lastNameField = new GridBagConstraints();
-		gbc_lastNameField.gridwidth = 2;
-		gbc_lastNameField.insets = new Insets(0, 0, 5, 0);
-		gbc_lastNameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lastNameField.gridx = 1;
-		gbc_lastNameField.gridy = 5;
-		add(lastNameField, gbc_lastNameField);
+		GridBagConstraints gbcLastNameField = new GridBagConstraints();
+		gbcLastNameField.gridwidth = 2;
+		gbcLastNameField.insets = new Insets(0, 0, 5, 0);
+		gbcLastNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbcLastNameField.gridx = 1;
+		gbcLastNameField.gridy = 5;
+		add(lastNameField, gbcLastNameField);
 		lastNameField.setColumns(10);
 		
 		JLabel lblEmailAddress = new JLabel("Email Address");
-		GridBagConstraints gbc_lblEmailAddress = new GridBagConstraints();
-		gbc_lblEmailAddress.anchor = GridBagConstraints.EAST;
-		gbc_lblEmailAddress.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEmailAddress.gridx = 0;
-		gbc_lblEmailAddress.gridy = 6;
-		add(lblEmailAddress, gbc_lblEmailAddress);
+		GridBagConstraints gbcLblEmailAddress = new GridBagConstraints();
+		gbcLblEmailAddress.anchor = GridBagConstraints.EAST;
+		gbcLblEmailAddress.insets = new Insets(0, 0, 5, 5);
+		gbcLblEmailAddress.gridx = 0;
+		gbcLblEmailAddress.gridy = 6;
+		add(lblEmailAddress, gbcLblEmailAddress);
 		
 		emailField = new JTextField();
-		GridBagConstraints gbc_emailField = new GridBagConstraints();
-		gbc_emailField.gridwidth = 2;
-		gbc_emailField.insets = new Insets(0, 0, 5, 0);
-		gbc_emailField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_emailField.gridx = 1;
-		gbc_emailField.gridy = 6;
-		add(emailField, gbc_emailField);
+		GridBagConstraints gbcEmailField = new GridBagConstraints();
+		gbcEmailField.gridwidth = 2;
+		gbcEmailField.insets = new Insets(0, 0, 5, 0);
+		gbcEmailField.fill = GridBagConstraints.HORIZONTAL;
+		gbcEmailField.gridx = 1;
+		gbcEmailField.gridy = 6;
+		add(emailField, gbcEmailField);
 		emailField.setColumns(10);
 		
 		JButton btnRegister = new JButton("Register");
-		btnRegister.addActionListener(new registerButtonListener());
+		btnRegister.addActionListener(new RegisterButtonListener());
 		
 		JButton backButton = new JButton("Back");
-		backButton.addActionListener(new backToLoginMenuListener());
-		GridBagConstraints gbc_backButton = new GridBagConstraints();
-		gbc_backButton.insets = new Insets(0, 0, 5, 5);
-		gbc_backButton.gridx = 1;
-		gbc_backButton.gridy = 7;
-		add(backButton, gbc_backButton);
+		backButton.addActionListener(new BackToLoginMenuListener());
+		GridBagConstraints gbcBackButton = new GridBagConstraints();
+		gbcBackButton.insets = new Insets(0, 0, 5, 5);
+		gbcBackButton.gridx = 1;
+		gbcBackButton.gridy = 7;
+		add(backButton, gbcBackButton);
 		
-		GridBagConstraints gbc_btnRegister = new GridBagConstraints();
-		gbc_btnRegister.insets = new Insets(0, 0, 5, 0);
-		gbc_btnRegister.gridx = 2;
-		gbc_btnRegister.gridy = 7;
-		add(btnRegister, gbc_btnRegister);
+		GridBagConstraints gbcBtnRegister = new GridBagConstraints();
+		gbcBtnRegister.insets = new Insets(0, 0, 5, 0);
+		gbcBtnRegister.gridx = 2;
+		gbcBtnRegister.gridy = 7;
+		add(btnRegister, gbcBtnRegister);
 
 	}
 	
-    class registerButtonListener implements ActionListener
+    class RegisterButtonListener implements ActionListener
     {
     	@Override
         public void actionPerformed(ActionEvent ae) 
@@ -184,7 +180,7 @@ public class RegistrationPane extends JPanel {
         }
     }
     
-    class backToLoginMenuListener implements ActionListener
+    class BackToLoginMenuListener implements ActionListener
     {
     	@Override
         public void actionPerformed(ActionEvent e) 
