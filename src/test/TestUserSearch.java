@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class TestUserSearch {
 		ArrayList<User> users = (ArrayList<User>) searcher.getUsers();
 	 
 		for (User user : users) {
-			assertNotEquals("", user.getUsername());
+			assertFalse("".equals(user.getUsername()));
 			System.out.println(user.getUsername());
 		}
 	}
