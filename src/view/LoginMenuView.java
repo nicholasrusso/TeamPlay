@@ -90,34 +90,7 @@ public class LoginMenuView extends JLayeredPane {
         	Component component = (Component) ae.getSource();
         	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
-            Thread t = new Thread()         
-            {
-                  @Override
-                    public void run(){                        
-                        for(int i = 0 ; i <= 100 ; i++){
-                            final int percent = i;
-                            SwingUtilities.invokeLater( () -> {
-                                        progressBar.setValue(percent);
-                            });
-                            try {
-                               Thread.sleep(25);
-                            } 
-                            catch (InterruptedException e) {
-                               log.severe(e.toString());                               
-                            }
-                        }
-                        try {
-                                Thread.sleep(500);
-                                frame.getContentPane().removeAll();           
-                                frame.getContentPane().add(new MainMenuView(u));
-                                frame.getContentPane().validate();
-                                frame.getContentPane().repaint();
-                        }
-                        catch(Exception e) {
-                           log.severe(e.toString());                               
-                        }
-                    }
-                };
+            Thread t = new ProgressBarThread();
             t.start(); 
         }
      
@@ -137,6 +110,36 @@ public class LoginMenuView extends JLayeredPane {
         }
     }
     
+    class ProgressBarThread extends Thread {
+    	@Override
+        public void run(){                        
+            for(int i = 0 ; i <= 100 ; i++){
+                final int percent = i;
+                SwingUtilities.invokeLater( () -> {
+                            progressBar.setValue(percent);
+                });
+                try {
+                   Thread.sleep(25);
+                } 
+                catch (InterruptedException e) {
+                   log.severe(e.toString());                               
+                }
+            }
+            try {
+            	JFrame frame = (JFrame) SwingUtilities.getRoot(progressBar);
+                    Thread.sleep(500);
+                    frame.getContentPane().removeAll();           
+                    frame.getContentPane().add(new MainMenuView(MainMenuView.user));
+                    frame.getContentPane().validate();
+                    frame.getContentPane().repaint();
+            }
+            catch(Exception e) {
+               log.severe(e.toString());                               
+            }
+        }
+
+    	
+    }
     class CreateAcctButtonListener implements ActionListener
     {
     	@Override
