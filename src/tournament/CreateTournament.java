@@ -150,7 +150,7 @@ public class CreateTournament {
       }
 
       // Submit Button Listener
-      class submitButtonListener implements ActionListener {
+      class SubmitButtonListener implements ActionListener {
          @Override
          public void actionPerformed(ActionEvent ae) {
         	 tournamentName = tournamentNameField.getText();
@@ -178,8 +178,8 @@ public class CreateTournament {
       tournamentPanel.add(submitButton);
       
       // Back Button Listener
-      @Override
-      class backButtonListener implements ActionListener {
+      class BackButtonListener implements ActionListener {
+          @Override
           public void actionPerformed(ActionEvent ae) {
   			Component component = (Component) ae.getSource();
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
