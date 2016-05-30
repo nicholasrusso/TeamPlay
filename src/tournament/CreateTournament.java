@@ -91,9 +91,7 @@ public class CreateTournament {
       // When boxes are checked or unchecked
       for (int i = 0; i < teamBoxes.length; i++) {
          final String teamName = teamNames[i];
-         teamBoxes[i].addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
+         teamBoxes[i].addItemListener((ItemEvent e) -> {
                if (e.getStateChange() == ItemEvent.SELECTED) {
                   // Add all players from team to player pool
                   addToPlayerPool(teamName);
@@ -102,7 +100,7 @@ public class CreateTournament {
                   // Remove all players from deselected team
                }
             }
-         });
+         );
       }
 
       // Create Tournament Panel
@@ -131,11 +129,8 @@ public class CreateTournament {
       maxNumUsers.setPaintTicks(true);
       maxNumUsers.setPaintLabels(true);
       maxNumUsers.setBounds(100, 110, 300, 40);
-      maxNumUsers.addChangeListener(new ChangeListener() {
-         @Override
-         public void stateChanged(ChangeEvent e) {
+      maxNumUsers.addChangeListener((ChangeEvent e) -> {
             numberUsers = ((JSlider)e.getSource()).getValue();
-         }
       });
       tournamentPanel.add(maxNumUsers);
 
