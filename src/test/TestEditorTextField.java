@@ -13,7 +13,7 @@ import view.EditorTextField;
 public class TestEditorTextField {
 	
 	@Test
-    public void testGetTextInput() throws Exception
+    public void testGetTextInput()
     {
 		String txt = "Input";
 		EditorTextField test = new EditorTextField("Label", txt);
@@ -22,7 +22,7 @@ public class TestEditorTextField {
     }
 	
 	@Test
-    public void testGetLabelText() throws Exception
+    public void testGetLabelText()
     {
 		String txt = "Label";
 		EditorTextField test = new EditorTextField(txt, "Input");
