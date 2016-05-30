@@ -37,7 +37,7 @@ public class EditorPasswordField extends JPanel
      * */
     public void setInputText(String pw)
     {
-    	input.setText(pw);
+        input.setText(pw);
     }
 
     /**

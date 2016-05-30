@@ -13,63 +13,63 @@ import user.User;
  * Author: Charlie Gels
  */
 public class TestProfilePanel {
-	public static User u = null;
-	
-	@Test
-	public void getFirstName()
+    public static User u = null;
+    
+    @Test
+    public void getFirstName()
     {
-    	User u = testSetup();
-    	ProfilePanel test = new ProfilePanel(u);
-    	assertTrue(u.getFirstName().equals(test.getFirstName()));
+        User u = testSetup();
+        ProfilePanel test = new ProfilePanel(u);
+        assertTrue(u.getFirstName().equals(test.getFirstName()));
     }
     
-	@Test
+    @Test
     public void getLastName()
     {
-    	User u = testSetup();
-    	ProfilePanel test = new ProfilePanel(u);
-    	assertTrue(u.getLastName().equals(test.getLastName()));
+        User u = testSetup();
+        ProfilePanel test = new ProfilePanel(u);
+        assertTrue(u.getLastName().equals(test.getLastName()));
     }
     
-	@Test
+    @Test
     public void getUserName()
     {
-    	User u = testSetup();
-    	ProfilePanel test = new ProfilePanel(u);
-    	assertTrue(u.getUsername().equals(test.getUserName()));
+        User u = testSetup();
+        ProfilePanel test = new ProfilePanel(u);
+        assertTrue(u.getUsername().equals(test.getUserName()));
     }
     
-	@Test
+    @Test
     public void getEmailAddress()
     {
-    	User u = testSetup();
-    	ProfilePanel test = new ProfilePanel(u);
-    	assertTrue(u.getEmail().toString().equals(test.getEmailAddress()));
+        User u = testSetup();
+        ProfilePanel test = new ProfilePanel(u);
+        assertTrue(u.getEmail().toString().equals(test.getEmailAddress()));
     }
     
-	@Test
+    @Test
     public void getPassword()
     {
-//    	User u = testSetup();
-//    	ProfilePanel test = new ProfilePanel(u);
-//    	assertTrue("root".equals(test.getFirstName()));
+//      User u = testSetup();
+//      ProfilePanel test = new ProfilePanel(u);
+//      assertTrue("root".equals(test.getFirstName()));
     }
-	
-	private static User testSetup()
-	{
-		if (u == null)
-		{
-			u = new User();
-		}
-		
-		u.setFirstName("root");
-		u.setLastName("root");
-		u.setUsername("root");
-		u.setEmail("root@root.com");
-		
-		String password = "root";
-		String hash = PasswordUtilities.getPasswordHash(password);
-		u.setPasswordHashFromPassword("root");
-		return u;
-	}
+    
+    private static User testSetup()
+    {
+        if (u == null)
+        {
+            u = new User();
+        }
+        
+        u.setFirstName("root");
+        u.setLastName("root");
+        u.setUsername("root");
+        u.setEmail("root@root.com");
+        
+        String password = "root";
+        String hash = PasswordUtilities.getPasswordHash(password);
+        u.setPasswordHashFromPassword("root");
+        return u;
+    }
 }

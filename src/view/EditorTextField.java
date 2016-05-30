@@ -53,8 +53,8 @@ public class EditorTextField extends JPanel
      * Mutator to change the TextFields state of editability. 
      * */
     public void setEditable(boolean canEdit) {
-    	editable = canEdit;
-    	input.setEditable(editable);
+        editable = canEdit;
+        input.setEditable(editable);
     }
     
     /**
