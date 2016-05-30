@@ -1,5 +1,7 @@
 package user;
 
+import email.EmailUtilities;
+
 /**
  * Created by charliegels on 4/11/16.
  */
@@ -29,6 +31,7 @@ public class Email
      * Email address string representation.
      * @return email address
      */
+    @Override
     public String toString()
     {
         return address;
@@ -42,6 +45,6 @@ public class Email
      */
     public boolean sendEmailTo(Email recipient, String message)
     {
-        return false;
+        return EmailUtilities.sendEmail(recipient.toString(), "", message);
     }
 }
