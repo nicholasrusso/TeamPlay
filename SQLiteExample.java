@@ -16,15 +16,15 @@ public class SQLiteExample {
 
     // Simple select example
     try {
-			Statement stmt = db.createStatement();
-			String sql = ("SELECT * FROM user WHERE firstname = 'Michael'");
+            Statement stmt = db.createStatement();
+            String sql = ("SELECT * FROM user WHERE firstname = 'Michael'");
 
-			ResultSet rs = stmt.executeQuery(sql);
-			while ( rs.next() ) {
-				System.out.println("Name: " 
+            ResultSet rs = stmt.executeQuery(sql);
+            while ( rs.next() ) {
+                System.out.println("Name: " 
                           + rs.getString("firstname") + " "
                           + rs.getString("lastname"));
-			}
+            }
     } catch (SQLException e) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
@@ -32,13 +32,13 @@ public class SQLiteExample {
     
     // "Prepared" Statement
     try {
-    		PreparedStatement pstmt = db.prepareStatement("SELECT count(*) FROM user WHERE firstname = ?");
-    		pstmt.setString(1, "foo");
-			ResultSet rs = pstmt.executeQuery();
-						
-			if (rs.getInt(1) == 0){
-				System.out.println("Searching for 'foo' returned no values");				
-			}
+            PreparedStatement pstmt = db.prepareStatement("SELECT count(*) FROM user WHERE firstname = ?");
+            pstmt.setString(1, "foo");
+            ResultSet rs = pstmt.executeQuery();
+                        
+            if (rs.getInt(1) == 0){
+                System.out.println("Searching for 'foo' returned no values");               
+            }
     } catch (SQLException e) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
