@@ -3,7 +3,6 @@ package view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,19 +21,20 @@ import user.UserSearchPanel;
 import tournament.CreateTournament;
 
 public class MainMenuView extends JLayeredPane {
-    private JPanel headerPanel;
-    private JPanel menuPanel;
-    private JPanel menuButtonPanel;
-    private JPanel profilePanel;
-    private JPanel settingsPanel;
     private JPanel createTournamentPanel;
     private JPanel tournamentPanel;
-    private JPanel rulesPanel;
-    private JButton rulesButton, tournamentButton, createTournamentButton, editProfileButton, settingsButton, backButton;
+    
+    private JButton rulesButton;
+    private JButton tournamentButton;
+    private JButton createTournamentButton;
+    private JButton editProfileButton;
+    private JButton settingsButton;
+    private JButton backButton;
     private JButton findFriendsButton;
     private JButton logoutButton;
     private JPanel findFriendsPanel;
-    private JLabel backgroundLabel, title;
+    private JLabel backgroundLabel;
+    private JLabel title;
     private JLayeredPane lp;
     private User user;
 
@@ -65,13 +65,13 @@ public class MainMenuView extends JLayeredPane {
 	        rulesButton.setBounds(170,410,440, 30);
 	        rulesButton.setBackground(Color.black); 
 	        rulesButton.setFont(rulesButton.getFont().deriveFont(Font.BOLD));
-	        //rulesButton.addActionListener(new tournamentButtonListener());
+	        
 
 	        settingsButton = new JButton("Settings");
 	        settingsButton.setBounds(170,450,440, 30);
 	        settingsButton.setBackground(Color.black); 
 	        settingsButton.setFont(settingsButton.getFont().deriveFont(Font.BOLD));
-	        //settingsButton.addActionListener(new tournamentButtonListener());
+	        
 	        
 	        findFriendsButton = new JButton("Find Friends");
 	        findFriendsButton.setBounds(170,450,440, 30);
