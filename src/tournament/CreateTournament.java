@@ -94,6 +94,7 @@ public class CreateTournament {
          final String teamName = teamNames[i];
          teamBoxes[i].addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
+               @Override
                if (e.getStateChange() == ItemEvent.SELECTED) {
                   // Add all players from team to player pool
                   addToPlayerPool(teamName);
@@ -133,6 +134,7 @@ public class CreateTournament {
       maxNumUsers.setBounds(100, 110, 300, 40);
       maxNumUsers.addChangeListener(new ChangeListener() {
          public void stateChanged(ChangeEvent e) {
+            @Override
             numberUsers = ((JSlider)e.getSource()).getValue();
          }
       });
@@ -150,6 +152,7 @@ public class CreateTournament {
       // Submit Button Listener
       class submitButtonListener implements ActionListener {
          public void actionPerformed(ActionEvent ae) {
+            @Override
         	 tournamentName = tournamentNameField.getText();
         	 Tournament tournament = new Tournament(tournamentName, numberUsers, playerPool);
         	 UserSearch search = new UserSearch("");
@@ -177,6 +180,7 @@ public class CreateTournament {
       // Back Button Listener
       class backButtonListener implements ActionListener {
           public void actionPerformed(ActionEvent ae) {
+            @Override
   			Component component = (Component) ae.getSource();
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
         	            
