@@ -38,7 +38,6 @@ public class Registration {
 			db.close();
 		} catch (SQLException e) {
 			log.severe(Arrays.toString(e.getStackTrace()));
-			System.exit(1);
 		}
 		return nameExists;
 	}
