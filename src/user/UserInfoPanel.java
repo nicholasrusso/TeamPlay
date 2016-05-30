@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,6 +29,9 @@ public class UserInfoPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public UserInfoPanel() {
+		
+		Color windowColor = UIManager.getColor("window");
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -51,7 +55,7 @@ public class UserInfoPanel extends JPanel {
 		add(lblUsername, gbcLblUsername);
 		
 		usernameField = new JTextField();
-		usernameField.setBackground(UIManager.getColor("window"));
+		usernameField.setBackground(windowColor);
 		usernameField.setEditable(false);
 		GridBagConstraints gbc_userNameField = new GridBagConstraints();
 		gbc_userNameField.insets = new Insets(0, 0, 5, 0);
@@ -70,7 +74,7 @@ public class UserInfoPanel extends JPanel {
 		add(lblFirstName, gbcLblFirstName);
 		
 		firstNameField = new JTextField();
-		firstNameField.setBackground(UIManager.getColor("window"));
+		firstNameField.setBackground(windowColor);
 		firstNameField.setEditable(false);
 		GridBagConstraints gbc_firstName = new GridBagConstraints();
 		gbc_firstName.insets = new Insets(0, 0, 5, 0);
@@ -89,7 +93,7 @@ public class UserInfoPanel extends JPanel {
 		add(lblLastName, gbcLblLastName);
 		
 		lastNameField = new JTextField();
-		lastNameField.setBackground(UIManager.getColor("window"));
+		lastNameField.setBackground(windowColor);
 		lastNameField.setEditable(false);
 		GridBagConstraints gbcLastNameField = new GridBagConstraints();
 		gbcLastNameField.insets = new Insets(0, 0, 5, 0);
@@ -108,7 +112,7 @@ public class UserInfoPanel extends JPanel {
 		add(lblEmailAddress, gbcLblEmailAddress);
 		
 		emailField = new JTextField();
-		emailField.setBackground(UIManager.getColor("window"));
+		emailField.setBackground(windowColor);
 		emailField.setEditable(false);
 		GridBagConstraints gbc_emailField = new GridBagConstraints();
 		gbc_emailField.insets = new Insets(0, 0, 5, 0);
@@ -127,7 +131,7 @@ public class UserInfoPanel extends JPanel {
 		add(lblTeams, gbcLblTeams);
 		
 		teamsField = new JTextField();
-		teamsField.setBackground(UIManager.getColor("window"));
+		teamsField.setBackground(windowColor);
 		teamsField.setEditable(false);
 		GridBagConstraints gbc_teamsField = new GridBagConstraints();
 		gbc_teamsField.insets = new Insets(0, 0, 5, 0);
@@ -146,7 +150,7 @@ public class UserInfoPanel extends JPanel {
 		add(lblWins, gbcLblWins);
 		
 		winsField = new JTextField();
-		winsField.setBackground(UIManager.getColor("window"));
+		winsField.setBackground(windowColor);
 		winsField.setEditable(false);
 		GridBagConstraints gbc_winsField = new GridBagConstraints();
 		gbc_winsField.insets = new Insets(0, 0, 5, 0);
@@ -165,7 +169,7 @@ public class UserInfoPanel extends JPanel {
 		add(lblLosses, gbcLblLosses);
 		
 		lossesField = new JTextField();
-		lossesField.setBackground(UIManager.getColor("window"));
+		lossesField.setBackground(windowColor);
 		lossesField.setEditable(false);
 		GridBagConstraints gbcLossesField = new GridBagConstraints();
 		gbcLossesField.insets = new Insets(0, 0, 5, 0);
