@@ -47,22 +47,22 @@ public class CreateTournament {
                   //System.out.println("Selected " + teamName);
                   // Add all players from selected team
                   for (int i = 0; i < allTeams.size(); i++) {
-                	  if (allTeams.get(i).getName().equals(teamName)) {
-                		  Team pt = allTeams.get(i);
-                		  for (int j = 0; j < pt.getSize(); i++) {
-                			  playerPool.add(pt.listOfPlayers.get(j));
-                		  }
-                	  }
+                      if (allTeams.get(i).getName().equals(teamName)) {
+                          Team pt = allTeams.get(i);
+                          for (int j = 0; j < pt.getSize(); i++) {
+                              playerPool.add(pt.listOfPlayers.get(j));
+                          }
+                      }
                   }
                }
                else {
                   //System.out.println("Deselected " + teamName);
                   // Remove all players from deselected team
-            	   for (int i = 0; i < playerPool.size(); i++) {
-            		   if (playerPool.get(i).getTeam().equals(teamName)) {
-            			   playerPool.remove(i);
-            		   }
-            	   }
+                   for (int i = 0; i < playerPool.size(); i++) {
+                       if (playerPool.get(i).getTeam().equals(teamName)) {
+                           playerPool.remove(i);
+                       }
+                   }
                }
             }
          });

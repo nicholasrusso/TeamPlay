@@ -11,25 +11,25 @@ import user.Registration;
  * Author: Charlie Gels
  */
 public class TestRegistration {
-	
-	@Test
-	public void testRegisterUser()
-	{
-		// need to delete from database before testing if it exists
-		boolean test = Registration.registerUser("Cgels","password", "Charlie", "Gels", "cgels@calpoly.edu");
-		assertTrue(test);
-	}
-	
-	@Test
-	public void testUsernameExistsFalse()
-	{
-		boolean test = Registration.usernameExists("cgels");
-		assertFalse(test);
-	}
-	
-	@Test public void testUsernameExistsTrue()
-	{
-		boolean test = Registration.usernameExists("Cgels");
-		assertTrue(test);
-	}
+    
+    @Test
+    public void testRegisterUser()
+    {
+        // need to delete from database before testing if it exists
+        boolean test = Registration.registerUser("Cgels","password", "Charlie", "Gels", "cgels@calpoly.edu");
+        assertTrue(test);
+    }
+    
+    @Test
+    public void testUsernameExistsFalse()
+    {
+        boolean test = Registration.usernameExists("cgels");
+        assertFalse(test);
+    }
+    
+    @Test public void testUsernameExistsTrue()
+    {
+        boolean test = Registration.usernameExists("Cgels");
+        assertTrue(test);
+    }
 }
