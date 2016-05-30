@@ -24,7 +24,7 @@ public class GUI {
     }
     
     public void createMenu() {       
-    	frame.add(new MainMenuView());
+        frame.add(new MainMenuView());
         frame.revalidate();
         frame.repaint();
     }
