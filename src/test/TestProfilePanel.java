@@ -50,9 +50,10 @@ public class TestProfilePanel {
 	@Test
     public void getPassword()
     {
-//    	User u = testSetup();
-//    	ProfilePanel test = new ProfilePanel(u);
-//    	assertTrue("root".equals(test.getFirstName()));
+    	User u = testSetup();
+    	ProfilePanel test = new ProfilePanel(u);
+    	String hash = PasswordUtilities.getPasswordHash("root");
+    	assertTrue(hash.equals(test.getPassword()));
     }
 	
 	private static User testSetup()
@@ -65,10 +66,9 @@ public class TestProfilePanel {
 		u.setFirstName("root");
 		u.setLastName("root");
 		u.setUsername("root");
-		u.setEmail("root@root.com");
+		u.setEmail("root@calpoly.edu");
 		
 		String password = "root";
-		String hash = PasswordUtilities.getPasswordHash(password);
 		u.setPasswordHashFromPassword("root");
 		return u;
 	}
