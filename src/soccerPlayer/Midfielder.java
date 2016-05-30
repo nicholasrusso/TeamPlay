@@ -35,7 +35,7 @@ public class Midfielder implements SoccerPlayer
     public int score() {
        Random random = new Random();
         int goal = random.nextInt(3);
-        int assist = random().nextInt(3);
+        int assist = random.nextInt(3);
         int shot = random.nextInt(6);
         int shotOnGoal = random.nextInt(4);
         int yellowCard = random.nextInt(2);

@@ -18,12 +18,12 @@ public class Forward implements SoccerPlayer
         return fname;
     }
 
-
-    @Override
+    
     public String getTeam() {
         return fteam;
     }
 
+    @Override
     public String toString() {
         return "Name: " + fname + "\nTeam: " + fteam + 
             "\nPosition: " + this.getClass().getName() + "\nScore: " + fscore + "\n";        
