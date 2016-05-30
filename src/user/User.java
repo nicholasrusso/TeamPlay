@@ -22,10 +22,10 @@ import security.PasswordUtilities;
  */
 public class User
 {
-	private static Properties props = AppSettings.getInstance();
-	private static final Logger log = Logger.getLogger("User");
+    private static Properties props = AppSettings.getInstance();
+    private static final Logger log = Logger.getLogger("User");
 
-	
+    
     private String firstName;
     private String lastName;
     private String userName;
@@ -197,53 +197,53 @@ public class User
     }
     
     public void save() {
-    	String insertUserSQL = "insert into main.User (username, firstname, lastname, passhash, email, lastlogin) values (?,?,?,?,?,?)";
-		Connection db = DBFactory.getDBConnection();
-		
-		try {
-			PreparedStatement pstmt = db.prepareStatement(insertUserSQL);
-			pstmt.setString(1, this.userName);
-			pstmt.setString(2, this.firstName);
-			pstmt.setString(3, this.lastName);
-			pstmt.setString(4, this.passwordHash);
-			pstmt.setString(5, this.email.toString());
-			pstmt.setLong(6, System.currentTimeMillis() / 1000L);
+        String insertUserSQL = "insert into main.User (username, firstname, lastname, passhash, email, lastlogin) values (?,?,?,?,?,?)";
+        Connection db = DBFactory.getDBConnection();
+        
+        try {
+            PreparedStatement pstmt = db.prepareStatement(insertUserSQL);
+            pstmt.setString(1, this.userName);
+            pstmt.setString(2, this.firstName);
+            pstmt.setString(3, this.lastName);
+            pstmt.setString(4, this.passwordHash);
+            pstmt.setString(5, this.email.toString());
+            pstmt.setLong(6, System.currentTimeMillis() / 1000L);
 
-			pstmt.executeUpdate();
-			pstmt.close();
-		    db.close();
+            pstmt.executeUpdate();
+            pstmt.close();
+            db.close();
 
-		} catch (SQLException e) {
-			log.severe("Unable to save user to database.");
-			log.severe(Arrays.toString(e.getStackTrace()));
-			System.exit(1);
-		}
+        } catch (SQLException e) {
+            log.severe("Unable to save user to database.");
+            log.severe(Arrays.toString(e.getStackTrace()));
+            System.exit(1);
+        }
     }
     
     public void update() {
-    	String updateUserSQL = "update main.User set username = ?, firstname = ?, lastname = ?, passhash = ?, email = ?, lastlogin = ? where username = ?";
-    	Connection db = DBFactory.getDBConnection();
-    	
-    	try {
-    		PreparedStatement pstmt = db.prepareStatement(updateUserSQL);
-    		//set update values
-			pstmt.setString(1, this.userName);
-			pstmt.setString(2, this.firstName);
-			pstmt.setString(3, this.lastName);
-			pstmt.setString(4, this.passwordHash);
-			pstmt.setString(5, this.email.toString());
-			pstmt.setLong(6, System.currentTimeMillis() / 1000L);
-			//set where condition
-			pstmt.setString(7, this.userName);
-			
-			pstmt.executeUpdate();
-			pstmt.close();
-			db.close();
-    	}
-    	catch (SQLException e) {
-    		e.printStackTrace();
-    		System.exit(0);
-    	}
+        String updateUserSQL = "update main.User set username = ?, firstname = ?, lastname = ?, passhash = ?, email = ?, lastlogin = ? where username = ?";
+        Connection db = DBFactory.getDBConnection();
+        
+        try {
+            PreparedStatement pstmt = db.prepareStatement(updateUserSQL);
+            //set update values
+            pstmt.setString(1, this.userName);
+            pstmt.setString(2, this.firstName);
+            pstmt.setString(3, this.lastName);
+            pstmt.setString(4, this.passwordHash);
+            pstmt.setString(5, this.email.toString());
+            pstmt.setLong(6, System.currentTimeMillis() / 1000L);
+            //set where condition
+            pstmt.setString(7, this.userName);
+            
+            pstmt.executeUpdate();
+            pstmt.close();
+            db.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
     }
     
 }
