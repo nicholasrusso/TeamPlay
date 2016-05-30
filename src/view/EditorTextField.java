@@ -1,10 +1,5 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -12,8 +7,6 @@ import javax.swing.JTextField;
  * */
 public class EditorTextField extends EditorField
 {
-    JLabel label;
-    JTextField input;
     //editable by default -- want to set to false for the username because its DB primary key
     boolean editable = true;
     
@@ -24,6 +17,7 @@ public class EditorTextField extends EditorField
     public EditorTextField(String labelText, String inputText)
     {
     	super(labelText, new JTextField(inputText));
+    	setEditable(editable);
     }
     
     /**
