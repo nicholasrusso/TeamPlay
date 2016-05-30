@@ -57,12 +57,12 @@ public class UserInfoPanel extends JPanel {
 		usernameField = new JTextField();
 		usernameField.setBackground(windowColor);
 		usernameField.setEditable(false);
-		GridBagConstraints gbc_userNameField = new GridBagConstraints();
-		gbc_userNameField.insets = new Insets(0, 0, 5, 0);
-		gbc_userNameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_userNameField.gridx = 1;
-		gbc_userNameField.gridy = 2;
-		add(usernameField, gbc_userNameField);
+		GridBagConstraints gbcUserNameField = new GridBagConstraints();
+		gbcUserNameField.insets = new Insets(0, 0, 5, 0);
+		gbcUserNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbcUserNameField.gridx = 1;
+		gbcUserNameField.gridy = 2;
+		add(usernameField, gbcUserNameField);
 		usernameField.setColumns(10);
 		
 		JLabel lblFirstName = new JLabel("First Name");
@@ -76,12 +76,12 @@ public class UserInfoPanel extends JPanel {
 		firstNameField = new JTextField();
 		firstNameField.setBackground(windowColor);
 		firstNameField.setEditable(false);
-		GridBagConstraints gbc_firstName = new GridBagConstraints();
-		gbc_firstName.insets = new Insets(0, 0, 5, 0);
-		gbc_firstName.fill = GridBagConstraints.HORIZONTAL;
-		gbc_firstName.gridx = 1;
-		gbc_firstName.gridy = 3;
-		add(firstNameField, gbc_firstName);
+		GridBagConstraints gbcFirstName = new GridBagConstraints();
+		gbcFirstName.insets = new Insets(0, 0, 5, 0);
+		gbcFirstName.fill = GridBagConstraints.HORIZONTAL;
+		gbcFirstName.gridx = 1;
+		gbcFirstName.gridy = 3;
+		add(firstNameField, gbcFirstName);
 		firstNameField.setColumns(10);
 		
 		JLabel lblLastName = new JLabel("Last Name");
@@ -114,12 +114,12 @@ public class UserInfoPanel extends JPanel {
 		emailField = new JTextField();
 		emailField.setBackground(windowColor);
 		emailField.setEditable(false);
-		GridBagConstraints gbc_emailField = new GridBagConstraints();
-		gbc_emailField.insets = new Insets(0, 0, 5, 0);
-		gbc_emailField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_emailField.gridx = 1;
-		gbc_emailField.gridy = 5;
-		add(emailField, gbc_emailField);
+		GridBagConstraints gbcEmailField = new GridBagConstraints();
+		gbcEmailField.insets = new Insets(0, 0, 5, 0);
+		gbcEmailField.fill = GridBagConstraints.HORIZONTAL;
+		gbcEmailField.gridx = 1;
+		gbcEmailField.gridy = 5;
+		add(emailField, gbcEmailField);
 		emailField.setColumns(10);
 		
 		JLabel lblTeams = new JLabel("Teams");
@@ -133,12 +133,12 @@ public class UserInfoPanel extends JPanel {
 		teamsField = new JTextField();
 		teamsField.setBackground(windowColor);
 		teamsField.setEditable(false);
-		GridBagConstraints gbc_teamsField = new GridBagConstraints();
-		gbc_teamsField.insets = new Insets(0, 0, 5, 0);
-		gbc_teamsField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_teamsField.gridx = 1;
-		gbc_teamsField.gridy = 6;
-		add(teamsField, gbc_teamsField);
+		GridBagConstraints gbcTeamsField = new GridBagConstraints();
+		gbcTeamsField.insets = new Insets(0, 0, 5, 0);
+		gbcTeamsField.fill = GridBagConstraints.HORIZONTAL;
+		gbcTeamsField.gridx = 1;
+		gbcTeamsField.gridy = 6;
+		add(teamsField, gbcTeamsField);
 		teamsField.setColumns(10);
 		
 		JLabel lblWins = new JLabel("Wins");
@@ -152,12 +152,12 @@ public class UserInfoPanel extends JPanel {
 		winsField = new JTextField();
 		winsField.setBackground(windowColor);
 		winsField.setEditable(false);
-		GridBagConstraints gbc_winsField = new GridBagConstraints();
-		gbc_winsField.insets = new Insets(0, 0, 5, 0);
-		gbc_winsField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_winsField.gridx = 1;
-		gbc_winsField.gridy = 7;
-		add(winsField, gbc_winsField);
+		GridBagConstraints gbcWinsField = new GridBagConstraints();
+		gbcWinsField.insets = new Insets(0, 0, 5, 0);
+		gbcWinsField.fill = GridBagConstraints.HORIZONTAL;
+		gbcWinsField.gridx = 1;
+		gbcWinsField.gridy = 7;
+		add(winsField, gbcWinsField);
 		winsField.setColumns(10);
 		
 		JLabel lblLosses = new JLabel("Losses");
@@ -180,11 +180,11 @@ public class UserInfoPanel extends JPanel {
 		lossesField.setColumns(10);
 		
 		JButton backButton = new JButton("Back");
-		GridBagConstraints gbc_backButton = new GridBagConstraints();
-		gbc_backButton.gridx = 1;
-		gbc_backButton.gridy = 9;
+		GridBagConstraints gbcBackButton = new GridBagConstraints();
+		gbcBackButton.gridx = 1;
+		gbcBackButton.gridy = 9;
 		backButton.addActionListener(new backToSearchButtonListener());
-		add(backButton, gbc_backButton);
+		add(backButton, gbcBackButton);
 
 	}
 }
