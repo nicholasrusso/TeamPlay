@@ -13,7 +13,7 @@ import view.EditorPasswordField;
 public class TestEditorPasswordField {
 	
 	@Test
-    public void testGetPasswordInput() throws Exception
+    public void testGetPasswordInput()
     {
 		EditorPasswordField test = new EditorPasswordField("Test");
 		String txt = "password";
