@@ -1,6 +1,4 @@
-package user;
-
-import email.EmailUtilities;
+package email;
 
 /**
  * Created by charliegels on 4/11/16.

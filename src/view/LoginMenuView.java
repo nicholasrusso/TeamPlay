@@ -3,13 +3,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -91,12 +89,14 @@ public class LoginMenuView extends JLayeredPane {
         	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             Thread t = new Thread(){
+                  @Override
                     public void run(){
-                        int i = 0;
+                        
                         for(i = 0 ; i <= 100 ; i++){
                             final int percent = i;
-                            SwingUtilities.invokeLater(new Runnable() {
-                                    public void run() {
+                            SwingUtilities.invokeLater(Runnable rn = new Runnable() {
+                                  @Override  
+                                  public void run() {
                                         progressBar.setValue(percent);
                                         progressBar.setStringPainted(true);
 
@@ -124,7 +124,8 @@ public class LoginMenuView extends JLayeredPane {
             t.start();       
 
         }
-        
+     
+        @Override
         public void actionPerformed(ActionEvent ae) 
         {            
             if ("root".equals(jpfPassword.getText())

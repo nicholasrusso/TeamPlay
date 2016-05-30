@@ -18,8 +18,6 @@ public class TestRegistration {
 		// need to delete from database before testing if it exists
 		boolean test = Registration.registerUser("Cgels","password", "Charlie", "Gels", "cgels@calpoly.edu");
 		assertTrue(test);
-//		test = Registration.registerUser("Cgels","password", "Charlie", "Gels", "cgels@calpoly.edu");
-//		assertFalse(test);
 	}
 	
 	@Test

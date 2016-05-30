@@ -14,13 +14,13 @@ import org.junit.Test;
 public class TestAppSettings {
 
 	@Test
-	public void TestGetInstanceLength() {
+	public void testGetInstanceLength() {
 		Properties props = AppSettings.getInstance(); 
-		assertTrue(props.keySet().size() > 0);
+		assertFalse(props.keySet().isEmpty());
 	}
 	
 	@Test
-	public void TestGetInstanceIsSingleton() {
+	public void testGetInstanceIsSingleton() {
 		Properties props1 = AppSettings.getInstance();
 		Properties props2 = AppSettings.getInstance(); 
 		assertTrue(props1 == props2);
