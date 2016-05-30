@@ -6,19 +6,19 @@ import tournament.Tournament;
 import junit.framework.TestCase;
 import java.util.*;
 /**
- *
- * @author nicholasrusso
+ * Test for Tournament Class
+ * @author Nicholas Russo
  */
 public class TestTournament extends TestCase 
 {
-	private ArrayList<SoccerPlayer> players;
-	private ArrayList<User> users;
-	private Tournament tournament;
-	private User user1;
-	private User user2;
-	private User user3;
-	private User user4;
-	private static final String TEAM = "Barcelona";
+	private ArrayList<SoccerPlayer> list;
+	private ArrayList<User> userList;
+	private Tournament tourn;
+	private User users1;
+	private User users2;
+	private User users3;
+	private User users4;
+	private static final String BARCA = "Barcelona";
 	
     
     public TestTournament(String testName) 
@@ -28,116 +28,125 @@ public class TestTournament extends TestCase
     
     @Override
     protected void setUp() {
-        players = new ArrayList<>();
-        players.add(new Forward("Messi", TEAM));
-        players.add(new Forward("Saurez", TEAM));
-        players.add(new Forward("Neymar", TEAM));
-        players.add(new Midfielder("Xavi", TEAM));
-        players.add(new Midfielder("Iniesta", TEAM));
-        players.add(new Midfielder("Rakitic", TEAM));
-        players.add(new Midfielder("Busquets", TEAM));
-        players.add(new Defender("Pique", TEAM));
-        players.add(new Defender("Mascherano", TEAM));
-        players.add(new Defender("Dani Alves", TEAM));
-        players.add(new Defender("Jordi Alba", TEAM));
-        tournament = new Tournament("Test Tournament", 3, players);
-        user1 = new User();
-        user1.setFirstName("Nick");
-        user1.setLastName("Russo");
-        user1.setUsername("nrusso");
-        user2 = new User();
-        user2.setFirstName("rick");
-        user2.setLastName("nusso");
-        user2.setUsername("russo");
-        user3 = new User();
-        user3.setFirstName("asdf");
-        user3.setLastName("asdf");
-        user3.setUsername("fdas");
-        user4 = new User();
-        user4.setFirstName("no");
-        user4.setLastName("nope");
-        user4.setUsername("nah");
-        users = new ArrayList<>();
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
-        tournament.addUser(user1);
-        tournament.addUser(user2);
-        tournament.addUser(user3);
+        list = new ArrayList<>();
+        list.add(new Forward("Messi", BARCA));
+        list.add(new Forward("Saurez", BARCA));
+        list.add(new Forward("Neymar", BARCA));
+        list.add(new Midfielder("Xavi", BARCA));
+        list.add(new Midfielder("Iniesta", BARCA));
+        list.add(new Midfielder("Rakitic", BARCA));
+        list.add(new Midfielder("Busquets", BARCA));
+        list.add(new Defender("Pique", BARCA));
+        list.add(new Defender("Mascherano", BARCA));
+        list.add(new Defender("Dani Alves", BARCA));
+        list.add(new Defender("Jordi Alba", BARCA));
+        tourn = new Tournament("Test Tournament", 3, list);
+        users1 = new User();
+        users1.setFirstName("Nick");
+        users1.setLastName("Russo");
+        users1.setUsername("nrusso");
+        users2 = new User();
+        users2.setFirstName("rick");
+        users2.setLastName("nusso");
+        users2.setUsername("russo");
+        users3 = new User();
+        users3.setFirstName("asdf");
+        users3.setLastName("asdf");
+        users3.setUsername("fdas");
+        users4 = new User();
+        users4.setFirstName("no");
+        users4.setLastName("nope");
+        users4.setUsername("nah");
+        userList = new ArrayList<>();
+        userList.add(users1);
+        userList.add(users2);
+        userList.add(users3);
+        tourn.addUser(users1);
+        tourn.addUser(users2);
+        tourn.addUser(users3);
     }
 
 
     /**
      * Test of getPlayers
+     * @author Nicholas Russo
      */
     public void testGetPlayers() 
     {
-        assertEquals(players, tournament.getPlayers());
+        assertEquals(list, tourn.getPlayers());
     }
 
     /**
      * Test of getUsers
+     * @author Nicholas Russo
      */
     public void testGetUsers() 
     {
-        assertEquals(users, tournament.getUsers());
+        assertEquals(userList, tourn.getUsers());
     }
 
 
     /**
      * Test of getName
+     * @author Nicholas Russo
      */
     public void testGetName() 
     {
-        assertEquals("Test Tournament", tournament.getName());
+        assertEquals("Test Tournament", tourn.getName());
     }
 
     /**
-     * Test of getMaxUsers
+     * Test of getMaxUser
+     * @author Nicholas Russo
      */
     public void testGetMaxUsers() 
     {
-        assertEquals(3, tournament.getMaxUsers());
+        assertEquals(3, tourn.getMaxUsers());
     }
 
     /**
      * Test of addUser General
+     * @author Nicholas Russo
      */
     public void testAddUser() 
     {   
-    	tournament.removeUser(user1);
-        assertTrue(tournament.addUser(user1));
+    	tourn.removeUser(users1);
+        assertTrue(tourn.addUser(users1));
     }
     
     /**
      * Test of addUser when there is a "double" add
+     * @author Nicholas Russo
      */
     public void testAddUserDoubleAdd() 
     {
-    	assertFalse(tournament.addUser(user2));
+    	assertFalse(tourn.addUser(users2));
     }
     /**
      * Test of addUser when the tournament is full
+     * @author Nicholas Russo
      */
     public void testAddUserOverLimit() 
     {
-        assertFalse(tournament.addUser(user4));
+        assertFalse(tourn.addUser(users4));
     }
 
     /**
      * Test of removeUser when user exist
+     * @author Nicholas Russo
      */
     public void testRemoveUserDoesExist() 
     {
-        assertTrue(tournament.removeUser(user3));
+        assertTrue(tourn.removeUser(users3));
     }
     
     /**
      * Test of removeUser when user does not exist
+     *  @author Nicholas Russo
      */
     public void testRemoveUserDoesNotExit() 
     {
-        assertFalse(tournament.removeUser(user4));
+        assertFalse(tourn.removeUser(users4));
     }
 
     

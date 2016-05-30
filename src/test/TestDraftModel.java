@@ -9,7 +9,7 @@ import java.util.*;
 import draft.DraftModel;
 /**
  *
- * @author nicholasrusso
+ * @author Nicholas Russo
  */
 public class TestDraftModel extends TestCase 
 {
@@ -73,7 +73,8 @@ public class TestDraftModel extends TestCase
 
 
     /**
-     * Test of getPlayers
+     * Test of getLoopIterates
+     * @author Nicholas Russo
      */
     public void testGetLoopIterates() 
     {
