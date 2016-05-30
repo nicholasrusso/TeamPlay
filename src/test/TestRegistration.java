@@ -15,21 +15,14 @@ public class TestRegistration {
 	@Test
 	public void testRegisterUser()
 	{
-		// need to delete from database before testing if it exists
-		boolean test = Registration.registerUser("Cgels","password", "Charlie", "Gels", "cgels@calpoly.edu");
-		assertTrue(test);
-	}
-	
-	@Test
-	public void testUsernameExistsFalse()
-	{
 		boolean test = Registration.usernameExists("cgels");
 		assertFalse(test);
-	}
-	
-	@Test public void testUsernameExistsTrue()
-	{
-		boolean test = Registration.usernameExists("Cgels");
+		
+		// need to delete from database before testing if it exists
+		test = Registration.registerUser("Cgels","password", "Charlie", "Gels", "cgels@calpoly.edu");
+		assertTrue(test);
+		
+		test = Registration.usernameExists("Cgels");
 		assertTrue(test);
 	}
 }

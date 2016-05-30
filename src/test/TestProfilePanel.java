@@ -55,6 +55,9 @@ public class TestProfilePanel {
     	assertTrue(hash.equals(test.getPassword()));
     }
 	
+	/**
+	 * Helper method that integrates multiple user methods and tests the model of the Profile panel.
+	 * */
 	private static User testSetup()
 	{
 		User u = new User();
