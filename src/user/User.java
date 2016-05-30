@@ -1,18 +1,21 @@
 package user;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Logger;
 
-import teams.Team;
-import security.AppSettings;
 import db.DBFactory;
 import email.Email;
+import security.AppSettings;
 import security.PasswordUtilities;
+import soccerplayer.SoccerPlayer;
+import teams.Team;
 
 /**
  * @author charliegels
@@ -35,6 +38,7 @@ public class User
     private boolean allValidated;
     private HashMap<String, Team> teams;
     private String passwordHash;
+    private HashMap<SoccerPlayer, Integer> soccerPlayerUsage;
 
     /***
      * Default constructor for user. User fields must be validated.
@@ -48,6 +52,7 @@ public class User
         email = new Email();
         allValidated = false;
         teams = new HashMap<>();
+        soccerPlayerUsage = new HashMap<>();
         passwordHash= props.getProperty("emptyString");
     }
 
@@ -251,13 +256,38 @@ public class User
     		LOGGER.severe(Arrays.toString(e.getStackTrace()));
     	}
     }
+    
     public Team getTeam(String tournamentName)
     {
             return teams.get(tournamentName);
     }
+    
     public void setTeam(String tournament, Team team)
     {
             teams.put(tournament, team);
+    }
+    
+    public void generateDummyPlayerUsages(List<SoccerPlayer> playerPool)
+    {
+    	Random gen = new Random();
+    	for (SoccerPlayer sp : playerPool)
+    	{
+    		Integer count = gen.nextInt(50);
+    		soccerPlayerUsage.put(sp, count);
+    	}
+    }
+    
+    public void incrementPlayerUsage(SoccerPlayer drafted)
+    {
+    	Integer newCount = soccerPlayerUsage.get(drafted) + 1;
+    	System.out.printf("old val: %d\n", newCount - 1);
+    	soccerPlayerUsage.put(drafted, newCount);
+    	System.out.printf("new val: %d\n", soccerPlayerUsage.get(drafted));
+    }
+    
+    public Integer getPlayerUsage(SoccerPlayer query)
+    {
+    	return soccerPlayerUsage.get(query);
     }
     
 }

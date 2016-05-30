@@ -24,6 +24,7 @@ public class DraftModel extends Observable{
     private Timer clock;
     private String time;
     private boolean draftOver;
+    
     public DraftModel(Tournament tournament) 
     {
         this.userPosition = 0;
@@ -35,6 +36,12 @@ public class DraftModel extends Observable{
         turnSeconds = 10;
         selection = false;
         draftOver = false;
+        //dummy data
+        
+        for (User u : users)
+        {
+        	u.generateDummyPlayerUsages(tournament.getPlayers());
+        }
     }
 
 
@@ -90,6 +97,7 @@ public class DraftModel extends Observable{
 
     public void addPlayer(int location)
     {
+    	currentUser.incrementPlayerUsage(randomPlayers[location]);
         currentUser.getTeam(tournament.getName()).addPlayer(randomPlayers[location]);
         tournament.removePlayer(randomPlayers[location]);
     }
