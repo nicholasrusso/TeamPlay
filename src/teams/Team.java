@@ -8,9 +8,8 @@ import soccerplayer.SoccerPlayer;
 public class Team {
    private String name = "";
    private String formation = "";
-   public List<SoccerPlayer> listOfPlayers;
+   private List<SoccerPlayer> listOfPlayers;
 
-   // RedMine ID: 512297
    public Team(String name)
    {
       this.name = name;

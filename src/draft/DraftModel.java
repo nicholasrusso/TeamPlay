@@ -22,7 +22,7 @@ public class DraftModel extends Observable{
     private int draftRound;
     private boolean selection;
     private Timer clock;
-    private static String time;
+    private String time;
     private boolean draftOver;
     public DraftModel(Tournament tournament) 
     {
@@ -97,7 +97,7 @@ public class DraftModel extends Observable{
             int second = 60;
             @Override
             public void run() {
-                time = second-- + " seconds.";
+            	DraftModel.this.time = second-- + " seconds.";
                 DraftModel.this.setChanged();
                 DraftModel.this.notifyObservers();
             }   
