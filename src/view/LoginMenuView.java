@@ -112,15 +112,14 @@ public class LoginMenuView extends JLayeredPane {
                                 frame.getContentPane().add(new MainMenuView(u));
                                 frame.getContentPane().validate();
                                 frame.getContentPane().repaint();
-                            }
-                            catch(Exception e) {
-                               log.severe(e.toString());                               
-                            }
+                        }
+                        catch(Exception e) {
+                           log.severe(e.toString());                               
                         }
                     }
                 };
             t.start(); 
-    }
+        }
      
         @Override
         public void actionPerformed(ActionEvent ae) 
