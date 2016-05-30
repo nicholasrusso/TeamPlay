@@ -14,11 +14,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import db.DBFactory;
+import draft.DraftGui;
 
 import javax.swing.event.ChangeEvent;
 
 import soccerplayer.*;
 import teams.*;
+import user.User;
+import user.UserSearch;
 import view.MainMenuView;
 
 public class CreateTournament {
@@ -145,6 +148,22 @@ public class CreateTournament {
         	 System.out.println("name: " + tournamentName);
         	 System.out.println("numberUsers: " + numberUsers);
         	 //System.out.println("playerPool: " + playerPool);
+        	 
+        	 
+        	 Tournament tournament = new Tournament(tournamentName, numberUsers, playerPool);
+        	 UserSearch search = new UserSearch("");
+        	 ArrayList<User> list = (ArrayList<User>) search.getUsers();
+        	 for (User user : list)
+        	 {
+        		 tournament.addUser(user);
+        	 }
+        	 DraftGui gui = new DraftGui(tournament);
+        	 Component component = (Component) ae.getSource();
+         	 JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	 frame.getContentPane().removeAll();
+             frame.getContentPane().add(gui.getPanel());
+             frame.getContentPane().revalidate();
+             frame.getContentPane().repaint();
          }
       }
 
