@@ -4,17 +4,11 @@ import java.util.*;
 
 import javax.swing.*;
 
-import soccerplayer.Defender;
-import soccerplayer.Forward;
-import soccerplayer.Midfielder;
 import soccerplayer.SoccerPlayer;
 import tournament.Tournament;
-import user.User;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class DraftGui implements Observer
 {

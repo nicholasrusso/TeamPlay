@@ -8,6 +8,7 @@ public interface SoccerPlayer
     
     public String getTeam() ;
     
+    @Override
     public String toString() ;
     
     public int score() ;
