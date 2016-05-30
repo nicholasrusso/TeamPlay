@@ -35,6 +35,7 @@ public class LoginMenuView extends JLayeredPane {
     private JButton login;
     private JButton createAcct;
     private JProgressBar progressBar;
+    public static User gUser;
 
 
 	public LoginMenuView() {
@@ -101,6 +102,7 @@ public class LoginMenuView extends JLayeredPane {
             && "root".equals(jtfUsername.getText())) {
                 // upon successful login, reference to user that is logged into the system (needed by rest of components)
             	User user = new UserSearch("root").getUsers().get(0);
+            	LoginMenuView.gUser = user;
                 updateBar(ae, user);
             }
             else {
@@ -129,7 +131,7 @@ public class LoginMenuView extends JLayeredPane {
             	JFrame frame = (JFrame) SwingUtilities.getRoot(progressBar);
                     Thread.sleep(500);
                     frame.getContentPane().removeAll();           
-                    frame.getContentPane().add(new MainMenuView(MainMenuView.user));
+                    frame.getContentPane().add(new MainMenuView(LoginMenuView.gUser));
                     frame.getContentPane().validate();
                     frame.getContentPane().repaint();
             }
