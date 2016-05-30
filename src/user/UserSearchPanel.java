@@ -37,40 +37,38 @@ public class UserSearchPanel extends JPanel {
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setHorizontalAlignment(SwingConstants.TRAILING);
-		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
-		gbc_lblUsername.anchor = GridBagConstraints.EAST;
-		gbc_lblUsername.gridwidth = 3;
-		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUsername.gridx = 1;
-		gbc_lblUsername.gridy = 1;
-		add(lblUsername, gbc_lblUsername);
+		GridBagConstraints gbcLblUsername = new GridBagConstraints();
+		gbcLblUsername.anchor = GridBagConstraints.EAST;
+		gbcLblUsername.gridwidth = 3;
+		gbcLblUsername.insets = new Insets(0, 0, 5, 5);
+		gbcLblUsername.gridx = 1;
+		gbcLblUsername.gridy = 1;
+		add(lblUsername, gbcLblUsername);
 		
 		usernameTextField = new JTextField();
-		GridBagConstraints gbc_usernameTextField = new GridBagConstraints();
-		gbc_usernameTextField.gridwidth = 6;
-		gbc_usernameTextField.insets = new Insets(0, 0, 5, 5);
-		gbc_usernameTextField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_usernameTextField.gridx = 4;
-		gbc_usernameTextField.gridy = 1;
-		add(usernameTextField, gbc_usernameTextField);
+		GridBagConstraints gbcUsernameTextField = new GridBagConstraints();
+		gbcUsernameTextField.gridwidth = 6;
+		gbcUsernameTextField.insets = new Insets(0, 0, 5, 5);
+		gbcUsernameTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbcUsernameTextField.gridx = 4;
+		gbcUsernameTextField.gridy = 1;
+		add(usernameTextField, gbcUsernameTextField);
 		usernameTextField.setColumns(10);
 		
 		final JList<String> resultList = new JList<>();
-		GridBagConstraints gbc_resultList = new GridBagConstraints();
-		gbc_resultList.gridheight = 6;
-		gbc_resultList.gridwidth = 9;
-		gbc_resultList.insets = new Insets(0, 0, 5, 5);
-		gbc_resultList.fill = GridBagConstraints.BOTH;
-		gbc_resultList.gridx = 4;
-		gbc_resultList.gridy = 2;
-		add(resultList, gbc_resultList);
+		GridBagConstraints gbcResultList = new GridBagConstraints();
+		gbcResultList.gridheight = 6;
+		gbcResultList.gridwidth = 9;
+		gbcResultList.insets = new Insets(0, 0, 5, 5);
+		gbcResultList.fill = GridBagConstraints.BOTH;
+		gbcResultList.gridx = 4;
+		gbcResultList.gridy = 2;
+		add(resultList, gbcResultList);
 		
 		JButton btnSearch = new JButton("Search");
-		btnSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnSearch.addActionListener(element -> {
 				UserSearch uSearch = new UserSearch(usernameTextField.getText());
 				ArrayList<User> users = (ArrayList<User>) uSearch.getUsers();
-				ArrayList<String> resultsData = new ArrayList<String>();
 				
 				DefaultListModel<String> resultModel = new DefaultListModel<>();
 				if (users.size() > 0) {
@@ -83,7 +81,6 @@ public class UserSearchPanel extends JPanel {
 					System.out.println("No users found.");
 				}
 				resultList.setModel(resultModel);
-			}
 		});
 		GridBagConstraints gbc_btnSearch = new GridBagConstraints();
 		gbc_btnSearch.anchor = GridBagConstraints.WEST;
@@ -103,7 +100,7 @@ public class UserSearchPanel extends JPanel {
 		add(lblSearchResults, gbc_lblSearchResults);
 		
 		JButton btnViewUser = new JButton("View User");
-		btnViewUser.addActionListener(new viewUserButtonListener());
+		btnViewUser.addActionListener(new ViewUserButtonListener());
 		
 		JButton btnBack = new JButton("Back");
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
@@ -112,7 +109,7 @@ public class UserSearchPanel extends JPanel {
 		gbc_btnBack.gridy = 8;
 		add(btnBack, gbc_btnBack);
 		
-		btnBack.addActionListener(new backToMainMenuListener());
+		btnBack.addActionListener(new BackToMainMenuListener());
 		
 
 		GridBagConstraints gbc_btnViewUser = new GridBagConstraints();
@@ -123,7 +120,7 @@ public class UserSearchPanel extends JPanel {
 
 	}
 	
-	class viewUserButtonListener implements ActionListener
+	class ViewUserButtonListener implements ActionListener
     {
 		public void actionPerformed(ActionEvent e) {
 			Component component = (Component) e.getSource();
@@ -139,7 +136,7 @@ public class UserSearchPanel extends JPanel {
 		}
     }
 	
-	class backToMainMenuListener implements ActionListener
+	class BackToMainMenuListener implements ActionListener
     {
 		public void actionPerformed(ActionEvent e) {
 			Component component = (Component) e.getSource();
@@ -152,5 +149,6 @@ public class UserSearchPanel extends JPanel {
             frame.getContentPane().repaint();
 		}
     }
+	
 
 }
