@@ -8,7 +8,7 @@ import java.util.TimerTask;
 
 import user.*;
 import tournament.*;
-import soccerPlayer.*;
+import soccerplayer.*;
 import teams.Team;
 
 public class DraftModel extends Observable{

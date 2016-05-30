@@ -1,7 +1,7 @@
 package tournament;
 
 import java.util.*;
-import soccerPlayer.*;
+import soccerplayer.*;
 import user.*;
 /**
  * Tournament Class.
