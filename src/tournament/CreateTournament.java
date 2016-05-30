@@ -31,7 +31,7 @@ public class CreateTournament {
    private String name = "name";
    private String tournamentName = "";
    private static final Logger log = Logger.getLogger("CreateTournament");
-   private ArrayList<SoccerPlayer> playerPool = new ArrayList<SoccerPlayer>();
+   private ArrayList<SoccerPlayer> playerPool = new ArrayList<>();
    private int numberUsers = 2;
    private JPanel tournamentPanel;
 
