@@ -6,10 +6,13 @@ import javax.swing.*;
 
 import soccerplayer.SoccerPlayer;
 import tournament.Tournament;
+import view.MainMenuView;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
 
 public class DraftGui implements Observer
 {
@@ -22,7 +25,10 @@ public class DraftGui implements Observer
     private JTextField player1Name;
     private JTextField player2Name;
     private JTextField player3Name;
-    private JTextArea currentUserTeamTable;
+    private JTextArea forward;
+    private JTextArea mids;
+    private JTextArea defs;
+    private JTextArea keeps;
     private JButton quitDraftButton;
     private JButton startDraftButton;
     private JButton btnPlayer1;
@@ -36,7 +42,6 @@ public class DraftGui implements Observer
     private JTextArea userNameTA;
     private JTextArea userNameInfoTA;
     private JTextArea numOfPlayers;
-    private JTextArea txtrFormationGrap;
     private JTextArea teamNameTA;
     private JPanel playerSelectionPanel;
     private JPanel timerPanel;
@@ -45,6 +50,12 @@ public class DraftGui implements Observer
     private JComboBox<String> formationComboBox;
     private static final String FONT = "Lucida Grande";  
     private DraftModel model;
+    private JTextField txtForwards;
+    private JTextField txtMidfielders;
+    private JTextField txtDefenders;
+    private JTextField txtGoalkeepers;
+    private JTextArea textArea_2;
+    private JTextArea textArea;
     
 
     /**
@@ -161,9 +172,61 @@ public class DraftGui implements Observer
         frame.add(currentUserTeamPanel);
         currentUserTeamPanel.setLayout(null);
         
-        currentUserTeamTable = new JTextArea();
-        currentUserTeamTable.setBounds(6, 6, 449, 150);
-        currentUserTeamPanel.add(currentUserTeamTable);
+        forward = new JTextArea();
+        forward.setEditable(false);
+        forward.setWrapStyleWord(true);
+        forward.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        forward.setBounds(5, 22, 112, 134);
+        currentUserTeamPanel.add(forward);
+        
+        mids = new JTextArea();
+        mids.setEditable(false);
+        mids.setWrapStyleWord(true);
+        mids.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        mids.setBounds(119, 22, 110, 134);
+        currentUserTeamPanel.add(mids);
+        
+        defs = new JTextArea();
+        defs.setEditable(false);
+        defs.setWrapStyleWord(true);
+        defs.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        defs.setBounds(231, 22, 112, 134);
+        currentUserTeamPanel.add(defs);
+        
+        keeps = new JTextArea();
+        keeps.setEditable(false);
+        keeps.setWrapStyleWord(true);
+        keeps.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        keeps.setBounds(345, 22, 110, 134);
+        currentUserTeamPanel.add(keeps);
+        
+        txtForwards = new JTextField();
+        txtForwards.setHorizontalAlignment(SwingConstants.CENTER);
+        txtForwards.setText("Forwards");
+        txtForwards.setBounds(5, 3, 112, 16);
+        currentUserTeamPanel.add(txtForwards);
+        txtForwards.setColumns(10);
+        
+        txtMidfielders = new JTextField();
+        txtMidfielders.setText("Midfielders");
+        txtMidfielders.setHorizontalAlignment(SwingConstants.CENTER);
+        txtMidfielders.setColumns(10);
+        txtMidfielders.setBounds(119, 3, 112, 16);
+        currentUserTeamPanel.add(txtMidfielders);
+        
+        txtDefenders = new JTextField();
+        txtDefenders.setText("Defenders");
+        txtDefenders.setHorizontalAlignment(SwingConstants.CENTER);
+        txtDefenders.setColumns(10);
+        txtDefenders.setBounds(231, 3, 112, 16);
+        currentUserTeamPanel.add(txtDefenders);
+        
+        txtGoalkeepers = new JTextField();
+        txtGoalkeepers.setText("Goalkeepers");
+        txtGoalkeepers.setHorizontalAlignment(SwingConstants.CENTER);
+        txtGoalkeepers.setColumns(10);
+        txtGoalkeepers.setBounds(345, 3, 112, 16);
+        currentUserTeamPanel.add(txtGoalkeepers);
         
         txtCurrentTeam = new JTextField();
         txtCurrentTeam.setBackground(SystemColor.window);
@@ -184,7 +247,7 @@ public class DraftGui implements Observer
         txtrTeamName.setEditable(false);
         txtrTeamName.setFont(new Font(FONT, Font.PLAIN, 16));
         txtrTeamName.setText("Team Name:");
-        txtrTeamName.setBounds(6, 6, 102, 27);
+        txtrTeamName.setBounds(6, 6, 102, 20);
         teamStatsPanel.add(txtrTeamName);
         
         txtrNumberOfPlayers = new JTextArea();
@@ -215,18 +278,28 @@ public class DraftGui implements Observer
         numOfPlayers.setBounds(261, 182, 38, 27);
         teamStatsPanel.add(numOfPlayers);
         
-        txtrFormationGrap = new JTextArea();
-        txtrFormationGrap.setEditable(false);
-        txtrFormationGrap.setText("Formation Graph");
-        txtrFormationGrap.setBounds(6, 38, 297, 132);
-        teamStatsPanel.add(txtrFormationGrap);
-        
         teamNameTA = new JTextArea();
         teamNameTA.setBackground(SystemColor.window);
         teamNameTA.setText("Team");
         teamNameTA.setFont(new Font(FONT, Font.PLAIN, 16));
-        teamNameTA.setBounds(120, 6, 184, 27);
+        teamNameTA.setBounds(120, 6, 184, 20);
         teamStatsPanel.add(teamNameTA);
+        
+        textArea_2 = new JTextArea();
+        textArea_2.setWrapStyleWord(true);
+        textArea_2.setText((String) null);
+        textArea_2.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        textArea_2.setEditable(false);
+        textArea_2.setBounds(16, 29, 138, 151);
+        teamStatsPanel.add(textArea_2);
+        
+        textArea = new JTextArea();
+        textArea.setWrapStyleWord(true);
+        textArea.setText((String) null);
+        textArea.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        textArea.setEditable(false);
+        textArea.setBounds(161, 29, 138, 151);
+        teamStatsPanel.add(textArea);
         
         txtTeamStatistics = new JTextField();
         txtTeamStatistics.setBackground(SystemColor.window);
@@ -250,6 +323,7 @@ public class DraftGui implements Observer
             frame.getContentPane().repaint();
         });
         frame.add(quitDraftButton);
+        
         
         saveButton = new JButton("Save");
         saveButton.setBounds(477, 519, 317, 54);
@@ -289,6 +363,7 @@ public class DraftGui implements Observer
         frame.add(saveButton);
         frame.setSize(800, 591);
         frame.setVisible(true);
+        update(null, null);
         
     }
 
@@ -329,7 +404,15 @@ public class DraftGui implements Observer
         	timerTxt.setText("DraftOver");
         userNameTA.setText(model.getCurrentUserName());
         startDraftButton.setEnabled(!model.getSelection());
-        currentUserTeamTable.setText(model.getTeamToString());
+        forward.setText(model.getTeamToString("forws"));
+        mids.setText(model.getTeamToString("mids"));
+        defs.setText(model.getTeamToString("defs"));
+        keeps.setText(model.getTeamToString("keeps"));
+        if (model.hasTeam() && model.getTeamStats().indexOf("\n\n") != -1) 
+        {
+	        textArea.setText(model.getTeamStats().substring(0, model.getTeamStats().indexOf("\n\n")).trim());
+	        textArea_2.setText(model.getTeamStats().substring(model.getTeamStats().indexOf("\n\n")).trim());
+    	}
     }
     
     public JPanel getPanel()

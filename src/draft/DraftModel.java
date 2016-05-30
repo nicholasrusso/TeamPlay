@@ -185,7 +185,7 @@ public class DraftModel extends Observable{
     	return currentUser.getFirstName() + " " + currentUser.getLastName();
     }
     
-    public String getTeamToString()
+    public String getTeamToString(String type)
     {
     	String result = "";
     	ArrayList<SoccerPlayer> forwards = new ArrayList<>();
@@ -250,6 +250,22 @@ public class DraftModel extends Observable{
     public void setTeamFormation(String formation)
     {
     	getCurrentUserTeam().setFormation(formation);
+    }
+    
+    public String getTeamStats()
+    {
+    	String result = "";
+    	int index = 0;
+    	int length = getCurrentUserTeam().getTeam().size();
+    	int mid = length/2;
+    	for (SoccerPlayer player: getCurrentUserTeam().getTeam())
+    	{
+    		result += player.getName() + " " + currentUser.getPlayerUsage(player).toString() + "\n";
+    		if (index == mid)
+    			result += "\n";
+    		index++;
+    	}
+		return result;
     }
 
     
