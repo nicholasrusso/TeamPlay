@@ -18,12 +18,14 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import java.util.logging.Logger;
 
 import user.RegistrationPane;
 import user.User;
 import user.UserSearch;
 
 public class LoginMenuView extends JLayeredPane {
+    private static final Logger log = Logger.getLogger("LoginMenuView"); 
  
     private JLabel usernameLabel;
     private JLabel passwordLabel;
@@ -88,10 +90,11 @@ public class LoginMenuView extends JLayeredPane {
         	Component component = (Component) ae.getSource();
         	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
-            Thread t = new Thread(){
+            Thread t = new Thread()     
+            {
                   @Override
                     public void run(){
-                       int i = 0; 
+                       int i; 
                         for(i = 0 ; i <= 100 ; i++){
                             final int percent = i;
                             SwingUtilities.invokeLater(new Runnable() {
@@ -105,7 +108,11 @@ public class LoginMenuView extends JLayeredPane {
 
                             try {
                                 Thread.sleep(25);
-                            } catch (InterruptedException e) {}
+                            } 
+                            catch (InterruptedException e) {
+                               log.severe(e.toString());
+                               log.severe("Threading Error.");
+                            }
                         }
                         if (i == 101) {
                             try {
@@ -116,6 +123,8 @@ public class LoginMenuView extends JLayeredPane {
                                 frame.getContentPane().repaint();
                             }
                             catch(Exception e) {
+                               log.severe(e.toString());
+                               log.severe("Error repainting menu");
                             }
                         }
                     }
