@@ -93,28 +93,20 @@ public class LoginMenuView extends JLayeredPane {
             Thread t = new Thread()         
             {
                   @Override
-                    public void run(){
-                       int i; 
-                        for(i = 0 ; i <= 100 ; i++){
+                    public void run(){                        
+                        for(int i = 0 ; i <= 100 ; i++){
                             final int percent = i;
-                            SwingUtilities.invokeLater(
-                                  () -> {
+                            SwingUtilities.invokeLater( () -> {
                                         progressBar.setValue(percent);
-                                        progressBar.setStringPainted(true);
-
-                                    }
-                                );
-
+                            });
                             try {
-                                Thread.sleep(25);
+                               Thread.sleep(25);
                             } 
                             catch (InterruptedException e) {
-                               log.severe(e.toString());
-                               log.severe("Threading Error.");
+                               log.severe(e.toString());                               
                             }
                         }
-                        if (i == 101) {
-                            try {
+                        try {
                                 Thread.sleep(500);
                                 frame.getContentPane().removeAll();           
                                 frame.getContentPane().add(new MainMenuView(u));
@@ -122,16 +114,13 @@ public class LoginMenuView extends JLayeredPane {
                                 frame.getContentPane().repaint();
                             }
                             catch(Exception e) {
-                               log.severe(e.toString());
-                               log.severe("Error repainting menu");
+                               log.severe(e.toString());                               
                             }
                         }
                     }
-
                 };
-            t.start();       
-
-        }
+            t.start(); 
+    }
      
         @Override
         public void actionPerformed(ActionEvent ae) 
