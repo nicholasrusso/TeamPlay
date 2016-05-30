@@ -101,7 +101,7 @@ public class LoginMenuView extends JLayeredPane {
                                   //new Runnable() {
                                   //@Override  
                                   //public void run() {
-                                  element -> {
+                                  () -> {
                                         progressBar.setValue(percent);
                                         progressBar.setStringPainted(true);
 
