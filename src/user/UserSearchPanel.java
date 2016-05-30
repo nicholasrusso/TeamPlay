@@ -71,15 +71,11 @@ public class UserSearchPanel extends JPanel {
 				ArrayList<User> users = (ArrayList<User>) uSearch.getUsers();
 				
 				DefaultListModel<String> resultModel = new DefaultListModel<>();
-				if (users.size() > 0) {
-					System.out.println(users.size() + " users found.");
+				if (!users.isEmpty()) {
 					for (User user : users) {
-						System.out.println(user.getUsername());
 						resultModel.addElement(user.getUsername());
 					}
-				} else {
-					System.out.println("No users found.");
-				}
+				} 
 				resultList.setModel(resultModel);
 		});
 		GridBagConstraints gbcBtnSearch = new GridBagConstraints();
