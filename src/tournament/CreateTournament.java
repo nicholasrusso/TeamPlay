@@ -20,7 +20,6 @@ import draft.DraftGui;
 import javax.swing.event.ChangeEvent;
 
 import soccerplayer.*;
-import teams.*;
 import user.User;
 import user.UserSearch;
 import view.MainMenuView;
@@ -173,7 +172,7 @@ public class CreateTournament {
 
       // Add Submit Button
       JButton submitButton = new JButton("Submit");
-      submitButton.addActionListener(new submitButtonListener());
+      submitButton.addActionListener(new SubmitButtonListener());
       submitButton.setBounds(100, 450, 150, 20);
       tournamentPanel.add(submitButton);
       
@@ -193,7 +192,7 @@ public class CreateTournament {
       
       // Add Back Button
       JButton backButton = new JButton("Back");
-      backButton.addActionListener(new backButtonListener());
+      backButton.addActionListener(new BackButtonListener());
       backButton.setBounds(500, 450, 150, 20);
       tournamentPanel.add(backButton);
 
