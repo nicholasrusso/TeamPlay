@@ -36,7 +36,7 @@ public class LoginMenuView extends JLayeredPane {
     private JButton createAcct;
     private JProgressBar progressBar;
 
-	public LoginMenuView() {
+    public LoginMenuView() {
         usernameLabel = new JLabel("Username");
         passwordLabel = new JLabel("Password");
         statusLabel = new JLabel(" ");
@@ -81,16 +81,16 @@ public class LoginMenuView extends JLayeredPane {
         login.addActionListener(new ProgressListener());
         createAcct.addActionListener(new CreateAcctButtonListener());
         
-	}
-	
+    }
+    
     class ProgressListener implements ActionListener
     {
-    	private User user;
-    	
+        private User user;
+        
         public synchronized void updateBar(ActionEvent ae, final User u) {
-        	this.user = u;
-        	Component component = (Component) ae.getSource();
-        	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+            this.user = u;
+            Component component = (Component) ae.getSource();
+            final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             Thread t = new ProgressBarThread(u);
             t.start(); 
@@ -102,7 +102,7 @@ public class LoginMenuView extends JLayeredPane {
             if ("root".equals(jpfPassword.getText())
             && "root".equals(jtfUsername.getText())) {
                 // upon successful login, reference to user that is logged into the system (needed by rest of components)
-            	User user = new UserSearch("root").getUsers().get(0);
+                User user = new UserSearch("root").getUsers().get(0);
                 updateBar(ae, user);
             }
             else {
@@ -113,13 +113,13 @@ public class LoginMenuView extends JLayeredPane {
     }
     
     class ProgressBarThread extends Thread {
-    	private User user;
-    	
-    	public ProgressBarThread(User user) {
-    		this.user = user;
-    	}
-    	
-    	@Override
+        private User user;
+        
+        public ProgressBarThread(User user) {
+            this.user = user;
+        }
+        
+        @Override
         public void run(){                        
             for(int i = 0 ; i <= 100 ; i++){
                 final int percent = i;
@@ -132,7 +132,7 @@ public class LoginMenuView extends JLayeredPane {
                 }
             }
             try {
-            	JFrame frame = (JFrame) SwingUtilities.getRoot(progressBar);
+                JFrame frame = (JFrame) SwingUtilities.getRoot(progressBar);
                     Thread.sleep(500);
                     frame.getContentPane().removeAll();           
                     frame.getContentPane().add(new MainMenuView(this.user));
@@ -144,15 +144,15 @@ public class LoginMenuView extends JLayeredPane {
             }
         }
 
-    	
+        
     }
     class CreateAcctButtonListener implements ActionListener
     {
-    	@Override
+        @Override
         public void actionPerformed(ActionEvent e) 
         {
-			Component component = (Component) e.getSource();
-        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+            Component component = (Component) e.getSource();
+            JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             frame.getContentPane().removeAll();            
             JPanel registrationPanel = new RegistrationPane();

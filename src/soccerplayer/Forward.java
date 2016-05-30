@@ -50,8 +50,8 @@ public class Forward implements SoccerPlayer
     }
     
     public String getPosition() {
-		return "F";
-	}
+        return "F";
+    }
     
 
 }

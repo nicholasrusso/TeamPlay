@@ -45,9 +45,9 @@ public class Defender implements SoccerPlayer
                
     }
 
-	public String getPosition() {
-		return "D";
-	}
+    public String getPosition() {
+        return "D";
+    }
     
     
 

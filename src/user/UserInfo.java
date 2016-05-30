@@ -2,8 +2,8 @@ package user;
 
 public class UserInfo {
 
-	private UserInfo() {
-		// Static class
-	}
-	
+    private UserInfo() {
+        // Static class
+    }
+    
 }

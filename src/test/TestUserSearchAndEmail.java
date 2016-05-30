@@ -22,29 +22,29 @@ import email.EmailUtilities;
 public class TestUserSearchAndEmail {
 
 
-	/*
-	 * Integration test of UserSearch class and EmailUtilites.
-	 * Find a user and send an email.
-	 */
-	@Test
-	public void test() {
-		Properties props = AppSettings.getInstance();
+    /*
+     * Integration test of UserSearch class and EmailUtilites.
+     * Find a user and send an email.
+     */
+    @Test
+    public void test() {
+        Properties props = AppSettings.getInstance();
 
-		UserSearch searcher = new UserSearch("mhaskell");
-		ArrayList<User> users = (ArrayList<User>) searcher.getUsers();
+        UserSearch searcher = new UserSearch("mhaskell");
+        ArrayList<User> users = (ArrayList<User>) searcher.getUsers();
 
-		
-		boolean success = false;
-		
-		if (users.size() == 1) {
-			String toAddresses = users.get(0).getEmail().toString();
-			String subject = props.getProperty("mail.test.subject");
-			String content = props.getProperty("mail.test.content");
-			success = EmailUtilities.sendEmail(toAddresses, subject, content);
-		}
-		
-		Assert.assertTrue(success);		
-	}
+        
+        boolean success = false;
+        
+        if (users.size() == 1) {
+            String toAddresses = users.get(0).getEmail().toString();
+            String subject = props.getProperty("mail.test.subject");
+            String content = props.getProperty("mail.test.content");
+            success = EmailUtilities.sendEmail(toAddresses, subject, content);
+        }
+        
+        Assert.assertTrue(success);     
+    }
 
 
 }
