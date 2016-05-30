@@ -1,6 +1,0 @@
-Run the following script to populate the SQLite database.
-
-./delete.sh
-./create.sh
-./populate.sh
-./test.sh
