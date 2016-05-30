@@ -19,8 +19,7 @@ public class DBFactory {
 	      Class.forName("org.sqlite.JDBC");
 	      db = DriverManager.getConnection("jdbc:sqlite:data/test.db");
 	    } catch ( Exception e ) {
-	      //log.severe(e.toString());
-              log.info(e.getMessage());
+	      log.severe(e.toString());              
 	    }
 	    log.info("Opened database successfully");
 	    return db;
