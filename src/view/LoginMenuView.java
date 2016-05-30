@@ -90,9 +90,7 @@ public class LoginMenuView extends JLayeredPane {
         	Component component = (Component) ae.getSource();
         	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
-            MyThread t = new MyThread();
-
-            private class MyThread extends Thread 
+            Thread t = new Thread()         
             {
                   @Override
                     public void run(){
