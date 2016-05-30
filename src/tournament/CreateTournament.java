@@ -30,6 +30,42 @@ public class CreateTournament {
    private int numberUsers = 2;
    private JPanel tournamentPanel;
 
+   public void addToPlayerPool(String teamName) {
+      // Add all players from selected team
+      String retrievePlayers = "select * from main.ProPlayer where team = ?";
+
+      Connection db = DBFactory.getDBConnection();
+      
+      try {
+         PreparedStatement pstmt = db.prepareStatement(retrievePlayers);
+         pstmt.setString(1, teamName);
+         ResultSet rs = pstmt.executeQuery(); 
+         while (rs.next()) {
+            if (rs.getString("position").equals("G")) {
+               playerPool.add(new GoalKeeper(rs.getString("name"), rs.getString("team")));
+            }
+            else if (rs.getString("position").equals("D")) {
+               playerPool.add(new Defender(rs.getString("name"), rs.getString("team")));
+            }
+            else if (rs.getString("position").equals("M")) {
+               playerPool.add(new Midfielder(rs.getString("name"), rs.getString("team")));
+            }
+            else if (rs.getString("position").equals("F")) {
+               playerPool.add(new Forward(rs.getString("name"), rs.getString("team")));
+            }
+            else {
+               System.out.println("Incorrect database entry");
+            }
+         }
+         pstmt.close();
+         db.close();
+      }
+      catch (SQLException se) {
+         // This will need to be turned into a logger later
+         System.out.println("Unable to retrieve players from team " + teamName);
+      }
+   }
+
    public Tournament returnTournament() {
       return new Tournament(tournamentName, numberUsers, playerPool);
    }
@@ -51,40 +87,8 @@ public class CreateTournament {
          teamBoxes[i].addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                if (e.getStateChange() == ItemEvent.SELECTED) {
-                  //System.out.println("Selected " + teamName);
-                  // Add all players from selected team
-            	   String retrievePlayers = "select * from main.ProPlayer where team = ?";
-
-            	   Connection db = DBFactory.getDBConnection();
-            	   
-            	   try {
-            		   PreparedStatement pstmt = db.prepareStatement(retrievePlayers);
-            		   pstmt.setString(1, teamName);
-            		   ResultSet rs = pstmt.executeQuery(); 
-            		   while (rs.next()) {
-            			   if (rs.getString("position").equals("G")) {
-            				   playerPool.add(new GoalKeeper(rs.getString("name"), rs.getString("team")));
-            			   }
-            			   else if (rs.getString("position").equals("D")) {
-            				   playerPool.add(new Defender(rs.getString("name"), rs.getString("team")));
-            			   }
-            			   else if (rs.getString("position").equals("M")) {
-            				   playerPool.add(new Midfielder(rs.getString("name"), rs.getString("team")));
-            			   }
-            			   else if (rs.getString("position").equals("F")) {
-            				   playerPool.add(new Forward(rs.getString("name"), rs.getString("team")));
-            			   }
-            			   else {
-            				   System.out.println("Incorrect database entry");
-            			   }
-            		   }
-                     pstmt.close();
-                     db.close();
-            	   }
-            	   catch (SQLException se) {
-            		   // This will need to be turned into a logger later
-            		   System.out.println("Unable to retrieve players from team " + teamName);
-            	   }
+                  // Add all players from team to player pool
+                  addToPlayerPool(teamName);
                }
                else {
                   // Remove all players from deselected team
@@ -176,7 +180,6 @@ public class CreateTournament {
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
         	            
         	frame.getContentPane().removeAll();
-        	//TODO provide correct user reference
         	frame.getContentPane().add(new MainMenuView(null));
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();
