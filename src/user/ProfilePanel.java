@@ -109,7 +109,7 @@ public class ProfilePanel extends JPanel
     
     public String getPassword()
     {
-    	return pass.getPasswordInput();
+    	return pass.getTextInput();
     }
     
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Private Classes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -119,8 +119,8 @@ public class ProfilePanel extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-        	String pw = pass.getPasswordInput();
-        	if (pw.equals(confirm.getPasswordInput()))
+        	String pw = pass.getTextInput();
+        	if (pw.equals(confirm.getTextInput()))
         	{
 	            int ans = JOptionPane.showConfirmDialog(null, "Are you sure you wish to edit your profile?",
 	                    "Confirm Edit Profile", JOptionPane.YES_NO_OPTION);

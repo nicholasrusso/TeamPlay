@@ -10,49 +10,21 @@ import javax.swing.JPasswordField;
 /**
  * Class that encapsulates Label and JPassword Field in a flow layout.
  * */
-public class EditorPasswordField extends JPanel
+public class EditorPasswordField extends EditorField
 {
-    JLabel label;
-    JPasswordField input;
+
     public EditorPasswordField(String labelText)
     {
-        label = new JLabel(labelText);
-        input = new JPasswordField();
-        setLayout(new FlowLayout());
-        Dimension dim = new Dimension(200, 55);
-        label.setMinimumSize(dim);
-        label.setPreferredSize(dim);
-        label.setMaximumSize(dim);
-        dim = new Dimension(300, 55);
-        input.setMinimumSize(dim);
-        input.setPreferredSize(dim);
-        input.setMaximumSize(dim);
-        add(label);
-        add(input);
-        setVisible(true);
-    }
-    
-    /**
-     * Mutator for setting text in JPasswordField for validation by User class. - Testing only
-     * */
-    public void setInputText(String pw)
-    {
-    	input.setText(pw);
+        super(labelText, new JPasswordField());
     }
 
     /**
      * Accessor for getting text in JPasswordField for validation by User class.
      * */
-    public String getPasswordInput()
+    @Override
+    public String getTextInput()
     {
-        return String.valueOf(input.getPassword());
+        return String.valueOf( ((JPasswordField) input).getPassword());
     }
-    
-    /**
-     * Accessor for getting text in JPasswordField for validation by User class.
-     * */
-    public String getLabelText()
-    {
-        return label.getText();
-    }
+   
 }

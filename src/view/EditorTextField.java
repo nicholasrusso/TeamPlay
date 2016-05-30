@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 /**
  * Private class that serves to encapsulate a JLabel and Text Field.
  * */
-public class EditorTextField extends JPanel
+public class EditorTextField extends EditorField
 {
     JLabel label;
     JTextField input;
@@ -23,31 +23,8 @@ public class EditorTextField extends JPanel
      * */
     public EditorTextField(String labelText, String inputText)
     {
-        label = new JLabel(labelText);
-        input = new JTextField(inputText);
-        setLayout(new FlowLayout());
-        Dimension dim = new Dimension(200, 55);
-        label.setMinimumSize(dim);
-        label.setPreferredSize(dim);
-        label.setMaximumSize(dim);
-        dim = new Dimension(300, 55);
-        input.setMinimumSize(dim);
-        input.setPreferredSize(dim);
-        input.setMaximumSize(dim);
-        add(label);
-        add(input);
-        setVisible(true);
+    	super(labelText, new JTextField(inputText));
     }
-    
-
-    /**
-     * Accessor for getting text in JTextField for validation by User class.
-     * */
-    public String getTextInput()
-    {
-        return input.getText();
-    }
-    
     
     /**
      * Mutator to change the TextFields state of editability. 
@@ -55,14 +32,6 @@ public class EditorTextField extends JPanel
     public void setEditable(boolean canEdit) {
     	editable = canEdit;
     	input.setEditable(editable);
-    }
-    
-    /**
-     * Accessor for getting label text in JTextField for validation by User class.
-     * */
-    public String getLabelText()
-    {
-        return label.getText();
     }
 }
 
