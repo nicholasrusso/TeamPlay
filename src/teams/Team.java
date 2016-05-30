@@ -1,22 +1,20 @@
 package teams;
 
-import java.util.Scanner;
-
 import soccerplayer.SoccerPlayer;
-
-import java.lang.Integer;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Team {
    private String name = "";
    private String formation = "";
-   public ArrayList<SoccerPlayer> listOfPlayers = new ArrayList<SoccerPlayer>();
+   public ArrayList<SoccerPlayer> listOfPlayers;
 
    // RedMine ID: 512297
    public Team(String name)
    {
       this.name = name;
       this.formation = "4-3-3";
+      listOfPlayers = new ArrayList<SoccerPlayer>();
    }
    
    public void addPlayer(SoccerPlayer sp) {
@@ -35,7 +33,7 @@ public class Team {
       return listOfPlayers.size();
    }
    
-   public ArrayList<SoccerPlayer> getTeam()
+   public List<SoccerPlayer> getTeam()
    {
       return listOfPlayers;
    }
