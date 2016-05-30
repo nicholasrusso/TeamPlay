@@ -78,12 +78,7 @@ public class CreateTournament {
             				   System.out.println("Incorrect database entry");
             			   }
             		   }
-            		   /*
-            		   if (playerPool != null) {
-            			   // This will need to be turned into a logger later
-            			   System.out.print(playerPool);
-            		   }
-            		   */
+            		   db.close();
             	   }
             	   catch (SQLException se) {
             		   // This will need to be turned into a logger later
