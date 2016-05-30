@@ -1,12 +1,15 @@
 package tournament; 
 
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.io.*;
+import java.util.Scanner;
 
+import soccerplayer.Defender;
+import soccerplayer.Forward;
+import soccerplayer.GoalKeeper;
+import soccerplayer.Midfielder;
 import teams.ProfessionalTeam;
-
-import soccerPlayer.*;
 
 public class UploadTeamsByCSV {
    public ArrayList<ProfessionalTeam> upload() {
