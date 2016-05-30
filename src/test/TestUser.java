@@ -27,7 +27,7 @@ public class TestUser
     @Test
     public void testSetFirstName()
     {
-    	String a = "Charlie";
+        String a = "Charlie";
         assertTrue(user.setFirstName(a));
         assertTrue(user.getFirstName().equals(a));
 
@@ -43,7 +43,7 @@ public class TestUser
     @Test
     public void testSetLastName()
     {
-    	String a = "Charlie";
+        String a = "Charlie";
         user.setLastName(a);
         assertTrue(user.getLastName().equals(a));
 
