@@ -15,15 +15,15 @@ public class SQLiteExample {
 
     // Simple select example
     try {
-			Statement stmt = db.createStatement();
-			String sql = ("SELECT * FROM user WHERE firstname = 'Michael'");
+            Statement stmt = db.createStatement();
+            String sql = ("SELECT * FROM user WHERE firstname = 'Michael'");
 
-			ResultSet rs = stmt.executeQuery(sql);
-			while ( rs.next() ) {
-				System.out.println("Name: " 
+            ResultSet rs = stmt.executeQuery(sql);
+            while ( rs.next() ) {
+                System.out.println("Name: " 
                           + rs.getString("firstname") + " "
                           + rs.getString("lastname"));
-			}
+            }
     } catch (SQLException e) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
