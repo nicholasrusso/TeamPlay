@@ -78,7 +78,8 @@ public class CreateTournament {
             				   System.out.println("Incorrect database entry");
             			   }
             		   }
-            		   db.close();
+                     pstmt.close();
+                     db.close();
             	   }
             	   catch (SQLException se) {
             		   // This will need to be turned into a logger later
