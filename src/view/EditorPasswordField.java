@@ -1,10 +1,5 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 /**

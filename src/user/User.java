@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import teams.Team;
 import security.AppSettings;
 import db.DBFactory;
+import email.Email;
 import security.PasswordUtilities;
 
 /**
