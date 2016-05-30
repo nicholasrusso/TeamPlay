@@ -35,11 +35,9 @@ public class TestUserSearchAndEmail {
 
 		
 		boolean success = false;
-		System.out.println(users.size());
 		
 		if (users.size() == 1) {
 			String toAddresses = users.get(0).getEmail().toString();
-			System.out.println(toAddresses);
 			String subject = props.getProperty("mail.test.subject");
 			String content = props.getProperty("mail.test.content");
 			success = EmailUtilities.sendEmail(toAddresses, subject, content);
