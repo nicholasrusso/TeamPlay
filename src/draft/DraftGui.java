@@ -4,10 +4,10 @@ import java.util.*;
 
 import javax.swing.*;
 
-import soccerPlayer.Defender;
-import soccerPlayer.Forward;
-import soccerPlayer.Midfielder;
-import soccerPlayer.SoccerPlayer;
+import soccerplayer.Defender;
+import soccerplayer.Forward;
+import soccerplayer.Midfielder;
+import soccerplayer.SoccerPlayer;
 import tournament.Tournament;
 import user.User;
 

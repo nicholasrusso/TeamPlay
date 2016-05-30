@@ -1,12 +1,13 @@
 package tournament; 
 
 import java.util.Scanner;
+
+import soccerplayer.*;
+
 import java.util.ArrayList;
 import java.io.*;
 
 import teams.ProfessionalTeam;
-
-import soccerPlayer.*;
 
 public class UploadTeamsByCSV {
    public ArrayList<ProfessionalTeam> upload() {

@@ -2,7 +2,7 @@ package teams;
 
 import java.util.Scanner;
 
-import soccerPlayer.SoccerPlayer;
+import soccerplayer.SoccerPlayer;
 
 import java.lang.Integer;
 import java.util.ArrayList;

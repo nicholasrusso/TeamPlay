@@ -1,6 +1,6 @@
 package teams;
 
-import soccerPlayer.SoccerPlayer;
+import soccerplayer.SoccerPlayer;
 
 public class ProfessionalTeam extends Team {
    // RedMine ID: 512297

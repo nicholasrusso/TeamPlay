@@ -1,8 +1,9 @@
 package tournament;
 
 import user.*;
-import soccerPlayer.*;
 import junit.framework.TestCase;
+import soccerplayer.*;
+
 import java.util.*;
 /**
  *

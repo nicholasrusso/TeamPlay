@@ -8,9 +8,11 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
+
+import soccerplayer.*;
+
 import javax.swing.event.ChangeEvent;
 
-import soccerPlayer.*;
 import teams.*;
 
 public class CreateTournament {

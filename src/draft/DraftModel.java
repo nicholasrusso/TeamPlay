@@ -6,9 +6,9 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import soccerplayer.*;
 import user.*;
 import tournament.*;
-import soccerPlayer.*;
 import teams.Team;
 
 public class DraftModel extends Observable{
