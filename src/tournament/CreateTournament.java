@@ -4,12 +4,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.awt.event.ItemEvent;
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Logger;
@@ -129,9 +127,9 @@ public class CreateTournament {
       maxNumUsers.setPaintTicks(true);
       maxNumUsers.setPaintLabels(true);
       maxNumUsers.setBounds(100, 110, 300, 40);
-      maxNumUsers.addChangeListener((ChangeEvent e) -> {
-            numberUsers = ((JSlider)e.getSource()).getValue();
-      });
+      maxNumUsers.addChangeListener((ChangeEvent e) ->
+            numberUsers = ((JSlider)e.getSource()).getValue()
+      );
       tournamentPanel.add(maxNumUsers);
 
       // Add Team Selection via JCheckBoxes
