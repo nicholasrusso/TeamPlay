@@ -4,20 +4,20 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.*;
 
-import teams.ProfessionalTeam;
+import teams.Team;
 
 import soccerPlayer.*;
 
 public class UploadTeamsByCSV {
-   public ArrayList<ProfessionalTeam> upload() {
+   public ArrayList<Team> upload() {
       // Relies on file named "TeamList.csv" 
       String csvFile = "TeamList.csv";
 
       String line = "";
       String csvSplitBy = ",";
       // Create a new professional team curTeam, start as null
-      ArrayList<ProfessionalTeam> ret = new ArrayList<ProfessionalTeam>();
-      ProfessionalTeam curTeam = null;
+      ArrayList<Team> ret = new ArrayList<Team>();
+      Team curTeam = null;
 
       try {
          Scanner br = new Scanner(new File(csvFile));
@@ -33,7 +33,7 @@ public class UploadTeamsByCSV {
                   // store previous team to ret
                   ret.add(curTeam);
                }
-               curTeam = new ProfessionalTeam(name);
+               curTeam = new Team(name);
             }
             else if (curTeam != null && identifier.equals("G")) {
                // new goalkeeper player

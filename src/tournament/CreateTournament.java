@@ -26,7 +26,7 @@ public class CreateTournament {
    public JPanel createTournamentMenu() {
       // Upload All Teams w/ Rosters (currently from CSV)
       UploadTeamsByCSV ut = new UploadTeamsByCSV();
-      final ArrayList<ProfessionalTeam> allTeams = ut.upload();
+      final ArrayList<Team> allTeams = ut.upload();
 
       // JCheckBoxes (one for each team that has a teamName)
       String[] teamNames = {"Arsenal", "Atletico Madrid", "Bayern Munich", 
@@ -48,7 +48,7 @@ public class CreateTournament {
                   // Add all players from selected team
                   for (int i = 0; i < allTeams.size(); i++) {
                 	  if (allTeams.get(i).getName().equals(teamName)) {
-                		  ProfessionalTeam pt = allTeams.get(i);
+                		  Team pt = allTeams.get(i);
                 		  for (int j = 0; j < pt.getSize(); i++) {
                 			  playerPool.add(pt.listOfPlayers.get(j));
                 		  }

@@ -1,11 +1,8 @@
 package teams;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 import soccerPlayer.SoccerPlayer;
-
-import java.lang.Integer;
-import java.util.ArrayList;
 
 public class Team {
    private String name = "";
