@@ -36,19 +36,19 @@ public class UserInfoPanel extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JLabel lblUserInfo = new JLabel("User Information");
-		GridBagConstraints gbc_lblUserInfo = new GridBagConstraints();
-		gbc_lblUserInfo.insets = new Insets(0, 0, 5, 0);
-		gbc_lblUserInfo.gridx = 1;
-		gbc_lblUserInfo.gridy = 0;
-		add(lblUserInfo, gbc_lblUserInfo);
+		GridBagConstraints gbcLblUserInfo = new GridBagConstraints();
+		gbcLblUserInfo.insets = new Insets(0, 0, 5, 0);
+		gbcLblUserInfo.gridx = 1;
+		gbcLblUserInfo.gridy = 0;
+		add(lblUserInfo, gbcLblUserInfo);
 		
 		JLabel lblUsername = new JLabel("Username");
-		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
-		gbc_lblUsername.anchor = GridBagConstraints.EAST;
-		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUsername.gridx = 0;
-		gbc_lblUsername.gridy = 2;
-		add(lblUsername, gbc_lblUsername);
+		GridBagConstraints gbcLblUsername = new GridBagConstraints();
+		gbcLblUsername.anchor = GridBagConstraints.EAST;
+		gbcLblUsername.insets = new Insets(0, 0, 5, 5);
+		gbcLblUsername.gridx = 0;
+		gbcLblUsername.gridy = 2;
+		add(lblUsername, gbcLblUsername);
 		
 		usernameField = new JTextField();
 		usernameField.setBackground(UIManager.getColor("window"));
@@ -62,12 +62,12 @@ public class UserInfoPanel extends JPanel {
 		usernameField.setColumns(10);
 		
 		JLabel lblFirstName = new JLabel("First Name");
-		GridBagConstraints gbc_lblFirstName = new GridBagConstraints();
-		gbc_lblFirstName.anchor = GridBagConstraints.EAST;
-		gbc_lblFirstName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFirstName.gridx = 0;
-		gbc_lblFirstName.gridy = 3;
-		add(lblFirstName, gbc_lblFirstName);
+		GridBagConstraints gbcLblFirstName = new GridBagConstraints();
+		gbcLblFirstName.anchor = GridBagConstraints.EAST;
+		gbcLblFirstName.insets = new Insets(0, 0, 5, 5);
+		gbcLblFirstName.gridx = 0;
+		gbcLblFirstName.gridy = 3;
+		add(lblFirstName, gbcLblFirstName);
 		
 		firstNameField = new JTextField();
 		firstNameField.setBackground(UIManager.getColor("window"));
@@ -81,31 +81,31 @@ public class UserInfoPanel extends JPanel {
 		firstNameField.setColumns(10);
 		
 		JLabel lblLastName = new JLabel("Last Name");
-		GridBagConstraints gbc_lblLastName = new GridBagConstraints();
-		gbc_lblLastName.anchor = GridBagConstraints.EAST;
-		gbc_lblLastName.insets = new Insets(0, 0, 5, 5);
-		gbc_lblLastName.gridx = 0;
-		gbc_lblLastName.gridy = 4;
-		add(lblLastName, gbc_lblLastName);
+		GridBagConstraints gbcLblLastName = new GridBagConstraints();
+		gbcLblLastName.anchor = GridBagConstraints.EAST;
+		gbcLblLastName.insets = new Insets(0, 0, 5, 5);
+		gbcLblLastName.gridx = 0;
+		gbcLblLastName.gridy = 4;
+		add(lblLastName, gbcLblLastName);
 		
 		lastNameField = new JTextField();
 		lastNameField.setBackground(UIManager.getColor("window"));
 		lastNameField.setEditable(false);
-		GridBagConstraints gbc_lastNameField = new GridBagConstraints();
-		gbc_lastNameField.insets = new Insets(0, 0, 5, 0);
-		gbc_lastNameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lastNameField.gridx = 1;
-		gbc_lastNameField.gridy = 4;
-		add(lastNameField, gbc_lastNameField);
+		GridBagConstraints gbcLastNameField = new GridBagConstraints();
+		gbcLastNameField.insets = new Insets(0, 0, 5, 0);
+		gbcLastNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbcLastNameField.gridx = 1;
+		gbcLastNameField.gridy = 4;
+		add(lastNameField, gbcLastNameField);
 		lastNameField.setColumns(10);
 		
 		JLabel lblEmailAddress = new JLabel("Email Address");
-		GridBagConstraints gbc_lblEmailAddress = new GridBagConstraints();
-		gbc_lblEmailAddress.anchor = GridBagConstraints.EAST;
-		gbc_lblEmailAddress.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEmailAddress.gridx = 0;
-		gbc_lblEmailAddress.gridy = 5;
-		add(lblEmailAddress, gbc_lblEmailAddress);
+		GridBagConstraints gbcLblEmailAddress = new GridBagConstraints();
+		gbcLblEmailAddress.anchor = GridBagConstraints.EAST;
+		gbcLblEmailAddress.insets = new Insets(0, 0, 5, 5);
+		gbcLblEmailAddress.gridx = 0;
+		gbcLblEmailAddress.gridy = 5;
+		add(lblEmailAddress, gbcLblEmailAddress);
 		
 		emailField = new JTextField();
 		emailField.setBackground(UIManager.getColor("window"));
@@ -119,12 +119,12 @@ public class UserInfoPanel extends JPanel {
 		emailField.setColumns(10);
 		
 		JLabel lblTeams = new JLabel("Teams");
-		GridBagConstraints gbc_lblTeams = new GridBagConstraints();
-		gbc_lblTeams.anchor = GridBagConstraints.EAST;
-		gbc_lblTeams.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTeams.gridx = 0;
-		gbc_lblTeams.gridy = 6;
-		add(lblTeams, gbc_lblTeams);
+		GridBagConstraints gbcLblTeams = new GridBagConstraints();
+		gbcLblTeams.anchor = GridBagConstraints.EAST;
+		gbcLblTeams.insets = new Insets(0, 0, 5, 5);
+		gbcLblTeams.gridx = 0;
+		gbcLblTeams.gridy = 6;
+		add(lblTeams, gbcLblTeams);
 		
 		teamsField = new JTextField();
 		teamsField.setBackground(UIManager.getColor("window"));
@@ -138,12 +138,12 @@ public class UserInfoPanel extends JPanel {
 		teamsField.setColumns(10);
 		
 		JLabel lblWins = new JLabel("Wins");
-		GridBagConstraints gbc_lblWins = new GridBagConstraints();
-		gbc_lblWins.anchor = GridBagConstraints.EAST;
-		gbc_lblWins.insets = new Insets(0, 0, 5, 5);
-		gbc_lblWins.gridx = 0;
-		gbc_lblWins.gridy = 7;
-		add(lblWins, gbc_lblWins);
+		GridBagConstraints gbcLblWins = new GridBagConstraints();
+		gbcLblWins.anchor = GridBagConstraints.EAST;
+		gbcLblWins.insets = new Insets(0, 0, 5, 5);
+		gbcLblWins.gridx = 0;
+		gbcLblWins.gridy = 7;
+		add(lblWins, gbcLblWins);
 		
 		winsField = new JTextField();
 		winsField.setBackground(UIManager.getColor("window"));
@@ -157,22 +157,22 @@ public class UserInfoPanel extends JPanel {
 		winsField.setColumns(10);
 		
 		JLabel lblLosses = new JLabel("Losses");
-		GridBagConstraints gbc_lblLosses = new GridBagConstraints();
-		gbc_lblLosses.anchor = GridBagConstraints.EAST;
-		gbc_lblLosses.insets = new Insets(0, 0, 5, 5);
-		gbc_lblLosses.gridx = 0;
-		gbc_lblLosses.gridy = 8;
-		add(lblLosses, gbc_lblLosses);
+		GridBagConstraints gbcLblLosses = new GridBagConstraints();
+		gbcLblLosses.anchor = GridBagConstraints.EAST;
+		gbcLblLosses.insets = new Insets(0, 0, 5, 5);
+		gbcLblLosses.gridx = 0;
+		gbcLblLosses.gridy = 8;
+		add(lblLosses, gbcLblLosses);
 		
 		lossesField = new JTextField();
 		lossesField.setBackground(UIManager.getColor("window"));
 		lossesField.setEditable(false);
-		GridBagConstraints gbc_lossesField = new GridBagConstraints();
-		gbc_lossesField.insets = new Insets(0, 0, 5, 0);
-		gbc_lossesField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lossesField.gridx = 1;
-		gbc_lossesField.gridy = 8;
-		add(lossesField, gbc_lossesField);
+		GridBagConstraints gbcLossesField = new GridBagConstraints();
+		gbcLossesField.insets = new Insets(0, 0, 5, 0);
+		gbcLossesField.fill = GridBagConstraints.HORIZONTAL;
+		gbcLossesField.gridx = 1;
+		gbcLossesField.gridy = 8;
+		add(lossesField, gbcLossesField);
 		lossesField.setColumns(10);
 		
 		JButton backButton = new JButton("Back");
@@ -187,6 +187,7 @@ public class UserInfoPanel extends JPanel {
 
 class backToSearchButtonListener implements ActionListener
 {
+	@Override
     public void actionPerformed(ActionEvent e) 
     {
     	Component component = (Component) e.getSource();
