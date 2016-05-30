@@ -29,7 +29,7 @@ public class DraftModel extends Observable{
         this.userPosition = 0;
         this.draftRound = 0;
         this.tournament = tournament;
-        this.users = tournament.getUsers();
+        this.users = (ArrayList<User>) tournament.getUsers();
         this.currentUser = users.get(userPosition);
         randomPlayers = new SoccerPlayer[3];
         turnSeconds = 10;
