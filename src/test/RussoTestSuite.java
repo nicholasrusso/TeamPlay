@@ -10,8 +10,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestAppSettings.class, TestEmailUtilities.class, TestPasswordUtilities.class, TestUserSearch.class,
-		TestUserSearchAndEmail.class })
+@SuiteClasses({ TestTournament.class, TestDraftModel.class})
 public class RussoTestSuite {
 
 }

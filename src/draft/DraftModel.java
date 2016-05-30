@@ -45,7 +45,7 @@ public class DraftModel extends Observable{
 
     public void nextUser(int pos)
     {
-            if (draftRound < 18)
+            if (draftRound < (18 * tournament.getUsers().size()))
             {
             	getCurrentUserTeam().addPlayer(currentPlayerSelection[pos]);
                 if (userPosition < users.size() - 1)
@@ -72,6 +72,11 @@ public class DraftModel extends Observable{
 
             this.setChanged();
             this.notifyObservers();        
+    }
+    
+    public int getLoopIterations()
+    {
+    	return draftRound;
     }
     
     public boolean getSelection()
