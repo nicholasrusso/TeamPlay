@@ -28,9 +28,9 @@ import teams.Team;
  */
 public class User
 {
-    private static Properties props = AppSettings.getInstance();
-    private static final Logger LOGGER = Logger.getLogger("User");
-    
+	private static Properties props = AppSettings.getInstance();
+	private static final Logger LOGGER = Logger.getLogger("User");
+	
     private String firstName;
     private String lastName;
     private String userName;
@@ -186,13 +186,13 @@ public class User
      * @return true if all fields are valid, else false.
      * */
     public boolean isValidated() {
-        allValidated = true;
-        allValidated &= setEmail(email.toString());
-        allValidated &= setFirstName(firstName);
-        allValidated &= setLastName(lastName);
-        allValidated &= setUsername(userName);
-        allValidated &= passwordValid();
-        return allValidated;
+    	allValidated = true;
+    	allValidated &= setEmail(email.toString());
+    	allValidated &= setFirstName(firstName);
+    	allValidated &= setLastName(lastName);
+    	allValidated &= setUsername(userName);
+    	allValidated &= passwordValid();
+    	return allValidated;
     }
 
 
@@ -211,50 +211,50 @@ public class User
     
     
     public void save() {
-        String insertUserSQL = "insert into main.User (username, firstname, lastname, passhash, email, lastlogin) values (?,?,?,?,?,?)";
-        Connection db = DBFactory.getDBConnection();
-        
-        try {
-            PreparedStatement pstmt = db.prepareStatement(insertUserSQL);
-            pstmt.setString(1, this.userName);
-            pstmt.setString(2, this.firstName);
-            pstmt.setString(3, this.lastName);
-            pstmt.setString(4, this.passwordHash);
-            pstmt.setString(5, this.email.toString());
-            pstmt.setLong(6, System.currentTimeMillis() / 1000L);
+    	String insertUserSQL = "insert into main.User (username, firstname, lastname, passhash, email, lastlogin) values (?,?,?,?,?,?)";
+		Connection db = DBFactory.getDBConnection();
+		
+		try {
+			PreparedStatement pstmt = db.prepareStatement(insertUserSQL);
+			pstmt.setString(1, this.userName);
+			pstmt.setString(2, this.firstName);
+			pstmt.setString(3, this.lastName);
+			pstmt.setString(4, this.passwordHash);
+			pstmt.setString(5, this.email.toString());
+			pstmt.setLong(6, System.currentTimeMillis() / 1000L);
 
-            pstmt.executeUpdate();
-            pstmt.close();
-            db.close();
+			pstmt.executeUpdate();
+			pstmt.close();
+		    db.close();
 
-        } catch (SQLException e) {
-            LOGGER.severe(Arrays.toString(e.getStackTrace()));
-        }
+		} catch (SQLException e) {
+			LOGGER.severe(Arrays.toString(e.getStackTrace()));
+		}
     }
     
     public void update() {
-        String updateUserSQL = "update main.User set username = ?, firstname = ?, lastname = ?, passhash = ?, email = ?, lastlogin = ? where username = ?";
-        Connection db = DBFactory.getDBConnection();
-        
-        try {
-            PreparedStatement pstmt = db.prepareStatement(updateUserSQL);
-            //set update values
-            pstmt.setString(1, this.userName);
-            pstmt.setString(2, this.firstName);
-            pstmt.setString(3, this.lastName);
-            pstmt.setString(4, this.passwordHash);
-            pstmt.setString(5, this.email.toString());
-            pstmt.setLong(6, System.currentTimeMillis() / 1000L);
-            //set where condition
-            pstmt.setString(7, this.userName);
-            
-            pstmt.executeUpdate();
-            pstmt.close();
-            db.close();
-        }
-        catch (SQLException e) {
-            LOGGER.severe(Arrays.toString(e.getStackTrace()));
-        }
+    	String updateUserSQL = "update main.User set username = ?, firstname = ?, lastname = ?, passhash = ?, email = ?, lastlogin = ? where username = ?";
+    	Connection db = DBFactory.getDBConnection();
+    	
+    	try {
+    		PreparedStatement pstmt = db.prepareStatement(updateUserSQL);
+    		//set update values
+			pstmt.setString(1, this.userName);
+			pstmt.setString(2, this.firstName);
+			pstmt.setString(3, this.lastName);
+			pstmt.setString(4, this.passwordHash);
+			pstmt.setString(5, this.email.toString());
+			pstmt.setLong(6, System.currentTimeMillis() / 1000L);
+			//set where condition
+			pstmt.setString(7, this.userName);
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			db.close();
+    	}
+    	catch (SQLException e) {
+    		LOGGER.severe(Arrays.toString(e.getStackTrace()));
+    	}
     }
     
     public Team getTeam(String tournamentName)
@@ -269,23 +269,23 @@ public class User
     
     public void generateDummyPlayerUsages(List<SoccerPlayer> playerPool)
     {
-        Random gen = new Random();
-        for (SoccerPlayer sp : playerPool)
-        {
-            Integer count = gen.nextInt(50);
-            soccerPlayerUsage.put(sp, count);
-        }
+    	Random gen = new Random();
+    	for (SoccerPlayer sp : playerPool)
+    	{
+    		Integer count = gen.nextInt(50);
+    		soccerPlayerUsage.put(sp, count);
+    	}
     }
     
     public void incrementPlayerUsage(SoccerPlayer drafted)
     {
-        Integer newCount = soccerPlayerUsage.get(drafted) + 1;
-        soccerPlayerUsage.put(drafted, newCount);
+    	Integer newCount = soccerPlayerUsage.get(drafted) + 1;
+    	soccerPlayerUsage.put(drafted, newCount);
     }
     
     public Integer getPlayerUsage(SoccerPlayer query)
     {
-        return soccerPlayerUsage.get(query);
+    	return soccerPlayerUsage.get(query);
     }
     
 }

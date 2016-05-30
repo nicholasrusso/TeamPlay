@@ -11,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ TestAppSettings.class, TestEmailUtilities.class, TestPasswordUtilities.class, TestUserSearch.class,
-        TestUserSearchAndEmail.class })
+		TestUserSearchAndEmail.class })
 public class HaskellTestSuite {
 
 }

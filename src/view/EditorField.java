@@ -9,14 +9,14 @@ import javax.swing.JTextField;
 
 public abstract class EditorField extends JPanel
 {
-    protected JLabel label = null;
-    protected JTextField input = null;
-    
-    public EditorField(String text, JTextField inputField)
-    {
-        label = new JLabel(text);
-        this.input = inputField;
-        setLayout(new FlowLayout());
+	protected JLabel label = null;
+	protected JTextField input = null;
+	
+	public EditorField(String text, JTextField inputField)
+	{
+		label = new JLabel(text);
+		this.input = inputField;
+		setLayout(new FlowLayout());
         Dimension dim = new Dimension(200, 55);
         label.setMinimumSize(dim);
         label.setPreferredSize(dim);
@@ -28,8 +28,8 @@ public abstract class EditorField extends JPanel
         add(label);
         add(input);
         setVisible(true);
-    }
-    
+	}
+	
     /**
      * Accessor for getting text in JPasswordField for validation by User class.
      * */
@@ -43,7 +43,7 @@ public abstract class EditorField extends JPanel
      * */
     public void setInputText(String pw)
     {
-        input.setText(pw);
+    	input.setText(pw);
     }
     
     /**
@@ -53,5 +53,5 @@ public abstract class EditorField extends JPanel
     {
         return input.getText();
     }
-    
+	
 }

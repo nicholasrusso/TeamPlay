@@ -13,16 +13,16 @@ import draft.DraftModel;
  */
 public class TestDraftModel extends TestCase 
 {
-    private ArrayList<SoccerPlayer> players;
-    private ArrayList<User> users;
-    private Tournament tournament;
-    private DraftModel model;
-    private User user1;
-    private User user2;
-    private User user3;
-    private User user4;
-    private static final String TEAM = "Barcelona";
-    
+	private ArrayList<SoccerPlayer> players;
+	private ArrayList<User> users;
+	private Tournament tournament;
+	private DraftModel model;
+	private User user1;
+	private User user2;
+	private User user3;
+	private User user4;
+	private static final String TEAM = "Barcelona";
+	
     
     public TestDraftModel(String testName) 
     {
@@ -78,10 +78,10 @@ public class TestDraftModel extends TestCase
      */
     public void testGetLoopIterates() 
     {
-        model.startDraft();
-        model.addNewTeam("test");
-        model.startTimer();
-        model.nextUser(0);
+    	model.startDraft();
+    	model.addNewTeam("test");
+    	model.startTimer();
+    	model.nextUser(0);
         assertEquals(1, model.getLoopIterations());
     }
 }

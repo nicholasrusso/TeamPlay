@@ -61,7 +61,7 @@ public class ProfilePanel extends JPanel
     }
 
     private void initTextFields()
-    {   
+    {	
         firstName = new EditorTextField("First Name", userToEdit.getFirstName());
         lastName = new EditorTextField("Last Name", userToEdit.getLastName());
         userName = new EditorTextField("User Name", userToEdit.getUsername());
@@ -89,27 +89,27 @@ public class ProfilePanel extends JPanel
     
     public String getFirstName()
     {
-        return firstName.getTextInput();
+    	return firstName.getTextInput();
     }
     
     public String getLastName()
     {
-        return lastName.getTextInput();
+    	return lastName.getTextInput();
     }
     
     public String getUserName()
     {
-        return userName.getTextInput();
+    	return userName.getTextInput();
     }
     
     public String getEmailAddress()
     {
-        return email.getTextInput();
+    	return email.getTextInput();
     }
     
     public String getPassword()
     {
-        return pass.getTextInput();
+    	return pass.getTextInput();
     }
     
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Private Classes%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -119,50 +119,50 @@ public class ProfilePanel extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            String pw = pass.getTextInput();
-            if (pw.equals(confirm.getTextInput()))
-            {
-                int ans = JOptionPane.showConfirmDialog(null, "Are you sure you wish to edit your profile?",
-                        "Confirm Edit Profile", JOptionPane.YES_NO_OPTION);
-                if (ans == JOptionPane.YES_OPTION)
-                {       
-                    userToEdit.setFirstName(firstName.getTextInput());
-                    userToEdit.setLastName(lastName.getTextInput());
-                    userToEdit.setEmail(email.getTextInput());
-                    userToEdit.setPasswordHashFromPassword(pw);
-                    
-                    //proceed with update as long as updates are valid. 
-                    if (userToEdit.isValidated())
-                    {
-                        userToEdit.update();  
-                    }
-                    
+        	String pw = pass.getTextInput();
+        	if (pw.equals(confirm.getTextInput()))
+        	{
+	            int ans = JOptionPane.showConfirmDialog(null, "Are you sure you wish to edit your profile?",
+	                    "Confirm Edit Profile", JOptionPane.YES_NO_OPTION);
+	            if (ans == JOptionPane.YES_OPTION)
+	            {   	
+	                userToEdit.setFirstName(firstName.getTextInput());
+	                userToEdit.setLastName(lastName.getTextInput());
+	                userToEdit.setEmail(email.getTextInput());
+	                userToEdit.setPasswordHashFromPassword(pw);
+	                
+	                //proceed with update as long as updates are valid. 
+	                if (userToEdit.isValidated())
+	                {
+	                    userToEdit.update();  
+	                }
+	                
                     //take to back Main menu
-                    Component component = (Component) e.getSource();
-                    JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
-                    frame.getContentPane().removeAll();
-                    frame.getContentPane().add(new MainMenuView(userToEdit));
+        			Component component = (Component) e.getSource();
+                	JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
+                	frame.getContentPane().removeAll();
+                	frame.getContentPane().add(new MainMenuView(userToEdit));
                     frame.getContentPane().revalidate();
                     frame.getContentPane().repaint();
-                }
-            }
+	            }
+        	}
             else {
-                passMatch.setText("Password and Confirm Password text fields do not match!");
+            	passMatch.setText("Password and Confirm Password text fields do not match!");
             }
         }
     }
     
     class CancelAndBackToMainMenuListener implements ActionListener
     {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Component component = (Component) e.getSource();
-            JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(new MainMenuView(userToEdit));
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();           
-        }   
+    	@Override
+    	public void actionPerformed(ActionEvent e) {
+    		Component component = (Component) e.getSource();
+    		JFrame frame = (JFrame) SwingUtilities.getRoot(component);        
+    		frame.getContentPane().removeAll();
+    		frame.getContentPane().add(new MainMenuView(userToEdit));
+    		frame.getContentPane().revalidate();
+    		frame.getContentPane().repaint();    		
+    	}	
     }
     
     

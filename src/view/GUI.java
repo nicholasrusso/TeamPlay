@@ -11,7 +11,7 @@ import user.*;
 
 public class GUI {
     private JFrame frame;
-    private static final Logger log = Logger.getLogger("GUI");
+	private static final Logger log = Logger.getLogger("GUI");
 
     
     public void run() {        
@@ -29,7 +29,7 @@ public class GUI {
     }
     
     public void createMenu() {       
-        frame.add(new MainMenuView(null));
+    	frame.add(new MainMenuView(null));
         frame.revalidate();
         frame.repaint();
     }
@@ -38,7 +38,7 @@ public class GUI {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e1) {
-            log.severe(Arrays.toString(e1.getStackTrace()));
+        	log.severe(Arrays.toString(e1.getStackTrace()));
         }
         new GUI().run();
     }

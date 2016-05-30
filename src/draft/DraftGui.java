@@ -6,13 +6,10 @@ import javax.swing.*;
 
 import soccerplayer.SoccerPlayer;
 import tournament.Tournament;
-import view.MainMenuView;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
 
 public class DraftGui implements Observer
 {
@@ -25,10 +22,7 @@ public class DraftGui implements Observer
     private JTextField player1Name;
     private JTextField player2Name;
     private JTextField player3Name;
-    private JTextArea forward;
-    private JTextArea mids;
-    private JTextArea defs;
-    private JTextArea keeps;
+    private JTextArea currentUserTeamTable;
     private JButton quitDraftButton;
     private JButton startDraftButton;
     private JButton btnPlayer1;
@@ -167,33 +161,9 @@ public class DraftGui implements Observer
         frame.add(currentUserTeamPanel);
         currentUserTeamPanel.setLayout(null);
         
-        forward = new JTextArea();
-        forward.setEditable(false);
-        forward.setWrapStyleWord(true);
-        forward.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-        forward.setBounds(5, 6, 112, 150);
-        currentUserTeamPanel.add(forward);
-        
-        mids = new JTextArea();
-        mids.setEditable(false);
-        mids.setWrapStyleWord(true);
-        mids.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-        mids.setBounds(119, 6, 110, 150);
-        currentUserTeamPanel.add(mids);
-        
-        defs = new JTextArea();
-        defs.setEditable(false);
-        defs.setWrapStyleWord(true);
-        defs.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-        defs.setBounds(231, 6, 112, 150);
-        currentUserTeamPanel.add(defs);
-        
-        keeps = new JTextArea();
-        keeps.setEditable(false);
-        keeps.setWrapStyleWord(true);
-        keeps.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-        keeps.setBounds(345, 6, 110, 150);
-        currentUserTeamPanel.add(keeps);
+        currentUserTeamTable = new JTextArea();
+        currentUserTeamTable.setBounds(6, 6, 449, 150);
+        currentUserTeamPanel.add(currentUserTeamTable);
         
         txtCurrentTeam = new JTextField();
         txtCurrentTeam.setBackground(SystemColor.window);
@@ -271,16 +241,15 @@ public class DraftGui implements Observer
         quitDraftButton.setBounds(6, 519, 461, 52);
         quitDraftButton.setFont(new Font(FONT, Font.PLAIN, 34));
         quitDraftButton.addActionListener((ActionEvent ae) -> {
-            Component component = (Component) ae.getSource();
-            JFrame frame = (JFrame) SwingUtilities.getRoot(component);
-                        
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(new MainMenuView(null));
+  			Component component = (Component) ae.getSource();
+        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	            
+        	frame.getContentPane().removeAll();
+        	frame.getContentPane().add(new MainMenuView(null));
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();
         });
         frame.add(quitDraftButton);
-        
         
         saveButton = new JButton("Save");
         saveButton.setBounds(477, 519, 317, 54);
@@ -302,16 +271,16 @@ public class DraftGui implements Observer
         startDraftButton.addActionListener(element -> {
                 if (!model.isOver())
                 {
-                    model.startDraft();
-                    if (!model.hasTeam())
-                    {
-                        String name = JOptionPane.showInputDialog(frame,
-                                "What is your team name?",  JOptionPane.OK_CANCEL_OPTION); 
-                        model.addNewTeam(name);       
-                    }
-                    DraftGui.this.update(model, null);
+	            	model.startDraft();
+	                if (!model.hasTeam())
+	                {
+	                    String name = JOptionPane.showInputDialog(frame,
+	                            "What is your team name?",  JOptionPane.OK_CANCEL_OPTION); 
+	                    model.addNewTeam(name);       
+	                }
+	                DraftGui.this.update(model, null);
 
-                    model.startTimer();
+	                model.startTimer();
                 }
         });
         frame.add(startDraftButton);
@@ -320,7 +289,6 @@ public class DraftGui implements Observer
         frame.add(saveButton);
         frame.setSize(800, 591);
         frame.setVisible(true);
-        update(null, null);
         
     }
 
@@ -328,27 +296,27 @@ public class DraftGui implements Observer
 
     @Override
     public void update(Observable o, Object arg) {
-        btnPlayer1.setEnabled(model.getSelection());
+    	btnPlayer1.setEnabled(model.getSelection());
         btnPlayer2.setEnabled(model.getSelection());
         btnPlayer3.setEnabled(model.getSelection());
         if (model.getSelection())
         {
-            players = model.getCurrentPlayerSelection();
-            btnPlayer1.setText(players[0].getName());
-            btnPlayer2.setText(players[1].getName());
-            btnPlayer3.setText(players[2].getName());
-            player1Name.setText(players[0].getName());
-            player2Name.setText(players[1].getName());
-            player3Name.setText(players[2].getName());
+	        players = model.getCurrentPlayerSelection();
+	        btnPlayer1.setText(players[0].getName());
+	        btnPlayer2.setText(players[1].getName());
+	        btnPlayer3.setText(players[2].getName());
+	        player1Name.setText(players[0].getName());
+	        player2Name.setText(players[1].getName());
+	        player3Name.setText(players[2].getName());
         }
         else
         {
-            btnPlayer1.setText("");
-            btnPlayer2.setText("");
-            btnPlayer3.setText("");
-            player1Name.setText("");
-            player2Name.setText("");
-            player3Name.setText("");
+        	btnPlayer1.setText("");
+	        btnPlayer2.setText("");
+	        btnPlayer3.setText("");
+	        player1Name.setText("");
+	        player2Name.setText("");
+	        player3Name.setText("");
         }
         
         numOfPlayers.setText(model.getCurrentUserTeamSize());
@@ -356,19 +324,16 @@ public class DraftGui implements Observer
         teamNameTA.setText(model.getCurrentUserTeamName());
         formationComboBox.setSelectedItem(model.getCurrentUserTeamFormation());   
         if (!model.isOver())
-            timerTxt.setText(model.getTime());
+        	timerTxt.setText(model.getTime());
         else
-            timerTxt.setText("DraftOver");
+        	timerTxt.setText("DraftOver");
         userNameTA.setText(model.getCurrentUserName());
         startDraftButton.setEnabled(!model.getSelection());
-        forward.setText(model.getTeamToString("forws"));
-        mids.setText(model.getTeamToString("mids"));
-        defs.setText(model.getTeamToString("defs"));
-        keeps.setText(model.getTeamToString("keeps"));
+        currentUserTeamTable.setText(model.getTeamToString());
     }
     
     public JPanel getPanel()
     {
-        return frame;
+    	return frame;
     }
 }

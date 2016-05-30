@@ -11,15 +11,15 @@ import java.util.*;
  */
 public class TestTournament extends TestCase 
 {
-    private ArrayList<SoccerPlayer> list;
-    private ArrayList<User> userList;
-    private Tournament tourn;
-    private User users1;
-    private User users2;
-    private User users3;
-    private User users4;
-    private static final String BARCA = "Barcelona";
-    
+	private ArrayList<SoccerPlayer> list;
+	private ArrayList<User> userList;
+	private Tournament tourn;
+	private User users1;
+	private User users2;
+	private User users3;
+	private User users4;
+	private static final String BARCA = "Barcelona";
+	
     
     public TestTournament(String testName) 
     {
@@ -110,7 +110,7 @@ public class TestTournament extends TestCase
      */
     public void testAddUser() 
     {   
-        tourn.removeUser(users1);
+    	tourn.removeUser(users1);
         assertTrue(tourn.addUser(users1));
     }
     
@@ -120,7 +120,7 @@ public class TestTournament extends TestCase
      */
     public void testAddUserDoubleAdd() 
     {
-        assertFalse(tourn.addUser(users2));
+    	assertFalse(tourn.addUser(users2));
     }
     /**
      * Test of addUser when the tournament is full

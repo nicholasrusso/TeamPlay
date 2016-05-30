@@ -13,60 +13,60 @@ import user.User;
  * Author: Charlie Gels
  */
 public class TestProfilePanel {
-    
-    @Test
-    public void getFirstName()
+	
+	@Test
+	public void getFirstName()
     {
-        User u = testSetup();
-        ProfilePanel test = new ProfilePanel(u);
-        assertTrue(u.getFirstName().equals(test.getFirstName()));
+    	User u = testSetup();
+    	ProfilePanel test = new ProfilePanel(u);
+    	assertTrue(u.getFirstName().equals(test.getFirstName()));
     }
     
-    @Test
+	@Test
     public void getLastName()
     {
-        User u = testSetup();
-        ProfilePanel test = new ProfilePanel(u);
-        assertTrue(u.getLastName().equals(test.getLastName()));
+    	User u = testSetup();
+    	ProfilePanel test = new ProfilePanel(u);
+    	assertTrue(u.getLastName().equals(test.getLastName()));
     }
     
-    @Test
+	@Test
     public void getUserName()
     {
-        User u = testSetup();
-        ProfilePanel test = new ProfilePanel(u);
-        assertTrue(u.getUsername().equals(test.getUserName()));
+    	User u = testSetup();
+    	ProfilePanel test = new ProfilePanel(u);
+    	assertTrue(u.getUsername().equals(test.getUserName()));
     }
     
-    @Test
+	@Test
     public void getEmailAddress()
     {
-        User u = testSetup();
-        ProfilePanel test = new ProfilePanel(u);
-        assertTrue(u.getEmail().toString().equals(test.getEmailAddress()));
+    	User u = testSetup();
+    	ProfilePanel test = new ProfilePanel(u);
+    	assertTrue(u.getEmail().toString().equals(test.getEmailAddress()));
     }
     
-    @Test
+	@Test
     public void getPassword()
     {
-        User u = testSetup();
-        ProfilePanel test = new ProfilePanel(u);
-        String hash = PasswordUtilities.getPasswordHash("root");
-        assertTrue(hash.equals(test.getPassword()));
+    	User u = testSetup();
+    	ProfilePanel test = new ProfilePanel(u);
+    	String hash = PasswordUtilities.getPasswordHash("root");
+    	assertTrue(hash.equals(test.getPassword()));
     }
-    
-    /**
-     * Helper method that integrates multiple user methods and tests the model of the Profile panel.
-     * */
-    private static User testSetup()
-    {
-        User u = new User();
-        
-        u.setFirstName("root");
-        u.setLastName("root");
-        u.setUsername("root");
-        u.setEmail("root@calpoly.edu");
-        u.setPasswordHashFromPassword("root");
-        return u;
-    }
+	
+	/**
+	 * Helper method that integrates multiple user methods and tests the model of the Profile panel.
+	 * */
+	private static User testSetup()
+	{
+		User u = new User();
+		
+		u.setFirstName("root");
+		u.setLastName("root");
+		u.setUsername("root");
+		u.setEmail("root@calpoly.edu");
+		u.setPasswordHashFromPassword("root");
+		return u;
+	}
 }

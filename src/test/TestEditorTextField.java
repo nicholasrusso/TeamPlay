@@ -11,22 +11,22 @@ import view.EditorTextField;
  * Author: Charlie Gels
  */
 public class TestEditorTextField {
-    
-    @Test
+	
+	@Test
     public void testGetTextInput()
     {
-        String txt = "Input";
-        EditorTextField test = new EditorTextField("Label", txt);
-        
+		String txt = "Input";
+		EditorTextField test = new EditorTextField("Label", txt);
+		
         assertTrue(txt.equals(test.getTextInput()));
     }
-    
-    @Test
+	
+	@Test
     public void testGetLabelText()
     {
-        String txt = "Label";
-        EditorTextField test = new EditorTextField(txt, "Input");
-        
+		String txt = "Label";
+		EditorTextField test = new EditorTextField(txt, "Input");
+		
         assertTrue(txt.equals(test.getLabelText()));
     }
 

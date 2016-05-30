@@ -46,8 +46,8 @@ public class GoalKeeper implements SoccerPlayer
     }
     
     public String getPosition() {
-        return "GK";
-    }
+		return "GK";
+	}
     
 
 }

@@ -16,16 +16,16 @@ public class EditorTextField extends EditorField
      * */
     public EditorTextField(String labelText, String inputText)
     {
-        super(labelText, new JTextField(inputText));
-        setEditable(editable);
+    	super(labelText, new JTextField(inputText));
+    	setEditable(editable);
     }
     
     /**
      * Mutator to change the TextFields state of editability. 
      * */
     public void setEditable(boolean canEdit) {
-        editable = canEdit;
-        input.setEditable(editable);
+    	editable = canEdit;
+    	input.setEditable(editable);
     }
 }
 
