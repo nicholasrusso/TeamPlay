@@ -29,6 +29,8 @@ public class CreateTournament {
    private String def = "D";
    private String mid = "M";
    private String fwd = "F";
+   private String pos = "position";
+   private String name = "name";
    private String tournamentName = "";
    private ArrayList<SoccerPlayer> playerPool = new ArrayList<SoccerPlayer>();
    private int numberUsers = 2;
@@ -45,17 +47,17 @@ public class CreateTournament {
          pstmt.setString(1, teamName);
          ResultSet rs = pstmt.executeQuery(); 
          while (rs.next()) {
-            if (rs.getString("position").equals(gk)) {
-               playerPool.add(new GoalKeeper(rs.getString("name"), rs.getString("team")));
+            if (rs.getString(pos).equals(gk)) {
+               playerPool.add(new GoalKeeper(rs.getString(name), rs.getString("team")));
             }
-            else if (rs.getString("position").equals(def)) {
-               playerPool.add(new Defender(rs.getString("name"), rs.getString("team")));
+            else if (rs.getString(pos).equals(def)) {
+               playerPool.add(new Defender(rs.getString(name), rs.getString("team")));
             }
-            else if (rs.getString("position").equals(mid)) {
-               playerPool.add(new Midfielder(rs.getString("name"), rs.getString("team")));
+            else if (rs.getString(pos).equals(mid)) {
+               playerPool.add(new Midfielder(rs.getString(name), rs.getString("team")));
             }
-            else if (rs.getString("position").equals(fwd)) {
-               playerPool.add(new Forward(rs.getString("name"), rs.getString("team")));
+            else if (rs.getString(pos).equals(fwd)) {
+               playerPool.add(new Forward(rs.getString(name), rs.getString("team")));
             }
             else {
                System.out.println("Incorrect database entry");
@@ -148,12 +150,6 @@ public class CreateTournament {
       class submitButtonListener implements ActionListener {
          public void actionPerformed(ActionEvent ae) {
         	 tournamentName = tournamentNameField.getText();
-        	 System.out.println("Submitted");
-        	 System.out.println("name: " + tournamentName);
-        	 System.out.println("numberUsers: " + numberUsers);
-        	 //System.out.println("playerPool: " + playerPool);
-        	 
-        	 
         	 Tournament tournament = new Tournament(tournamentName, numberUsers, playerPool);
         	 UserSearch search = new UserSearch("");
         	 ArrayList<User> list = (ArrayList<User>) search.getUsers();
