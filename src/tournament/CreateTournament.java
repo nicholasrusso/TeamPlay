@@ -10,7 +10,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-import soccerPlayer.*;
+import soccerplayer.*;
 import teams.*;
 
 public class CreateTournament {
