@@ -92,7 +92,7 @@ public class LoginMenuView extends JLayeredPane {
                   @Override
                     public void run(){
                        int i = 0; 
-                        for(int j = 0 ; j <= 100 ; j++){
+                        for(i = 0 ; i <= 100 ; i++){
                             final int percent = j;
                             SwingUtilities.invokeLater(new Runnable() {
                                   @Override  
