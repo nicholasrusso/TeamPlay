@@ -35,8 +35,6 @@ public class LoginMenuView extends JLayeredPane {
     private JButton login;
     private JButton createAcct;
     private JProgressBar progressBar;
-    public static User gUser;
-
 
 	public LoginMenuView() {
         usernameLabel = new JLabel("Username");
@@ -87,22 +85,24 @@ public class LoginMenuView extends JLayeredPane {
 	
     class ProgressListener implements ActionListener
     {
+    	private User user;
+    	
         public synchronized void updateBar(ActionEvent ae, final User u) {
+        	this.user = u;
         	Component component = (Component) ae.getSource();
         	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
-            Thread t = new ProgressBarThread();
+            Thread t = new ProgressBarThread(u);
             t.start(); 
         }
      
         @Override
         public void actionPerformed(ActionEvent ae) 
         {            
-            if ("root".equals(jpfPassword.getText())
+            if ("root".equals(jpfPassword.getPassword())
             && "root".equals(jtfUsername.getText())) {
                 // upon successful login, reference to user that is logged into the system (needed by rest of components)
             	User user = new UserSearch("root").getUsers().get(0);
-            	LoginMenuView.gUser = user;
                 updateBar(ae, user);
             }
             else {
@@ -113,6 +113,12 @@ public class LoginMenuView extends JLayeredPane {
     }
     
     class ProgressBarThread extends Thread {
+    	private User user;
+    	
+    	public ProgressBarThread(User user) {
+    		this.user = user;
+    	}
+    	
     	@Override
         public void run(){                        
             for(int i = 0 ; i <= 100 ; i++){
@@ -131,7 +137,7 @@ public class LoginMenuView extends JLayeredPane {
             	JFrame frame = (JFrame) SwingUtilities.getRoot(progressBar);
                     Thread.sleep(500);
                     frame.getContentPane().removeAll();           
-                    frame.getContentPane().add(new MainMenuView(LoginMenuView.gUser));
+                    frame.getContentPane().add(new MainMenuView(this.user));
                     frame.getContentPane().validate();
                     frame.getContentPane().repaint();
             }

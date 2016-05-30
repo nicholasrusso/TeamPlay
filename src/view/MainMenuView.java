@@ -37,12 +37,9 @@ public class MainMenuView extends JLayeredPane {
     private JLabel title;
     private JLayeredPane lp;
     private User user;
-    public static User gUser;
-
 
 	public MainMenuView(User user) {
 			this.user = user;
-			MainMenuView.gUser = user;
 	    	lp = new JLayeredPane();
 
 	    	tournamentButton = new JButton("Join Tournament");
