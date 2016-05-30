@@ -82,46 +82,47 @@ public class UserSearchPanel extends JPanel {
 				}
 				resultList.setModel(resultModel);
 		});
-		GridBagConstraints gbc_btnSearch = new GridBagConstraints();
-		gbc_btnSearch.anchor = GridBagConstraints.WEST;
-		gbc_btnSearch.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSearch.gridx = 10;
-		gbc_btnSearch.gridy = 1;
-		add(btnSearch, gbc_btnSearch);
+		GridBagConstraints gbcBtnSearch = new GridBagConstraints();
+		gbcBtnSearch.anchor = GridBagConstraints.WEST;
+		gbcBtnSearch.insets = new Insets(0, 0, 5, 5);
+		gbcBtnSearch.gridx = 10;
+		gbcBtnSearch.gridy = 1;
+		add(btnSearch, gbcBtnSearch);
 		
 		JLabel lblSearchResults = new JLabel("Search Results:");
 		lblSearchResults.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblSearchResults = new GridBagConstraints();
-		gbc_lblSearchResults.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblSearchResults.gridwidth = 3;
-		gbc_lblSearchResults.insets = new Insets(0, 0, 5, 5);
-		gbc_lblSearchResults.gridx = 1;
-		gbc_lblSearchResults.gridy = 2;
-		add(lblSearchResults, gbc_lblSearchResults);
+		GridBagConstraints gbcLblSearchResults = new GridBagConstraints();
+		gbcLblSearchResults.anchor = GridBagConstraints.NORTHEAST;
+		gbcLblSearchResults.gridwidth = 3;
+		gbcLblSearchResults.insets = new Insets(0, 0, 5, 5);
+		gbcLblSearchResults.gridx = 1;
+		gbcLblSearchResults.gridy = 2;
+		add(lblSearchResults, gbcLblSearchResults);
 		
 		JButton btnViewUser = new JButton("View User");
 		btnViewUser.addActionListener(new ViewUserButtonListener());
 		
 		JButton btnBack = new JButton("Back");
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-		gbc_btnBack.insets = new Insets(0, 0, 0, 5);
-		gbc_btnBack.gridx = 7;
-		gbc_btnBack.gridy = 8;
-		add(btnBack, gbc_btnBack);
+		GridBagConstraints gbcBtnBack = new GridBagConstraints();
+		gbcBtnBack.insets = new Insets(0, 0, 0, 5);
+		gbcBtnBack.gridx = 7;
+		gbcBtnBack.gridy = 8;
+		add(btnBack, gbcBtnBack);
 		
 		btnBack.addActionListener(new BackToMainMenuListener());
 		
 
-		GridBagConstraints gbc_btnViewUser = new GridBagConstraints();
-		gbc_btnViewUser.insets = new Insets(0, 0, 0, 5);
-		gbc_btnViewUser.gridx = 10;
-		gbc_btnViewUser.gridy = 8;
-		add(btnViewUser, gbc_btnViewUser);
+		GridBagConstraints gbcBtnViewUser = new GridBagConstraints();
+		gbcBtnViewUser.insets = new Insets(0, 0, 0, 5);
+		gbcBtnViewUser.gridx = 10;
+		gbcBtnViewUser.gridy = 8;
+		add(btnViewUser, gbcBtnViewUser);
 
 	}
 	
 	class ViewUserButtonListener implements ActionListener
     {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Component component = (Component) e.getSource();
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
@@ -138,12 +139,12 @@ public class UserSearchPanel extends JPanel {
 	
 	class BackToMainMenuListener implements ActionListener
     {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Component component = (Component) e.getSource();
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
         	            
         	frame.getContentPane().removeAll();
-        	//TODO provide correct user reference
         	frame.getContentPane().add(new MainMenuView(null));
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();
