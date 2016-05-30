@@ -15,7 +15,7 @@ public class TestUser
     User user = new User();
     
     @Test
-    public void testSetUsername() throws Exception
+    public void testSetUsername()
     {
         assertTrue(user.setUsername("ArsenalBLAHBLAH123"));
         assertTrue(user.setUsername("Steven69Gerrad8"));
@@ -25,30 +25,35 @@ public class TestUser
     }
 
     @Test
-    public void testSetFirstName() throws Exception
+    public void testSetFirstName()
     {
+    	String a = "Charlie";
+        assertTrue(user.setFirstName(a));
+        assertTrue(user.getFirstName().equals(a));
 
-        assertTrue(user.setFirstName("Charlie"));
-        assertTrue(user.getFirstName().equals("Charlie"));
+        String b = "1Abece";
+        assertFalse(user.setFirstName(b));
+        assertFalse(user.getFirstName().equals(b));
 
-        assertFalse(user.setFirstName("1Abece"));
-        assertFalse(user.getFirstName().equals("1Abece"));
-
-        assertFalse(user.setFirstName("AC!&c"));
-        assertFalse(user.getFirstName().equals("AC!&c"));
+        String c = "AC!&c";
+        assertFalse(user.setFirstName(c));
+        assertFalse(user.getFirstName().equals(c));
     }
     
     @Test
-    public void testSetLastName() throws Exception
+    public void testSetLastName()
     {
-        user.setLastName("Charlie");
-        assertTrue(user.getLastName().equals("Charlie"));
+    	String a = "Charlie";
+        user.setLastName(a);
+        assertTrue(user.getLastName().equals(a));
 
-        user.setLastName("1Abece");
-        assertFalse(user.getLastName().equals("1Abece"));
+        String b = "1Abece";
+        user.setLastName(b);
+        assertFalse(user.getLastName().equals(b));
 
-        user.setLastName("AC!&c");
-        assertFalse(user.getLastName().equals("AC!&c"));
+        String c = "AC!&c";
+        user.setLastName(c);
+        assertFalse(user.getLastName().equals(c));
     }
 
 
