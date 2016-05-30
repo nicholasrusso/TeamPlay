@@ -97,14 +97,16 @@ public class LoginMenuView extends JLayeredPane {
                        int i; 
                         for(i = 0 ; i <= 100 ; i++){
                             final int percent = i;
-                            SwingUtilities.invokeLater(new Runnable() {
-                                  @Override  
-                                  public void run() {
+                            SwingUtilities.invokeLater(
+                                  //new Runnable() {
+                                  //@Override  
+                                  //public void run() {
+                                  element -> {
                                         progressBar.setValue(percent);
                                         progressBar.setStringPainted(true);
 
                                     }
-                                });
+                                );
 
                             try {
                                 Thread.sleep(25);
