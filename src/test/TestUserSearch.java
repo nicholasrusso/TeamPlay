@@ -21,7 +21,7 @@ public class TestUserSearch {
 		UserSearch searcher = new UserSearch("");
 		ArrayList<User> users = (ArrayList<User>) searcher.getUsers();
 		
-		assertTrue(users.size() > 0);
+		assertFalse(users.isEmpty());
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class TestUserSearch {
 		UserSearch searcher = new UserSearch("DOES_NOT_EXIST");
 		ArrayList<User> users = (ArrayList<User>) searcher.getUsers();
 		
-		assertTrue(users.size() == 0);
+		assertTrue(users.isEmpty());
 	}
 	
 	@Test
@@ -39,7 +39,6 @@ public class TestUserSearch {
 	 
 		for (User user : users) {
 			assertFalse("".equals(user.getUsername()));
-			System.out.println(user.getUsername());
 		}
 	}
 	
