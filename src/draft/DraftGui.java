@@ -9,6 +9,7 @@ import tournament.Tournament;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class DraftGui implements Observer
 {
@@ -67,7 +68,7 @@ public class DraftGui implements Observer
         frame.add(userNameTA);
         
         playerSelectionPanel = new JPanel();
-        playerSelectionPanel.setBounds(6, 74, 364, 180);
+        playerSelectionPanel.setBounds(6, 74, 461, 180);
         frame.add(playerSelectionPanel);
         playerSelectionPanel.setLayout(null);
         
@@ -78,15 +79,15 @@ public class DraftGui implements Observer
         
         
         btnPlayer1.addActionListener(element -> model.nextUser(0));
-        btnPlayer1.setBounds(6, 69, 117, 29);
+        btnPlayer1.setBounds(6, 145, 117, 29);
         playerSelectionPanel.add(btnPlayer1);
         
         btnPlayer2.addActionListener(element -> model.nextUser(1));
-        btnPlayer2.setBounds(122, 69, 117, 29);
+        btnPlayer2.setBounds(180, 145, 117, 29);
         playerSelectionPanel.add(btnPlayer2);
         
         btnPlayer3.addActionListener(element -> model.nextUser(2));
-        btnPlayer3.setBounds(241, 69, 117, 29);
+        btnPlayer3.setBounds(338, 145, 117, 29);
         playerSelectionPanel.add(btnPlayer3);
         
  
@@ -102,14 +103,14 @@ public class DraftGui implements Observer
         player2Name.setText("");
         player2Name.setHorizontalAlignment(SwingConstants.CENTER);
         player2Name.setColumns(10);
-        player2Name.setBounds(122, 29, 117, 29);
+        player2Name.setBounds(180, 29, 117, 29);
         playerSelectionPanel.add(player2Name);
         
         player3Name = new JTextField();
         player3Name.setText("");
         player3Name.setHorizontalAlignment(SwingConstants.CENTER);
         player3Name.setColumns(10);
-        player3Name.setBounds(241, 29, 117, 29);
+        player3Name.setBounds(338, 29, 117, 29);
         playerSelectionPanel.add(player3Name);
         player1Name.setEditable(false);
         player2Name.setEditable(false);
@@ -120,25 +121,26 @@ public class DraftGui implements Observer
         userNameInfoTA.setFont(new Font(FONT, Font.PLAIN, 24));
         frame.add(userNameInfoTA);
         userNameInfoTA.setEditable(false);
-        userNameInfoTA.setBackground(Color.WHITE);
+        userNameInfoTA.setBackground(SystemColor.window);
         userNameInfoTA.setText("Current User:");
         
         timerPanel = new JPanel();
-        timerPanel.setBounds(382, 74, 364, 180);
+        timerPanel.setBounds(479, 74, 315, 180);
         frame.add(timerPanel);
         timerPanel.setLayout(null);
         
         timerTxt = new JTextField();
         timerTxt.setEditable(false);
         timerTxt.setFont(new Font(FONT, Font.BOLD, 35));
-        timerTxt.setText("STARTING DRAFT!");
+        timerTxt.setText("Press Start");
         timerTxt.setHorizontalAlignment(SwingConstants.CENTER);
         timerTxt.setColumns(10);
-        timerTxt.setBounds(35, 6, 275, 168);
+        timerTxt.setBounds(6, 6, 303, 168);
         timerPanel.add(timerTxt);
         
         txtTimeRemaining = new JTextField();
-        txtTimeRemaining.setBounds(382, 50, 364, 26);
+        txtTimeRemaining.setBackground(SystemColor.window);
+        txtTimeRemaining.setBounds(479, 50, 317, 26);
         txtTimeRemaining.setEditable(false);
         txtTimeRemaining.setHorizontalAlignment(SwingConstants.CENTER);
         txtTimeRemaining.setText("Time Remaining");
@@ -146,7 +148,8 @@ public class DraftGui implements Observer
         txtTimeRemaining.setColumns(10);
         
         txtPlayerSelection = new JTextField();
-        txtPlayerSelection.setBounds(6, 49, 364, 26);
+        txtPlayerSelection.setBackground(SystemColor.window);
+        txtPlayerSelection.setBounds(6, 49, 461, 26);
         txtPlayerSelection.setEditable(false);
         frame.add(txtPlayerSelection);
         txtPlayerSelection.setText("Player Selection");
@@ -154,16 +157,17 @@ public class DraftGui implements Observer
         txtPlayerSelection.setColumns(10);
         
         currentUserTeamPanel = new JPanel();
-        currentUserTeamPanel.setBounds(6, 345, 364, 169);
+        currentUserTeamPanel.setBounds(6, 345, 461, 162);
         frame.add(currentUserTeamPanel);
         currentUserTeamPanel.setLayout(null);
         
         currentUserTeamTable = new JTextArea();
-        currentUserTeamTable.setBounds(6, 6, 352, 154);
+        currentUserTeamTable.setBounds(6, 6, 449, 150);
         currentUserTeamPanel.add(currentUserTeamTable);
         
         txtCurrentTeam = new JTextField();
-        txtCurrentTeam.setBounds(6, 319, 364, 26);
+        txtCurrentTeam.setBackground(SystemColor.window);
+        txtCurrentTeam.setBounds(6, 319, 461, 26);
         txtCurrentTeam.setEditable(false);
         txtCurrentTeam.setText("Current Team");
         txtCurrentTeam.setHorizontalAlignment(SwingConstants.CENTER);
@@ -171,11 +175,12 @@ public class DraftGui implements Observer
         frame.add(txtCurrentTeam);
         
         teamStatsPanel = new JPanel();
-        teamStatsPanel.setBounds(382, 286, 364, 228);
+        teamStatsPanel.setBounds(479, 292, 309, 215);
         frame.add(teamStatsPanel);
         teamStatsPanel.setLayout(null);
         
         txtrTeamName = new JTextArea();
+        txtrTeamName.setBackground(SystemColor.window);
         txtrTeamName.setEditable(false);
         txtrTeamName.setFont(new Font(FONT, Font.PLAIN, 16));
         txtrTeamName.setText("Team Name:");
@@ -183,21 +188,23 @@ public class DraftGui implements Observer
         teamStatsPanel.add(txtrTeamName);
         
         txtrNumberOfPlayers = new JTextArea();
+        txtrNumberOfPlayers.setBackground(SystemColor.window);
         txtrNumberOfPlayers.setEditable(false);
-        txtrNumberOfPlayers.setText("# of Players:");
+        txtrNumberOfPlayers.setText("Players:");
         txtrNumberOfPlayers.setFont(new Font(FONT, Font.PLAIN, 16));
-        txtrNumberOfPlayers.setBounds(202, 182, 102, 27);
+        txtrNumberOfPlayers.setBounds(189, 182, 60, 27);
         teamStatsPanel.add(txtrNumberOfPlayers);
         
         txtrFormation = new JTextArea();
+        txtrFormation.setBackground(SystemColor.window);
         txtrFormation.setEditable(false);
         txtrFormation.setText("Formation:");
         txtrFormation.setFont(new Font(FONT, Font.PLAIN, 16));
-        txtrFormation.setBounds(6, 182, 95, 27);
+        txtrFormation.setBounds(6, 182, 86, 27);
         teamStatsPanel.add(txtrFormation);
         
         formationComboBox = new JComboBox<>();
-        formationComboBox.setBounds(101, 181, 102, 27);
+        formationComboBox.setBounds(88, 181, 102, 27);
         teamStatsPanel.add(formationComboBox);
         formationComboBox.addItem("4-3-3");
         formationComboBox.addItem("4-5-1");
@@ -205,23 +212,25 @@ public class DraftGui implements Observer
         
         numOfPlayers = new JTextArea();
         numOfPlayers.setEditable(false);
-        numOfPlayers.setBounds(320, 240, 38, 27);
+        numOfPlayers.setBounds(261, 182, 38, 27);
         teamStatsPanel.add(numOfPlayers);
         
         txtrFormationGrap = new JTextArea();
         txtrFormationGrap.setEditable(false);
         txtrFormationGrap.setText("Formation Graph");
-        txtrFormationGrap.setBounds(6, 38, 352, 132);
+        txtrFormationGrap.setBounds(6, 38, 297, 132);
         teamStatsPanel.add(txtrFormationGrap);
         
         teamNameTA = new JTextArea();
-        teamNameTA.setText("Team Name:");
+        teamNameTA.setBackground(SystemColor.window);
+        teamNameTA.setText("Team");
         teamNameTA.setFont(new Font(FONT, Font.PLAIN, 16));
-        teamNameTA.setBounds(120, 6, 238, 27);
+        teamNameTA.setBounds(120, 6, 184, 27);
         teamStatsPanel.add(teamNameTA);
         
         txtTeamStatistics = new JTextField();
-        txtTeamStatistics.setBounds(382, 258, 364, 26);
+        txtTeamStatistics.setBackground(SystemColor.window);
+        txtTeamStatistics.setBounds(479, 266, 315, 26);
         txtTeamStatistics.setEditable(false);
         txtTeamStatistics.setText("Team Information");
         txtTeamStatistics.setHorizontalAlignment(SwingConstants.CENTER);
@@ -229,12 +238,12 @@ public class DraftGui implements Observer
         frame.add(txtTeamStatistics);
         
         quitDraftButton = new JButton("Quit Draft");
-        quitDraftButton.setBounds(6, 529, 364, 49);
+        quitDraftButton.setBounds(6, 519, 461, 52);
         quitDraftButton.setFont(new Font(FONT, Font.PLAIN, 34));
         frame.add(quitDraftButton);
         
         saveButton = new JButton("Save");
-        saveButton.setBounds(382, 526, 366, 54);
+        saveButton.setBounds(477, 519, 317, 54);
         saveButton.addActionListener(element -> {
                 model.setTeamName(teamNameTA.getText());
                 model.setTeamFormation(formationComboBox.getSelectedItem().toString());
@@ -246,7 +255,7 @@ public class DraftGui implements Observer
         
         
         startDraftButton = new JButton("Start");
-        startDraftButton.setBounds(6, 266, 366, 54);
+        startDraftButton.setBounds(6, 266, 461, 54);
         startDraftButton.setForeground(Color.BLACK);
         startDraftButton.setBackground(Color.RED);
         startDraftButton.setFont(new Font(FONT, Font.PLAIN, 34));
@@ -269,7 +278,7 @@ public class DraftGui implements Observer
         
         
         frame.add(saveButton);
-        frame.setSize(800, 600);
+        frame.setSize(800, 591);
         frame.setVisible(true);
         
     }
