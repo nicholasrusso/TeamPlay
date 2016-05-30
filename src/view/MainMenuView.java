@@ -147,6 +147,8 @@ public class MainMenuView extends JLayeredPane {
         	Component component = (Component) ae.getSource();
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
+            frame.getContentPane().removeAll(); 
+            
             frame.getContentPane().removeAll();           
             frame.getContentPane().add(new MainMenuView(null));
             
