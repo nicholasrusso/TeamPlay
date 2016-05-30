@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Logger;
 
 import db.DBFactory;
 import draft.DraftGui;
@@ -32,6 +33,7 @@ public class CreateTournament {
    private String pos = "position";
    private String name = "name";
    private String tournamentName = "";
+   private static final Logger log = Logger.getLogger("CreateTournament");
    private ArrayList<SoccerPlayer> playerPool = new ArrayList<SoccerPlayer>();
    private int numberUsers = 2;
    private JPanel tournamentPanel;
@@ -60,7 +62,7 @@ public class CreateTournament {
                playerPool.add(new Forward(rs.getString(name), rs.getString("team")));
             }
             else {
-               System.out.println("Incorrect database entry");
+               log.fine("Database entry was incorrect.");
             }
          }
          pstmt.close();
@@ -68,7 +70,7 @@ public class CreateTournament {
       }
       catch (SQLException se) {
          // This will need to be turned into a logger later
-         System.out.println("Unable to retrieve players from team " + teamName);
+         log.fine("Unable to retrieve players from team " + teamName);
       }
    }
 
@@ -132,7 +134,6 @@ public class CreateTournament {
       maxNumUsers.addChangeListener(new ChangeListener() {
          public void stateChanged(ChangeEvent e) {
             numberUsers = ((JSlider)e.getSource()).getValue();
-            System.out.println("numberUsers: " + numberUsers);
          }
       });
       tournamentPanel.add(maxNumUsers);
