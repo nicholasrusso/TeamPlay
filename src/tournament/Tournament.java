@@ -95,18 +95,18 @@ public class Tournament {
      */
     public void removePlayer(SoccerPlayer player)
     {
-    	players.remove(player);
+        players.remove(player);
     }
     
     public SoccerPlayer[] randomPlayers()
     {
-    	
-    	SoccerPlayer[] threePlayers = new SoccerPlayer[3];
-		Collections.shuffle(players);
-		threePlayers[0] = players.get(0);
-		threePlayers[1] = players.get(1);
-		threePlayers[2] = players.get(2);
-		return threePlayers;
+        
+        SoccerPlayer[] threePlayers = new SoccerPlayer[3];
+        Collections.shuffle(players);
+        threePlayers[0] = players.get(0);
+        threePlayers[1] = players.get(1);
+        threePlayers[2] = players.get(2);
+        return threePlayers;
     }
 
 }
