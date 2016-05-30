@@ -11,9 +11,6 @@ import db.DBFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import db.DBFactory;
 
 public class UserSearch {
 	private static final Logger log = Logger.getLogger("UserSearch");
@@ -74,11 +71,6 @@ public class UserSearch {
 	    			users.add(tempUser);
 	    				    			
 	    		}
-	    		qUsername = null;
-	    		qFirstName = null;
-	    		qLastName = null;
-	    		qEmailAddress = null;
-	    		qPassHash = null;
 		    }
 		    pstmt.close();
 		    db.close();
@@ -86,7 +78,6 @@ public class UserSearch {
 		} catch (java.sql.SQLException e) {
 			log.severe("UserQuery: Failed \n" + e.getMessage());
 			log.severe(Arrays.toString(e.getStackTrace()));
-			System.exit(1);
 		}
 		
 		return users;
