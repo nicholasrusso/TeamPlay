@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.awt.event.ItemEvent;
 import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -78,27 +77,12 @@ public class CreateTournament {
    public JPanel createTournamentMenu() {
       // JCheckBoxes (one for each team that has a teamName)
       String[] teamNames = {"Arsenal", "Atletico Madrid", "Bayern Munich", 
-         "Chelsea", "FC Barcelona", "Leicester City", "Liverpool", 
+         "Chelsea", "FC Barcelona", "Liverpool", 
          "Manchester City", "Manchester United", "PSG", "Real Madrid", "Roma"};
       JCheckBox[] teamBoxes = new JCheckBox[teamNames.length];
 
       for (int i = 0; i < teamBoxes.length; i++) {
          teamBoxes[i] = new JCheckBox(teamNames[i]);
-      }
-
-      // When boxes are checked or unchecked
-      for (int i = 0; i < teamBoxes.length; i++) {
-         final String teamName = teamNames[i];
-         teamBoxes[i].addItemListener((ItemEvent e) -> {
-               if (e.getStateChange() == ItemEvent.SELECTED) {
-                  // Add all players from team to player pool
-                  addToPlayerPool(teamName);
-               }
-               else {
-                  // Remove all players from deselected team
-               }
-            }
-         );
       }
 
       // Create Tournament Panel
@@ -146,6 +130,14 @@ public class CreateTournament {
          @Override
          public void actionPerformed(ActionEvent ae) {
         	 tournamentName = tournamentNameField.getText();
+        	 // Add checked boxes to playerpool
+        	 for (int i = 0; i < teamBoxes.length; i++) {
+        	     final String teamName = teamNames[i];
+        	     if (teamBoxes[i].isSelected()) {
+        	         addToPlayerPool(teamName);
+        	     }
+        	 }
+        	 
         	 Tournament tournament = new Tournament(tournamentName, numberUsers, playerPool);
         	 UserSearch search = new UserSearch("");
         	 ArrayList<User> list = (ArrayList<User>) search.getUsers();
