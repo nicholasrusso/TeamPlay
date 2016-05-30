@@ -33,7 +33,7 @@ public class LoginMenuView extends JLayeredPane {
     private JProgressBar progressBar;
 
 
-	public LoginMenuView() {
+    public LoginMenuView() {
         loginPanel = new JPanel();
         usernameLabel = new JLabel("Username");
         passwordLabel = new JLabel("Password");
@@ -79,13 +79,13 @@ public class LoginMenuView extends JLayeredPane {
         login.addActionListener(new progressListener());
         createAcct.addActionListener(new createAcctButtonListener());
         
-	}
-	
+    }
+    
     class progressListener implements ActionListener
     {
         public synchronized void updateBar(ActionEvent ae) {
-        	Component component = (Component) ae.getSource();
-        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+            Component component = (Component) ae.getSource();
+            JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             Thread t = new Thread(){
                     public void run(){
@@ -138,8 +138,8 @@ public class LoginMenuView extends JLayeredPane {
     {
         public void actionPerformed(ActionEvent e) 
         {
-			Component component = (Component) e.getSource();
-        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+            Component component = (Component) e.getSource();
+            JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             frame.getContentPane().removeAll();            
             JPanel registrationPanel = new RegistrationPane();
