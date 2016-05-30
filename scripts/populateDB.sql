@@ -1,6 +1,7 @@
 insert into main.User (username, firstname, lastname, passhash, email, lastlogin) values 
 ('mhaskell','Michael', 'Haskell', '', 'mhaskell@calpoly.edu', ''),
-('testuser1','Test', 'User1', '', 'testuser1@calpoly.edu', '');
+('testuser1','Test', 'User1', '', 'testuser1@calpoly.edu', ''),
+('root', 'root', 'root', 'B81E8CEA477D0AE95CFB0994297189F92E093BBA598690BE0CCEB085E90FFA1E0A1D32F1B44C50B8E0BFFC3F4896BEA735165E430D3475FA324B61BBC81643F8', 'root@calpoly.edu', '');
 insert into ProTeam (name, league) values 
 ('Roma', 'Serie A'),
 ('Bayern Munich', 'Bundesliga'),

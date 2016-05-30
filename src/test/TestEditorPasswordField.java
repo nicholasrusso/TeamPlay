@@ -19,7 +19,7 @@ public class TestEditorPasswordField {
 		String txt = "password";
 		test.setInputText(txt);
 		
-        assertTrue(txt.equals(test.getPasswordInput()));
+        assertTrue(txt.equals(test.getTextInput()));
     }
 
 	@Test
