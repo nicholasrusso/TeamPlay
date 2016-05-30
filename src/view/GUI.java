@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import user.*;
+
 public class GUI {
     private JFrame frame;
 	private static final Logger log = Logger.getLogger("GUI");

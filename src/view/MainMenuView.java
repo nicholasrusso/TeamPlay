@@ -22,14 +22,20 @@ import user.UserSearchPanel;
 import tournament.CreateTournament;
 
 public class MainMenuView extends JLayeredPane {
-    private JPanel headerPanel, menuPanel, menuButtonPanel, profilePanel, settingsPanel, createTournamentPanel, tournamentPanel, rulesPanel;
+    private JPanel headerPanel;
+    private JPanel menuPanel;
+    private JPanel menuButtonPanel;
+    private JPanel profilePanel;
+    private JPanel settingsPanel;
+    private JPanel createTournamentPanel;
+    private JPanel tournamentPanel;
+    private JPanel rulesPanel;
     private JButton rulesButton, tournamentButton, createTournamentButton, editProfileButton, settingsButton, backButton;
     private JButton findFriendsButton;
     private JButton logoutButton;
     private JPanel findFriendsPanel;
     private JLabel backgroundLabel, title;
     private JLayeredPane lp;
-    private Image img;
     private User user;
 
 
@@ -41,19 +47,19 @@ public class MainMenuView extends JLayeredPane {
 	        tournamentButton.setBounds(170,290,440, 30);
 	        tournamentButton.setBackground(Color.black);
 	        tournamentButton.setFont(tournamentButton.getFont().deriveFont(Font.BOLD));
-	        tournamentButton.addActionListener(new tournamentButtonListener());
+	        tournamentButton.addActionListener(new TournamentButtonListener());
 
 	        createTournamentButton = new JButton("Create Tournament");
 	        createTournamentButton.setBounds(170,330,440, 30);
 	        createTournamentButton.setBackground(Color.black);
 	        createTournamentButton.setFont(createTournamentButton.getFont().deriveFont(Font.BOLD));
-	        createTournamentButton.addActionListener(new createTournamentButtonListener());
+	        createTournamentButton.addActionListener(new CreateTournamentButtonListener());
 
 	        editProfileButton = new JButton("Edit Profile");  
 	        editProfileButton.setBounds(170,370,440, 30);
 	        editProfileButton.setBackground(Color.black); 
 	        editProfileButton.setFont(editProfileButton.getFont().deriveFont(Font.BOLD));
-	        editProfileButton.addActionListener(new editProfileButtonListener());
+	        editProfileButton.addActionListener(new EditProfileButtonListener());
 
 	        rulesButton = new JButton("Rules");         
 	        rulesButton.setBounds(170,410,440, 30);
@@ -71,13 +77,13 @@ public class MainMenuView extends JLayeredPane {
 	        findFriendsButton.setBounds(170,450,440, 30);
 	        findFriendsButton.setBackground(Color.black); 
 	        findFriendsButton.setFont(findFriendsButton.getFont().deriveFont(Font.BOLD));
-	        findFriendsButton.addActionListener(new findFriendsButtonListener());
+	        findFriendsButton.addActionListener(new FindFriendsButtonListener());
 	        
 	        logoutButton = new JButton("Logout");
 	        logoutButton.setBounds(170,490,440, 30);
 	        logoutButton.setBackground(Color.black); 
 	        logoutButton.setFont(logoutButton.getFont().deriveFont(Font.BOLD));
-	        logoutButton.addActionListener(new logoutButtonListener());
+	        logoutButton.addActionListener(new LogoutButtonListener());
 
 
 
@@ -101,8 +107,9 @@ public class MainMenuView extends JLayeredPane {
 	        add(title, new Integer(9));
 	}
 	
-    class findFriendsButtonListener implements ActionListener
+    class FindFriendsButtonListener implements ActionListener
     {
+       @Override
         public void actionPerformed(ActionEvent ae) 
         {
         	Component component = (Component) ae.getSource();
@@ -117,8 +124,9 @@ public class MainMenuView extends JLayeredPane {
         }
     }
     
-    class logoutButtonListener implements ActionListener
+    class LogoutButtonListener implements ActionListener
     {
+       @Override
         public void actionPerformed(ActionEvent ae) 
         {
         	Component component = (Component) ae.getSource();
@@ -132,8 +140,9 @@ public class MainMenuView extends JLayeredPane {
     }
 
 
-    class backButtonListener implements ActionListener
+    class BackButtonListener implements ActionListener
     {
+        @Override
         public void actionPerformed(ActionEvent ae) 
         {
         	Component component = (Component) ae.getSource();
@@ -151,15 +160,16 @@ public class MainMenuView extends JLayeredPane {
         tournamentPanel.add(new JLabel("Join Tournament Page"));
 
         backButton = new JButton("Back");
-        backButton.addActionListener(new backButtonListener());
+        backButton.addActionListener(new BackButtonListener());
         tournamentPanel.add(backButton);
 
         return tournamentPanel;
     }
    
     
-    class tournamentButtonListener implements ActionListener
+    class TournamentButtonListener implements ActionListener
     {
+       @Override
         public void actionPerformed(ActionEvent ae) 
         {       
         	Component component = (Component) ae.getSource();
@@ -177,14 +187,15 @@ public class MainMenuView extends JLayeredPane {
     	createTournamentPanel = ct.createTournamentMenu();
 
         backButton = new JButton("Back");
-        backButton.addActionListener(new backButtonListener());
+        backButton.addActionListener(new BackButtonListener());
         createTournamentPanel.add(backButton);
 
         return createTournamentPanel;
     }
     
-    class createTournamentButtonListener implements ActionListener
+    class CreateTournamentButtonListener implements ActionListener
     {
+       @Override
     	public void actionPerformed(ActionEvent ae)
     	{
     		Component component = (Component) ae.getSource();
@@ -200,8 +211,9 @@ public class MainMenuView extends JLayeredPane {
     	}
     }
 
-    class editProfileButtonListener implements ActionListener
+    class EditProfileButtonListener implements ActionListener
     {
+       @Override
         public void actionPerformed(ActionEvent ae) 
         {       
         	Component component = (Component) ae.getSource();
