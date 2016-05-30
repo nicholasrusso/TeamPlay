@@ -1,14 +1,15 @@
-package tournament;
+package test;
 
 import user.*;
 import soccerplayer.*;
+import tournament.Tournament;
 import junit.framework.TestCase;
 import java.util.*;
 /**
  *
  * @author nicholasrusso
  */
-public class TournamentTest extends TestCase 
+public class TestTournament extends TestCase 
 {
 	private ArrayList<SoccerPlayer> players;
 	private ArrayList<User> users;
@@ -17,27 +18,28 @@ public class TournamentTest extends TestCase
 	private User user2;
 	private User user3;
 	private User user4;
+	private static final String TEAM = "Barcelona";
 	
     
-    public TournamentTest(String testName) 
+    public TestTournament(String testName) 
     {
         super(testName);
     }
     
     @Override
     protected void setUp() {
-        players = new ArrayList<SoccerPlayer>();
-        players.add(new Forward("Messi", "Barcelona"));
-        players.add(new Forward("Saurez", "Barcelona"));
-        players.add(new Forward("Neymar", "Barcelona"));
-        players.add(new Midfielder("Xavi", "Barcelona"));
-        players.add(new Midfielder("Iniesta", "Barcelona"));
-        players.add(new Midfielder("Rakitic", "Barcelona"));
-        players.add(new Midfielder("Busquets", "Barcelona"));
-        players.add(new Defender("Pique", "Barcelona"));
-        players.add(new Defender("Mascherano", "Barcelona"));
-        players.add(new Defender("Dani Alves", "Barcelona"));
-        players.add(new Defender("Jordi Alba", "Barcelona"));
+        players = new ArrayList<>();
+        players.add(new Forward("Messi", TEAM));
+        players.add(new Forward("Saurez", TEAM));
+        players.add(new Forward("Neymar", TEAM));
+        players.add(new Midfielder("Xavi", TEAM));
+        players.add(new Midfielder("Iniesta", TEAM));
+        players.add(new Midfielder("Rakitic", TEAM));
+        players.add(new Midfielder("Busquets", TEAM));
+        players.add(new Defender("Pique", TEAM));
+        players.add(new Defender("Mascherano", TEAM));
+        players.add(new Defender("Dani Alves", TEAM));
+        players.add(new Defender("Jordi Alba", TEAM));
         tournament = new Tournament("Test Tournament", 3, players);
         user1 = new User();
         user1.setFirstName("Nick");
@@ -55,7 +57,7 @@ public class TournamentTest extends TestCase
         user4.setFirstName("no");
         user4.setLastName("nope");
         user4.setUsername("nah");
-        users = new ArrayList<User>();
+        users = new ArrayList<>();
         users.add(user1);
         users.add(user2);
         users.add(user3);
