@@ -124,7 +124,7 @@ public class UserSearchPanel extends JPanel {
         	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
         	
         	JButton backButton = new JButton("Back");
-            backButton.addActionListener(new backToSearchButtonListener());
+            backButton.addActionListener(new BackToSearchButtonListener());
             
         	frame.getContentPane().removeAll();
         	frame.getContentPane().add(new UserInfoPanel());

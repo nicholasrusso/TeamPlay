@@ -183,13 +183,13 @@ public class UserInfoPanel extends JPanel {
 		GridBagConstraints gbcBackButton = new GridBagConstraints();
 		gbcBackButton.gridx = 1;
 		gbcBackButton.gridy = 9;
-		backButton.addActionListener(new backToSearchButtonListener());
+		backButton.addActionListener(new BackToSearchButtonListener());
 		add(backButton, gbcBackButton);
 
 	}
 }
 
-class backToSearchButtonListener implements ActionListener
+class BackToSearchButtonListener implements ActionListener
 {
 	@Override
     public void actionPerformed(ActionEvent e) 
