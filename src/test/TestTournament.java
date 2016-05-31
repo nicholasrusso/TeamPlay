@@ -105,7 +105,7 @@ public class TestTournament extends TestCase
     }
 
     /**
-     * Test of addUser General
+     * Test of addUser General (Integration)
      * @author Nicholas Russo
      */
     public void testAddUser() 
@@ -148,6 +148,20 @@ public class TestTournament extends TestCase
     {
         assertFalse(tourn.removeUser(users4));
     }
+    
+    /**
+     * Test of get User after removing a user Integration Test
+     *  @author Nicholas Russo
+     */
+    public void testGetUserAfterRemove() 
+    {
+        tourn.removeUser(users3);
+        userList.remove(2);
+        assertEquals(userList, tourn.getUsers());
+        
+    }
+    
+
 
     
 }
