@@ -85,7 +85,7 @@ public class MainMenuView extends JLayeredPane {
 
 
 	        backgroundLabel = new JLabel();
-	        ImageIcon icon = new ImageIcon("C:/Users/Owner/Desktop/bgImage.jpg");
+	        ImageIcon icon = new ImageIcon("resources/bgImage.jpg");
 	        backgroundLabel.setBounds(0,0,800,600);
 	        backgroundLabel.setIcon(icon);
 
