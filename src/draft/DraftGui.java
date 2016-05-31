@@ -410,8 +410,8 @@ public class DraftGui implements Observer
         keeps.setText(model.getTeamToString("keeps"));
         if (model.hasTeam() && model.getTeamStats().indexOf("\n\n") != -1) 
         {
-	        textArea.setText(model.getTeamStats().substring(0, model.getTeamStats().indexOf("\n\n")).trim());
-	        textArea_2.setText(model.getTeamStats().substring(model.getTeamStats().indexOf("\n\n")).trim());
+	        textArea.setText(model.getTeamStats().substring(model.getTeamStats().indexOf("\n\n")).trim());
+	        textArea_2.setText(model.getTeamStats().substring(0, model.getTeamStats().indexOf("\n\n")).trim());
     	}
     }
     

@@ -15,4 +15,6 @@ public interface SoccerPlayer
     
     public int getScore() ;
     
+    public String getPosition();
+    
 }
