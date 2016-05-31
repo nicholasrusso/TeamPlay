@@ -335,9 +335,10 @@ public class DraftGui implements Observer
                 {
                 	user.getEmail().sendEmailTo(user.getEmail(), "Hello From TeamPlay!"
                 			+ "\nYou've Joined: " + tournament.getName() +
-                    		"\nThis s Your Selected Team: " + model.getTeamToString("forws") +
+                    		"\nThis is Your Selected Team: " + model.getTeamToString("forws") +
                     		model.getTeamToString("mids") + model.getTeamToString("defs") +
-                    		model.getTeamToString("keeps") + "\n Good Luck This Week!\nThe TeamPlay Devs");
+                    		model.getTeamToString("keeps") + "\n Good Luck This Week!\nThe TeamPlay Folks"
+                    				+ "\nps GO ROMA!");
                 }
                 
             });

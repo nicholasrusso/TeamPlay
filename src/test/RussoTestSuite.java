@@ -2,7 +2,7 @@ package test;
 
 /*
  * Test Type: Test Suite of unit tests and integration tests.
- * Author: Michael Haskell
+ * Author: Nicholas Russo
  */
 
 import org.junit.runner.RunWith;
