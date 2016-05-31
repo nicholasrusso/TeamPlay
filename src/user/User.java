@@ -88,7 +88,7 @@ public class User
      * */
     public boolean setFirstName(String name)
     {
-        if (name.matches("^[A-Za-z]+")) {
+        if (name.matches("^[A-Za-z0-9]+")) {
             firstName = name;
             return true;
         }
@@ -113,7 +113,7 @@ public class User
      * */
     public boolean setLastName(String name)
     {
-        if (name.matches("^[A-Za-z]+")) {
+        if (name.matches("^[A-Za-z0-9]+")) {
             lastName = name;
             return true;
         }

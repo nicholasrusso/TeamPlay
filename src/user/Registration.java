@@ -51,6 +51,10 @@ public class Registration {
 		
 		if(newUser.isValidated()) {
 			newUser.save();
+			log.info("User created.");
+		}
+		else {
+			log.severe("User registration details not complete.");
 		}
 		return true;
 	}

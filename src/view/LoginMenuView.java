@@ -112,16 +112,6 @@ public class LoginMenuView extends JLayeredPane {
         			matchedUser = foundUser;
         		}
         	}
-        	System.out.println("username " + matchedUser.getUsername().trim());
-        	System.out.println("user's entered password " + jpfPassword.getText());
-        	System.out.println("User's real password hash " + matchedUser.getPasswordHash());
-
-        	System.out.println("pass with trim " + PasswordUtilities.getPasswordHash(jpfPassword.getText().trim()));
-        	System.out.println("pass no trim " + PasswordUtilities.getPasswordHash(jpfPassword.getText()));
-        	System.out.println("getPassword.toString() " + PasswordUtilities.getPasswordHash(jpfPassword.getPassword().toString()));
-        	System.out.println("getPassword.toString() " + PasswordUtilities.getPasswordHash(jpfPassword.getPassword().toString()));
-
-
 
         	if (matchedUser != null && userFound && PasswordUtilities.getPasswordHash(jpfPassword.getText()).equals(matchedUser.getPasswordHash()))
         	{
