@@ -16,7 +16,7 @@ public class TestMidfielder {
    public void testScore() {
       Midfielder m = new Midfielder("Mesut Ozil", "Arsenal");
 
-      int score = m.getScore();
+      
       assertTrue(m.toString().contains(m.getScore()+""));
 
    }
