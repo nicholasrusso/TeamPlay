@@ -15,7 +15,8 @@ public class TestDefender {
 
    /*
     * Test Type: Unit Test
-    * 
+    *
+    */
    @Test
    public void getDPlayerName() {
       Defender d = new Defender("Mats Hummels", "Dortmund");
@@ -41,7 +42,7 @@ public class TestDefender {
       public void getScore() {
          Defender d = new Defender("Per Mertesacker", "Arsenal");
 
-         int score = d.getScore();
+         
          assertTrue(d.toString().contains(d.getScore()+""));
       }
 
