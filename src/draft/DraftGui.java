@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import soccerplayer.SoccerPlayer;
 import tournament.Tournament;
+import user.User;
 import view.MainMenuView;
 
 import java.awt.Color;
@@ -330,6 +331,15 @@ public class DraftGui implements Observer
         saveButton.addActionListener(element -> {
                 model.setTeamName(teamNameTA.getText());
                 model.setTeamFormation(formationComboBox.getSelectedItem().toString());
+                for (User user : tournament.getUsers())
+                {
+                	user.getEmail().sendEmailTo(model.getCurrentUser().getEmail(), "Hello From TeamPlay!"
+                			+ "\nYou've Joined: " + tournament.getName() +
+                    		"\nThis s Your Selected Team: " + model.getTeamToString("forws") +
+                    		model.getTeamToString("mids") + model.getTeamToString("defs") +
+                    		model.getTeamToString("keeps") + "\n Good Luck This Week!\nThe TeamPlay Devs");
+                }
+                
             });
         saveButton.setForeground(Color.BLACK);
         saveButton.setFont(new Font(FONT, Font.PLAIN, 34));
