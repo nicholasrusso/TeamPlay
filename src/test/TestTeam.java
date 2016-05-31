@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import java.util.List;
 import teams.*;
 import soccerplayer.*;
 
@@ -31,29 +32,36 @@ public class TestTeam {
     }
     
     @Test
-    public void addDefenderToTeam() {
-        fail("Not yet implemented");
+    public void convertToList() {
+        testTeam.addPlayer(gk);
+        testTeam.addPlayer(d);
+        testTeam.addPlayer(m);
+        testTeam.addPlayer(f);
+        List<SoccerPlayer> teamAsArray = testTeam.getTeam();
+        assertEquals(4, teamAsArray.size());
     }
 
     /* Unit Tests */
     
     @Test
     public void getNameWorks() {
-        fail("Not yet implemented");
+        assertEquals("Example", testTeam.getName());
     }
     
     @Test
-    public void addPlayerWorks() {
-        fail("Not yet implemented");
+    public void getFormationWorks() {
+        assertEquals("4-3-3", testTeam.getFormation());
     }
     
     @Test
-    public void removePlayerWorks() {
-        fail("Not yet implemented");
+    public void setFormationWorks() {
+        testTeam.setFormation("4-4-2");
+        assertEquals("4-4-2", testTeam.getFormation());
     }
     
     @Test
-    public void getSizeWorks() {
-        fail("Not yet implemented");
+    public void setNameWorks() {
+        testTeam.setName("Changed");
+        assertEquals("Changed", testTeam.getName());
     }
 }
