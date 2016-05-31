@@ -319,7 +319,7 @@ public class DraftGui implements Observer
         	JFrame newFrame = (JFrame) SwingUtilities.getRoot(component);
         	            
         	newFrame.getContentPane().removeAll();
-        	newFrame.getContentPane().add(new MainMenuView(null));
+        	newFrame.getContentPane().add(new MainMenuView(new User()));
         	newFrame.getContentPane().revalidate();
         	newFrame.getContentPane().repaint();
         });
