@@ -39,7 +39,7 @@ public class User
     private HashMap<String, Team> teams;
     private String passwordHash;
     private HashMap<SoccerPlayer, Integer> soccerPlayerUsage;
-    private final String BASICREGEX = "^[A-Za-z0-9]+";
+    private final static String basicRegex = "^[A-Za-z0-9]+";
 
     /***
      * Default constructor for user. User fields must be validated.
@@ -64,7 +64,7 @@ public class User
      * */
     public boolean setUsername(String userName)
     {
-        if (userName.matches(BASICREGEX)) {
+        if (userName.matches(basicRegex)) {
             this.userName = userName;
             return true;
         }
@@ -89,7 +89,7 @@ public class User
      * */
     public boolean setFirstName(String name)
     {
-        if (name.matches(BASICREGEX)) {
+        if (name.matches(basicRegex)) {
             firstName = name;
             return true;
         }
@@ -114,7 +114,7 @@ public class User
      * */
     public boolean setLastName(String name)
     {
-        if (name.matches(BASICREGEX)) {
+        if (name.matches(basicRegex)) {
             lastName = name;
             return true;
         }
