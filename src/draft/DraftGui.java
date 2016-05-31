@@ -55,7 +55,7 @@ public class DraftGui implements Observer
     private JTextField txtMidfielders;
     private JTextField txtDefenders;
     private JTextField txtGoalkeepers;
-    private JTextArea textArea_2;
+    private JTextArea textArea2;
     private JTextArea textArea;
     
 
@@ -176,28 +176,28 @@ public class DraftGui implements Observer
         forward = new JTextArea();
         forward.setEditable(false);
         forward.setWrapStyleWord(true);
-        forward.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        forward.setFont(new Font(FONT, Font.PLAIN, 10));
         forward.setBounds(5, 22, 112, 134);
         currentUserTeamPanel.add(forward);
         
         mids = new JTextArea();
         mids.setEditable(false);
         mids.setWrapStyleWord(true);
-        mids.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        mids.setFont(new Font(FONT, Font.PLAIN, 10));
         mids.setBounds(119, 22, 110, 134);
         currentUserTeamPanel.add(mids);
         
         defs = new JTextArea();
         defs.setEditable(false);
         defs.setWrapStyleWord(true);
-        defs.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        defs.setFont(new Font(FONT, Font.PLAIN, 10));
         defs.setBounds(231, 22, 112, 134);
         currentUserTeamPanel.add(defs);
         
         keeps = new JTextArea();
         keeps.setEditable(false);
         keeps.setWrapStyleWord(true);
-        keeps.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        keeps.setFont(new Font(FONT, Font.PLAIN, 10));
         keeps.setBounds(345, 22, 110, 134);
         currentUserTeamPanel.add(keeps);
         
@@ -286,18 +286,18 @@ public class DraftGui implements Observer
         teamNameTA.setBounds(120, 6, 184, 20);
         teamStatsPanel.add(teamNameTA);
         
-        textArea_2 = new JTextArea();
-        textArea_2.setWrapStyleWord(true);
-        textArea_2.setText((String) null);
-        textArea_2.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-        textArea_2.setEditable(false);
-        textArea_2.setBounds(16, 29, 138, 151);
-        teamStatsPanel.add(textArea_2);
+        textArea2 = new JTextArea();
+        textArea2.setWrapStyleWord(true);
+        textArea2.setText((String) null);
+        textArea2.setFont(new Font(FONT, Font.PLAIN, 10));
+        textArea2.setEditable(false);
+        textArea2.setBounds(16, 29, 138, 151);
+        teamStatsPanel.add(textArea2);
         
         textArea = new JTextArea();
         textArea.setWrapStyleWord(true);
         textArea.setText((String) null);
-        textArea.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        textArea.setFont(new Font(FONT, Font.PLAIN, 10));
         textArea.setEditable(false);
         textArea.setBounds(161, 29, 138, 151);
         teamStatsPanel.add(textArea);
@@ -316,12 +316,12 @@ public class DraftGui implements Observer
         quitDraftButton.setFont(new Font(FONT, Font.PLAIN, 34));
         quitDraftButton.addActionListener((ActionEvent ae) -> {
   			Component component = (Component) ae.getSource();
-        	JFrame frame = (JFrame) SwingUtilities.getRoot(component);
+        	JFrame newFrame = (JFrame) SwingUtilities.getRoot(component);
         	            
-        	frame.getContentPane().removeAll();
-        	frame.getContentPane().add(new MainMenuView(null));
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
+        	newFrame.getContentPane().removeAll();
+        	newFrame.getContentPane().add(new MainMenuView(null));
+        	newFrame.getContentPane().revalidate();
+        	newFrame.getContentPane().repaint();
         });
         frame.add(quitDraftButton);
         
@@ -333,7 +333,7 @@ public class DraftGui implements Observer
                 model.setTeamFormation(formationComboBox.getSelectedItem().toString());
                 for (User user : tournament.getUsers())
                 {
-                	user.getEmail().sendEmailTo(model.getCurrentUser().getEmail(), "Hello From TeamPlay!"
+                	user.getEmail().sendEmailTo(user.getEmail(), "Hello From TeamPlay!"
                 			+ "\nYou've Joined: " + tournament.getName() +
                     		"\nThis s Your Selected Team: " + model.getTeamToString("forws") +
                     		model.getTeamToString("mids") + model.getTeamToString("defs") +
@@ -421,7 +421,7 @@ public class DraftGui implements Observer
         if (model.hasTeam() && model.getTeamStats().indexOf("\n\n") != -1) 
         {
 	        textArea.setText(model.getTeamStats().substring(model.getTeamStats().indexOf("\n\n")).trim());
-	        textArea_2.setText(model.getTeamStats().substring(0, model.getTeamStats().indexOf("\n\n")).trim());
+	        textArea2.setText(model.getTeamStats().substring(0, model.getTeamStats().indexOf("\n\n")).trim());
     	}
     }
     

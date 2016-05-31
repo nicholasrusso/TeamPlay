@@ -17,7 +17,6 @@ public class DraftModel extends Observable{
     private User currentUser;
     private int userPosition;
     private SoccerPlayer[] currentPlayerSelection;
-    private SoccerPlayer[] randomPlayers;
     private static int turnSeconds;
     private int draftRound;
     private boolean selection;
@@ -32,7 +31,6 @@ public class DraftModel extends Observable{
         this.tournament = tournament;
         this.users = (ArrayList<User>) tournament.getUsers();
         this.currentUser = users.get(userPosition);
-        randomPlayers = new SoccerPlayer[3];
         turnSeconds = 10;
         selection = false;
         draftOver = false;
@@ -182,7 +180,7 @@ public class DraftModel extends Observable{
     
     public String getCurrentUserName()
     {
-    	return currentUser.getFirstName() + " " + currentUser.getLastName();
+    	return currentUser.getUsername();
     }
     
     public String getTeamToString(String type)
@@ -218,15 +216,15 @@ public class DraftModel extends Observable{
     		}
     	}
     	
-    	if (type.equals("forws"))
+    	if ("forws".equals(type))
     	{
     		returnList = forwards;
     	}
-    	else if (type.equals("mids"))
+    	else if ("mids".equals(type))
     	{
     		returnList = mids;
     	}
-    	else if (type.equals("defs"))
+    	else if ("defs".equals(type))
     	{
     		returnList = defenders;
     	}
