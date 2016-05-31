@@ -13,31 +13,32 @@ import soccerplayer.*;
  */
 
 public class TestTeam {
-    private Team testTeam = new Team("Example");
-    private GoalKeeper gk = new GoalKeeper("Buffon", "Example");
-    private Defender d = new Defender("Pique", "Example");
-    private Midfielder m = new Midfielder("Ozil", "Example");
-    private Forward f = new Forward("Totti", "Example");
+    private String ex = "Example";
+    private Team tt = new Team(ex);
+    private GoalKeeper gk = new GoalKeeper("Buffon", ex);
+    private Defender d = new Defender("Pique", ex);
+    private Midfielder m = new Midfielder("Ozil", ex);
+    private Forward f = new Forward("Totti", ex);
     
     /* Integration Testing */
     
     @Test
     public void addPlayersToTeam() {
-        testTeam.addPlayer(gk);
-        testTeam.addPlayer(d);
-        testTeam.addPlayer(m);
-        testTeam.addPlayer(f);
+        tt.addPlayer(gk);
+        tt.addPlayer(d);
+        tt.addPlayer(m);
+        tt.addPlayer(f);
         
-        assertEquals(4, testTeam.getSize(), 0);
+        assertEquals(4, tt.getSize(), 0);
     }
     
     @Test
     public void convertToList() {
-        testTeam.addPlayer(gk);
-        testTeam.addPlayer(d);
-        testTeam.addPlayer(m);
-        testTeam.addPlayer(f);
-        List<SoccerPlayer> teamAsArray = testTeam.getTeam();
+        tt.addPlayer(gk);
+        tt.addPlayer(d);
+        tt.addPlayer(m);
+        tt.addPlayer(f);
+        List<SoccerPlayer> teamAsArray = tt.getTeam();
         assertEquals(4, teamAsArray.size());
     }
 
@@ -45,23 +46,23 @@ public class TestTeam {
     
     @Test
     public void getNameWorks() {
-        assertEquals("Example", testTeam.getName());
+        assertEquals("Example", tt.getName());
     }
     
     @Test
     public void getFormationWorks() {
-        assertEquals("4-3-3", testTeam.getFormation());
+        assertEquals("4-3-3", tt.getFormation());
     }
     
     @Test
     public void setFormationWorks() {
-        testTeam.setFormation("4-4-2");
-        assertEquals("4-4-2", testTeam.getFormation());
+        tt.setFormation("4-4-2");
+        assertEquals("4-4-2", tt.getFormation());
     }
     
     @Test
     public void setNameWorks() {
-        testTeam.setName("Changed");
-        assertEquals("Changed", testTeam.getName());
+        tt.setName("Changed");
+        assertEquals("Changed", tt.getName());
     }
 }
