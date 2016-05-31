@@ -139,7 +139,7 @@ public class CreateTournament {
         	 }
         	 
         	 Tournament tournament = new Tournament(tournamentName, numberUsers, playerPool);
-        	 UserSearch search = new UserSearch("");
+        	 UserSearch search = new UserSearch("");        	 
         	 ArrayList<User> list = (ArrayList<User>) search.getUsers();
         	 for (User user : list)
         	 {
