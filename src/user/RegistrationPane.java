@@ -172,7 +172,7 @@ public class RegistrationPane extends JPanel {
         		log.warning("Warning: Username already used");
         	} else {
         		Registration.registerUser(usernameField.getText(),
-        				Arrays.toString(passwordField.getPassword()),
+        				passwordField.getText(),
         				firstNameField.getText(),
         				lastNameField.getText(),
         				emailField.getText());

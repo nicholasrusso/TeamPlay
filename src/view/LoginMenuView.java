@@ -18,6 +18,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
+import security.PasswordUtilities;
+
+import java.util.List;
 import java.util.logging.Logger;
 
 import user.RegistrationPane;
@@ -89,8 +93,6 @@ public class LoginMenuView extends JLayeredPane {
     	
         public synchronized void updateBar(ActionEvent ae, final User u) {
         	this.user = u;
-        	Component component = (Component) ae.getSource();
-        	final JFrame frame = (JFrame) SwingUtilities.getRoot(component);
 
             Thread t = new ProgressBarThread(u);
             t.start(); 
@@ -98,12 +100,32 @@ public class LoginMenuView extends JLayeredPane {
      
         @Override
         public void actionPerformed(ActionEvent ae) 
-        {            
-            if ("root".equals(jpfPassword.getPassword())
-            && "root".equals(jtfUsername.getText())) {
-                // upon successful login, reference to user that is logged into the system (needed by rest of components)
-            	User user = new UserSearch("root").getUsers().get(0);
-                updateBar(ae, user);
+        {     
+        	String inputUsername = jtfUsername.getText();
+        	boolean userFound = false;
+        	User matchedUser = null;
+        	
+        	List<User> users = new UserSearch(inputUsername).getUsers();
+        	for (User foundUser : users) {
+        		if (foundUser.getUsername().equals(inputUsername)) {
+        			userFound = true;
+        			matchedUser = foundUser;
+        		}
+        	}
+        	System.out.println("username " + matchedUser.getUsername().trim());
+        	System.out.println("user's entered password " + jpfPassword.getText());
+        	System.out.println("User's real password hash " + matchedUser.getPasswordHash());
+
+        	System.out.println("pass with trim " + PasswordUtilities.getPasswordHash(jpfPassword.getText().trim()));
+        	System.out.println("pass no trim " + PasswordUtilities.getPasswordHash(jpfPassword.getText()));
+        	System.out.println("getPassword.toString() " + PasswordUtilities.getPasswordHash(jpfPassword.getPassword().toString()));
+        	System.out.println("getPassword.toString() " + PasswordUtilities.getPasswordHash(jpfPassword.getPassword().toString()));
+
+
+
+        	if (matchedUser != null && userFound && PasswordUtilities.getPasswordHash(jpfPassword.getText()).equals(matchedUser.getPasswordHash()))
+        	{
+                updateBar(ae, matchedUser);
             }
             else {
                 statusLabel.setText("Invalid username or password");
@@ -123,9 +145,7 @@ public class LoginMenuView extends JLayeredPane {
         public void run(){                        
             for(int i = 0 ; i <= 100 ; i++){
                 final int percent = i;
-                SwingUtilities.invokeLater( () -> {
-                            progressBar.setValue(percent);
-                });
+                SwingUtilities.invokeLater( () -> progressBar.setValue(percent) );
                 try {
                    Thread.sleep(25);
                 } 
@@ -142,7 +162,8 @@ public class LoginMenuView extends JLayeredPane {
                     frame.getContentPane().repaint();
             }
             catch(Exception e) {
-               log.severe(e.toString());                               
+               log.severe(e.toString());     
+               Thread.currentThread().interrupt();;
             }
         }
 
