@@ -265,6 +265,17 @@ public class DraftModel extends Observable{
     	}
 		return result;
     }
+    
+    public int looper(int amount)
+    {
+    	int result = 0;
+    	for (int i = 0; i < amount; i++)
+    	{
+    		result++;
+    	}
+    		
+    	return result;
+    }
 
     
 

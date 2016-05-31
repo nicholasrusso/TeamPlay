@@ -73,7 +73,7 @@ public class TestDraftModel extends TestCase
 
 
     /**
-     * Test of getLoopIterates
+     * Test of getLoopIterates (Integration)
      * @author Nicholas Russo
      */
     public void testGetLoopIterates() 
@@ -83,5 +83,14 @@ public class TestDraftModel extends TestCase
     	model.startTimer();
     	model.nextUser(0);
         assertEquals(1, model.getLoopIterations());
+    }
+    
+    /**
+     * Test of getLoopIterates
+     * @author Nicholas Russo
+     */
+    public void testLooper() 
+    {
+    	assertEquals(5, model.looper(5));
     }
 }

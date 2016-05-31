@@ -48,6 +48,7 @@ public class Midfielder implements SoccerPlayer
     public String getPosition() {
 		return "M";
 	}
+   
     
 
 }
