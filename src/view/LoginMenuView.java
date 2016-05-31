@@ -89,11 +89,8 @@ public class LoginMenuView extends JLayeredPane {
 	
     class ProgressListener implements ActionListener
     {
-    	private User user;
     	
         public synchronized void updateBar(ActionEvent ae, final User u) {
-        	this.user = u;
-
             Thread t = new ProgressBarThread(u);
             t.start(); 
         }
