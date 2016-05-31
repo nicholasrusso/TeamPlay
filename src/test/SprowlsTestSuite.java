@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestDefender.class, TestForward.class, TestGoalKeeper.class})
+@SuiteClasses({ TestDefender.class, TestForward.class, TestGoalKeeper.class, TestMidfielder.class})
 public class SprowlsTestSuite {
 
 }

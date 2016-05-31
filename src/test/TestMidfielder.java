@@ -1,6 +1,6 @@
 package test;
 
-import orrg.junit.Assert.*;
+import static org.junit.Assert.*;
 import soccerplayer.*;
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
  * Author: Spencer Sprowls
  */
 
-public class TestMidfield {
+public class TestMidfielder {
    
    @Test
    public void testScore() {
