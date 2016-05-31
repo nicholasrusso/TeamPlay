@@ -35,12 +35,10 @@ public class MainMenuView extends JLayeredPane {
     private JPanel findFriendsPanel;
     private JLabel backgroundLabel;
     private JLabel title;
-    private JLayeredPane lp;
     private User user;
 
 	public MainMenuView(User user) {
 			this.user = user;
-	    	lp = new JLayeredPane();
 
 	    	tournamentButton = new JButton("Join Tournament");
 	        tournamentButton.setBounds(170,290,440, 30);

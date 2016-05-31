@@ -90,7 +90,7 @@ public class LoginMenuView extends JLayeredPane {
     class ProgressListener implements ActionListener
     {
     	
-        public synchronized void updateBar(ActionEvent ae, final User u) {
+        public synchronized void updateBar(final User u) {
             Thread t = new ProgressBarThread(u);
             t.start(); 
         }
@@ -99,20 +99,18 @@ public class LoginMenuView extends JLayeredPane {
         public void actionPerformed(ActionEvent ae) 
         {     
         	String inputUsername = jtfUsername.getText();
-        	boolean userFound = false;
         	User matchedUser = null;
         	
         	List<User> users = new UserSearch(inputUsername).getUsers();
         	for (User foundUser : users) {
         		if (foundUser.getUsername().equals(inputUsername)) {
-        			userFound = true;
         			matchedUser = foundUser;
         		}
         	}
 
-        	if (matchedUser != null && userFound && PasswordUtilities.getPasswordHash(jpfPassword.getText()).equals(matchedUser.getPasswordHash()))
+        	if (matchedUser != null && PasswordUtilities.getPasswordHash(jpfPassword.getText()).equals(matchedUser.getPasswordHash()))
         	{
-                updateBar(ae, matchedUser);
+                updateBar(matchedUser);
             }
             else {
                 statusLabel.setText("Invalid username or password");
@@ -137,7 +135,8 @@ public class LoginMenuView extends JLayeredPane {
                    Thread.sleep(25);
                 } 
                 catch (InterruptedException e) {
-                   log.severe(e.toString());                               
+                   log.severe(e.toString());    
+                   Thread.currentThread().interrupt();
                 }
             }
             try {
