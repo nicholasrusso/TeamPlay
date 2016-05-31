@@ -1,6 +1,6 @@
 package test;
 
-import static.org.junit.Assert.*;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 import soccerplayer.*;
@@ -16,7 +16,7 @@ public class TestForward {
    public void getName() {
       Forward f = new Forward("Mario Balotelli", "AC Milan");
 
-      assertEquals("Mario Balotelli", g.getName());
+      assertEquals("Mario Balotelli", f.getName());
    }
 
 }
